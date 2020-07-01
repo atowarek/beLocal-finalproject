@@ -10,7 +10,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-app.use('/users', apiRoutes)
+app.use('/', apiRoutes)
 
 app.get('/', (req, res) => {
   res.send({

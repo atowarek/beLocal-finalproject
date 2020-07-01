@@ -4,7 +4,8 @@ const routes = express.Router()
 
 // GET all users
 routes.get('/users', (req, res, next) => {
-  models.Users.findAll()
+  models.user
+    .findAll()
     .then(user => res.send(user))
     .catch(err => res.status(500).send(err))
 })
@@ -12,9 +13,10 @@ routes.get('/users', (req, res, next) => {
 // GET user by id
 routes.get('/users/:id', (req, res, next) => {
   const { id } = req.params
-  models.Users.findOne({
-    where: { id },
-  })
+  models.user
+    .findOne({
+      where: { id },
+    })
     .then(user => res.send(user))
     .catch(err => res.status(500).send(err))
 })
@@ -22,12 +24,13 @@ routes.get('/users/:id', (req, res, next) => {
 // GET user by id + his/her activities
 routes.get('/users/:id', (req, res, next) => {
   const { id } = req.params
-  models.Users.findOne({
-    where: {
-      id,
-    },
-    include: models.Activities,
-  })
+  models.user
+    .findOne({
+      where: {
+        id,
+      },
+      include: models.activitie,
+    })
     .then(user => res.send(user))
     .catch(err => res.status(500).send(err))
 })
@@ -35,7 +38,8 @@ routes.get('/users/:id', (req, res, next) => {
 // CREATE a user
 routes.post('/users', (req, res) => {
   const { name, mail, phone, password } = req.body
-  models.Users.create({ name, mail, phone, password })
+  models.user
+    .create({ name, mail, phone, password })
     .then(user => res.send(user))
     .catch(err => res.status(500).send(err))
 })
@@ -43,16 +47,18 @@ routes.post('/users', (req, res) => {
 // DELETE user by id
 routes.delete('/users/:id', (req, res, next) => {
   const { id } = req.params
-  models.Users.destroy({
-    where: { id },
-  })
+  models.user
+    .destroy({
+      where: { id },
+    })
     .then(user => res.send(user))
     .catch(err => res.status(500).send(err))
 })
 
 // GET all activities
 routes.get('/activities', (req, res, next) => {
-  models.Activities.findAll()
+  models.activitie
+    .findAll()
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
@@ -60,9 +66,10 @@ routes.get('/activities', (req, res, next) => {
 // GET activity by id
 routes.get('/activities/:id', (req, res, next) => {
   const { id } = req.params
-  models.Activities.findOne({
-    where: { id },
-  })
+  models.activitie
+    .findOne({
+      where: { id },
+    })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
@@ -70,12 +77,13 @@ routes.get('/activities/:id', (req, res, next) => {
 // GET activity by id + all the users for this activity
 routes.get('/activities/:id', (req, res, next) => {
   const { id } = req.params
-  models.Activities.findOne({
-    where: {
-      id,
-    },
-    include: models.Users,
-  })
+  models.activitie
+    .findOne({
+      where: {
+        id,
+      },
+      include: models.user,
+    })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
@@ -84,9 +92,10 @@ routes.get('/activities/:id', (req, res, next) => {
 routes.get('/activities/:city', (req, res, next) => {
   const { city } = req.params
 
-  models.Activities.findOne({
-    where: { city },
-  })
+  models.activitie
+    .findOne({
+      where: { city },
+    })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
@@ -94,9 +103,10 @@ routes.get('/activities/:city', (req, res, next) => {
 // GET activity by category
 routes.get('/activities/:name', (req, res, next) => {
   const { category } = req.params
-  models.Activities.findOne({
-    where: { category },
-  })
+  models.activitie
+    .findOne({
+      where: { category },
+    })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
@@ -105,9 +115,10 @@ routes.get('/activities/:name', (req, res, next) => {
 routes.get('/activities/:startDate', (req, res, next) => {
   const { startDate } = req.params
 
-  models.Activities.findOne({
-    where: { startDate },
-  })
+  models.activitie
+    .findOne({
+      where: { startDate },
+    })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
@@ -115,9 +126,10 @@ routes.get('/activities/:startDate', (req, res, next) => {
 // GET activity by name
 routes.get('/activities/:name', (req, res, next) => {
   const { name } = req.params
-  models.Activities.findOne({
-    where: { name },
-  })
+  models.activitie
+    .findOne({
+      where: { name },
+    })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
@@ -139,21 +151,22 @@ routes.post('/activities', (req, res) => {
     picture,
     city,
   } = req.body
-  models.Activities.create({
-    name,
-    startDate,
-    endDate,
-    startHour,
-    endHour,
-    hostingId,
-    longitude,
-    latitude,
-    address,
-    description,
-    category,
-    picture,
-    city,
-  })
+  models.activitie
+    .create({
+      name,
+      startDate,
+      endDate,
+      startHour,
+      endHour,
+      hostingId,
+      longitude,
+      latitude,
+      address,
+      description,
+      category,
+      picture,
+      city,
+    })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
@@ -161,9 +174,10 @@ routes.post('/activities', (req, res) => {
 // DELETE activity by id
 routes.delete('/activities/:id', (req, res, next) => {
   const { id } = req.params
-  models.Activities.destroy({
-    where: { id },
-  })
+  models.activitie
+    .destroy({
+      where: { id },
+    })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
