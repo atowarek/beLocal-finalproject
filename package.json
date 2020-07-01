@@ -28,6 +28,6 @@
     "dev:server": "nodemon ./api/app.js",
     "dev:client": "cd ./client && yarn start",
     "start": "npm-run-all -l -p dev:server dev:client",
-    "migrate": "npx sequelize-cli db:migrate"
+    "migrate": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   }
 }
