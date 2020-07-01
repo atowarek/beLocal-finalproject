@@ -103,7 +103,7 @@ routes.get('/activities/:city', (req, res, next) => {
 // GET activity by category
 routes.get('/activities/:name', (req, res, next) => {
   const { category } = req.params
-  models.activitie
+  models.ctivitie
     .findOne({
       where: { category },
     })
