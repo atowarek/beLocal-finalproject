@@ -1,6 +1,10 @@
+require('dotenv').config()
 const express = require('express')
 const models = require('../models')
 const routes = express.Router()
+const jwt = require('jsonwebtoken')
+
+const supersecret = process.env.SUPER_SECRET
 
 // GET all users
 routes.get('/users', (req, res, next) => {
@@ -180,6 +184,43 @@ routes.delete('/activities/:id', (req, res, next) => {
     })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
+})
+
+// Login user
+routes.post('/login', (req, res, next) => {
+  const { name, password } = req.body
+  models.user
+  .findAll({
+    where: {
+      name,
+      password
+    }
+  })
+  .then((results) => {
+    if(results.length){
+
+      let token = jwt.sign({ id: results[0].id }, supersecret)
+      res.send({message: 'user ok, here is your token', token})
+    } else {
+      res.status(404).send({message: 'User not found'})
+    }
+  })
+})
+
+//endpoint protected
+routes.get('/profile', (req, res, next) => {
+  const token = req.headers['x-access-token']
+  if(!token){
+    res.status(401).send({message:'Please log in'})
+  } else{
+    jwt.verify(token, supersecret, function (err, decoded){
+      if(err) res.status(401).send({message: err.message})
+      else{
+        const { id } = decoded
+        res.send({message: `here is your ${id}`})
+      }
+    })
+  }
 })
 
 module.exports = routes
