@@ -10,14 +10,14 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-app.use('/api', apiRoutes)
+app.use('/users', apiRoutes)
 
 app.get('/', (req, res) => {
-    res.send({
-        message: 'hi'
-    })
+  res.send({
+    message: 'hi',
+  })
 })
 
 app.listen(process.env.API_PORT, () => {
-    console.log(`Starting server in PORT ${process.env.API_PORT}`)
+  console.log(`Starting server in PORT ${process.env.API_PORT}`)
 })
