@@ -1,35 +1,40 @@
-import React, { useState, useEffect } from './node_modules/react'
+import React from 'react'
+
 //import axios from 'axios'
 import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
 
-const HomePage = props => {
-  //const [activities, setActivities] = useState([])
-  //const [error, setError] = useState(false)
+class HomePage extends React.Component {
+  state = {
+    activities: [],
+    error: false,
+  }
 
-  // useEffect(() => {
-  //   // const handleShowActivities = () => {
-  //   fetch('/api/activities')
-  //     .then(response => response.json())
-  //     .then(response => {
-  //       setActivities(response.results)
-  //     })
-  //   // .catch(function (error) {
-  //   //   setError(true)
-  //   //   console.log(error)
-  //   // })
-  // }, [activities])
+  handleShowActivities = (city = '') => {
+    // fetch(`/api/activities/${city}`)
+    fetch(`/api/activities`)
+      .then(response => response.json())
+      .then(response => {
+        this.setState({ activities: response })
+        console.log(response)
+      })
+      .catch(error => {
+        this.setState({ error: true })
+        //console.log(error)
+      })
+  }
 
-  return (
-    <div className='home'>
-      This web app is amazing! :) <hr />
-      Fill in at least one...
-      <br></br>
-      <Search />
-      <ActivityContainer />
-    </div>
-  )
+  render() {
+    return (
+      <div className='home'>
+        This web app is amazing! :) <hr />
+        Fill in at least one...
+        <br></br>
+        <Search getActivities={this.handleShowActivities} />
+        <ActivityContainer />
+      </div>
+    )
+  }
 }
-
 export default HomePage

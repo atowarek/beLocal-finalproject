@@ -106,7 +106,7 @@ routes.get('/activities/:city', (req, res, next) => {
 })
 
 // GET activity by category
-routes.get('/activities/:name', (req, res, next) => {
+routes.get('/activities/:category', (req, res, next) => {
   const { category } = req.params
   models.ctivitie
     .findOne({
@@ -191,26 +191,25 @@ routes.delete('/activities/:id', (req, res, next) => {
 routes.post('/login', (req, res, next) => {
   const { name, password } = req.body
   models.user
-  .findAll({
-    where: {
-      name,
-      password
-    }
-  })
-  .then((results) => {
-    if(results.length){
-
-      let token = jwt.sign({ id: results[0].id }, supersecret)
-      res.send({message: 'user ok, here is your token', token})
-    } else {
-      res.status(404).send({message: 'User not found'})
-    }
-  })
+    .findAll({
+      where: {
+        name,
+        password,
+      },
+    })
+    .then(results => {
+      if (results.length) {
+        let token = jwt.sign({ id: results[0].id }, supersecret)
+        res.send({ message: 'user ok, here is your token', token })
+      } else {
+        res.status(404).send({ message: 'User not found' })
+      }
+    })
 })
 
 //endpoint protected
 routes.get('/profile', userShouldBeLoggedIn, (req, res, next) => {
-  res.send({message: `here is your ${req.id}`})      
+  res.send({ message: `here is your ${req.id}` })
 })
 
 module.exports = routes

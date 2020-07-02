@@ -3,38 +3,39 @@ import axios from './node_modules/axios'
 import { Button, Form, FormGroup, Label, Input } from './node_modules/reactstrap'
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: '',
-            password: ''
-        }
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: '',
+      password: '',
     }
+  }
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
+  }
 
-    login = (event) => {
-        event.preventDefault()
-        const { name, password } = this.state
-        axios('http://localhost:3001/login', {
-            method: 'POST',
-            data: {
-                name,
-                password
-            }
-        })
-            .then((response) => {
-                localStorage.setItem('token', response.data.token)
-                console.log(response.data)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
+  login = event => {
+    event.preventDefault()
+    const { name, password } = this.state
+    axios('http://localhost:3001/login', {
+      method: 'POST',
+      data: {
+        name,
+        password,
+      },
+    })
+      .then(response => {
+        localStorage.setItem('token', response.data.token)
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
 
     requestAccess = () => {
         axios('http://localhost:3001/profile', {
@@ -88,4 +89,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default Login
