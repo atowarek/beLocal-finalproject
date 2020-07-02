@@ -1,6 +1,6 @@
-import React from 'react'
-import axios from 'axios'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import React from './node_modules/react'
+import axios from './node_modules/axios'
+import { Button, Form, FormGroup, Label, Input } from './node_modules/reactstrap'
 
 class Login extends React.Component {
     constructor(props) {
@@ -36,7 +36,7 @@ class Login extends React.Component {
             })
     }
 
-    requestData = () => {
+    requestAccess = () => {
         axios('http://localhost:3001/profile', {
             headers: {
                 'x-access-token': localStorage.getItem('token')
