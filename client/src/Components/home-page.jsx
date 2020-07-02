@@ -1,6 +1,5 @@
 import React from 'react'
-
-//import axios from 'axios'
+import axios from 'axios'
 import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
@@ -10,10 +9,12 @@ class HomePage extends React.Component {
     activities: [],
     error: false,
   }
+  componentDidMount = () => {
+    this.getActivities()
+  }
 
-  handleShowActivities = (city = '') => {
-    // fetch(`/api/activities/${city}`)
-    fetch(`/api/activities`)
+  getActivities = () => {
+    fetch('http://localhost:5000/activities')
       .then(response => response.json())
       .then(response => {
         this.setState({ activities: response })
@@ -21,7 +22,6 @@ class HomePage extends React.Component {
       })
       .catch(error => {
         this.setState({ error: true })
-        //console.log(error)
       })
   }
 
@@ -31,8 +31,8 @@ class HomePage extends React.Component {
         This web app is amazing! :) <hr />
         Fill in at least one...
         <br></br>
-        <Search getActivities={this.handleShowActivities} />
-        <ActivityContainer />
+        <Search />
+        <ActivityContainer activities={this.state.activities} />
       </div>
     )
   }

@@ -19,7 +19,6 @@ const Search = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    props.getActivities(values)
   }
 
   return (
