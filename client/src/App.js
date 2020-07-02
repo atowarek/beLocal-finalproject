@@ -13,8 +13,8 @@ class App extends React.Component {
         <Router>
           <OurNavbar />
           <Switch>
-            <Route exact path='/' children={HomePage}></Route>
-            <Route exact path='/about' children={About}></Route>
+            <Route exact path='/' component={HomePage}></Route>
+            <Route exact path='/about' component={About}></Route>
             {/* <Route exact path='/login' children={Login}></Route> */}
           </Switch>
         </Router>
