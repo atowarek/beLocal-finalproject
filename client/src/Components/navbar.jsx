@@ -1,4 +1,4 @@
-import React, { useState } from './node_modules/react'
+import React, { useState } from 'react'
 import {
   Collapse,
   Navbar,
@@ -12,7 +12,7 @@ import {
   // DropdownMenu,
   // DropdownItem,
   NavbarText,
-} from './node_modules/reactstrap'
+} from 'reactstrap'
 
 const OurNavbar = props => {
   const [isOpen, setIsOpen] = useState(false)

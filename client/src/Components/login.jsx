@@ -1,6 +1,6 @@
-import React from './node_modules/react'
-import axios from './node_modules/axios'
-import { Button, Form, FormGroup, Label, Input } from './node_modules/reactstrap'
+import React from 'react'
+import axios from 'axios'
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 class Login extends React.Component {
   constructor(props) {

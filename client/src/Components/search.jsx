@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from './node_modules/react'
-import { Button, Form, FormGroup, Label, Input } from './node_modules/reactstrap'
+import React, { useState, useEffect } from 'react'
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import './search.css'
 
 const Search = props => {

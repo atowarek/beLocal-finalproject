@@ -1,4 +1,4 @@
-import React from './node_modules/react'
+import React from 'react'
 import {
   Card,
   Button,
@@ -8,7 +8,7 @@ import {
   CardDeck,
   CardSubtitle,
   CardBody,
-} from './node_modules/reactstrap'
+} from 'reactstrap'
 import './activity-container.css'
 
 const ActivityContainer = props => {
