@@ -3,6 +3,7 @@ const express = require('express')
 const models = require('../models')
 const routes = express.Router()
 const jwt = require('jsonwebtoken')
+const userShouldBeLoggedIn = require('../guards/userShouldBeLoggedIn')
 
 const supersecret = process.env.SUPER_SECRET
 
@@ -208,19 +209,8 @@ routes.post('/login', (req, res, next) => {
 })
 
 //endpoint protected
-routes.get('/profile', (req, res, next) => {
-  const token = req.headers['x-access-token']
-  if(!token){
-    res.status(401).send({message:'Please log in'})
-  } else{
-    jwt.verify(token, supersecret, function (err, decoded){
-      if(err) res.status(401).send({message: err.message})
-      else{
-        const { id } = decoded
-        res.send({message: `here is your ${id}`})
-      }
-    })
-  }
+routes.get('/profile', userShouldBeLoggedIn, (req, res, next) => {
+  res.send({message: `here is your ${req.id}`})      
 })
 
 module.exports = routes
