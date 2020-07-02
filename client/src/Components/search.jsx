@@ -19,8 +19,7 @@ const Search = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    const { getActivities } = this.props
-    getActivities(values)
+    props.getActivities(values)
   }
 
   return (
