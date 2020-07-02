@@ -32,7 +32,44 @@ class HomePage extends React.Component {
         Fill in at least one...
         <br></br>
         <Search />
-        <ActivityContainer activities={this.state.activities} />
+        {/* <ActivityContainer activities={this.state.activities} /> */}
+        {this.state.activities.map(activity => {
+          const {
+            id,
+            name,
+            startDate,
+            endDate,
+            startHour,
+            endHour,
+            hostingId,
+            longitude,
+            latitude,
+            address,
+            description,
+            category,
+            picture,
+            city,
+          } = activity
+          return (
+            <ActivityContainer
+              key={activity.id}
+              id={activity.id}
+              name={activity.name}
+              startDate={activity.startDate}
+              endDate={activity.endDate}
+              startHour={activity.startHour}
+              endHour={activity.endHour}
+              hostingId={activity.hostingId}
+              longitude={activity.longitude}
+              latitude={activity.latitude}
+              address={activity.address}
+              description={activity.description}
+              category={activity.category}
+              picture={activity.picture}
+              city={activity.city}
+            />
+          )
+        })}
       </div>
     )
   }

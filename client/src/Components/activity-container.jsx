@@ -11,7 +11,22 @@ import {
 } from 'reactstrap'
 import './activity-container.css'
 
-const ActivityContainer = props => {
+const ActivityContainer = ({
+  id,
+  name,
+  startDate,
+  endDate,
+  startHour,
+  endHour,
+  hostingId,
+  longitude,
+  latitude,
+  address,
+  description,
+  category,
+  picture,
+  city,
+}) => {
   return (
     <CardDeck className='container'>
       <Card>
@@ -22,23 +37,9 @@ const ActivityContainer = props => {
           alt='Activity image cap'
         />
         <CardBody>
-          <CardTitle>Activity name</CardTitle>
-          <CardSubtitle>Category</CardSubtitle>
-          <CardText>Some amazing text</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      <Card>
-        <CardImg
-          top
-          width='100%'
-          src='/assets/256x186.svg'
-          alt='Activity image cap'
-        />
-        <CardBody>
-          <CardTitle>Activity name</CardTitle>
-          <CardSubtitle>Category</CardSubtitle>
-          <CardText>Some amazing text</CardText>
+          <CardTitle>{name}</CardTitle>
+          <CardSubtitle>{category}</CardSubtitle>
+          <CardText>{description}</CardText>
           <Button>Button</Button>
         </CardBody>
       </Card>
