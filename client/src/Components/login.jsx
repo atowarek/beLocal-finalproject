@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 class Login extends React.Component {
     constructor(props) {
@@ -56,23 +57,31 @@ class Login extends React.Component {
         return (
             <div>
                 <div>
-                    <input
-                        value={name}
-                        onChange={this.handleChange}
-                        name='name'
-                        label= 'name'
-                        type='text'
-                        className='form-name'
-                    />
-                    <input
-                        value={password}
-                        onChange={this.handleChange}
-                        name='password'
-                        label='password'
-                        type='password'
-                        className='form-password'
-                    />
-                    <button className='button' onClick= {this.login} disabled= {!name || !password}>Log in</button>
+                    <Form inline>
+                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                            <Label for='name' className='mr-sm-2'>Name</Label>
+                            <Input
+                                value={name}
+                                onChange={this.handleChange}
+                                name='name'
+                                placeholder='Name'
+                                type='text'
+                                className='form-name'
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                        <Label for="password" className="mr-sm-2">Password</Label>
+                            <Input
+                                value={password}
+                                onChange={this.handleChange}
+                                name='password'
+                                placeholder='Password'
+                                type='password'
+                                className='form-password'
+                            />
+                        </FormGroup>
+                    <Button className='button' onClick= {this.login} disabled= {!name || !password}>Log in</Button>
+                    </Form>
                 </div>
             </div>
         )
