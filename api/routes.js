@@ -187,7 +187,27 @@ routes.delete('/activities/:id', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-// Login user
+// ROUTE TO SEARCH ACTIVITY BY CITY
+routes.get('/searchByCity/:query', (req, res, next) => {
+  const query = req.params.query 
+  models.activitie
+    .findAll({
+      where: {
+        city: query
+      }
+    })
+    .then(activity => {
+      if (activity.length < 1) {
+        res.send({ message : 'There is no activity in this city yet'})
+      } else {
+        res.send(activity)
+      }
+    })
+      
+    .catch(err => res.status(500).send(err))
+})
+
+// ROUTE FOR AUTHENTICATION
 routes.post('/login', (req, res, next) => {
   const { name, password } = req.body
   models.user
@@ -207,7 +227,7 @@ routes.post('/login', (req, res, next) => {
     })
 })
 
-//endpoint protected
+// ROUTE FOR PROTECTED PAGES (AUTHENTICATION)
 routes.get('/profile', userShouldBeLoggedIn, (req, res, next) => {
   res.send({ message: `here is your ${req.id}` })
 })
