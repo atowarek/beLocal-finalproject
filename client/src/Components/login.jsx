@@ -20,7 +20,7 @@ class Login extends React.Component {
   login = event => {
     event.preventDefault()
     const { name, password } = this.state
-    axios('http://localhost:3001/login', {
+    axios('http://localhost:5000/login', {
       method: 'POST',
       data: {
         name,
@@ -37,7 +37,7 @@ class Login extends React.Component {
   }
 
   requestAccess = () => {
-    axios('http://localhost:3001/profile', {
+    axios('http://localhost:5000/profile', {
       headers: {
         'x-access-token': localStorage.getItem('token'),
       },
