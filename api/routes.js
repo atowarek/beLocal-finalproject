@@ -150,7 +150,7 @@ routes.post('/activities', (req, res) => {
     hostingId,
     longitude,
     latitude,
-    address, //DO WE NEED ADDRESS? IF WE HAVE CITY, LONGITUDE AND LATITUDE
+    address,
     description,
     category,
     picture,

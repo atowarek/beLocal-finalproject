@@ -30,17 +30,13 @@ const ActivityContainer = ({
   return (
     <CardDeck className='container'>
       <Card>
-        <CardImg
-          top
-          width='100%'
-          src='/assets/256x186.svg'
-          alt='Activity image cap'
-        />
+        <CardImg top width='100%' src={picture} alt='Activity image cap' />
         <CardBody>
           <CardTitle>{name}</CardTitle>
           <CardSubtitle>{category}</CardSubtitle>
           <CardText>{description}</CardText>
-          <Button>Button</Button>
+          <Button>Join the activity!</Button>
+          <Button>Message the organizer!</Button>
         </CardBody>
       </Card>
     </CardDeck>

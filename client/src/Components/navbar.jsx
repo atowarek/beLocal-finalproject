@@ -44,7 +44,7 @@ const OurNavbar = props => {
               </DropdownMenu>
             </UncontrolledDropdown> */}
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
+          <NavLink href='/login'>Login</NavLink>
         </Collapse>
       </Navbar>
     </div>
