@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import './search.css'
+import axios from 'axios'
 
 const Search = props => {
   const [values, setValues] = useState({
@@ -19,20 +20,21 @@ const Search = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
+    axios('http://localhost:5000/searchByCity/:query')
   }
 
   return (
     <Form inline onSubmit={handleSubmit}>
-      <FormGroup className='mb-2 mr-sm-2 mb-sm-0 search'>
-        <Label for='name' className='mr-sm-2'>
-          Name
-        </Label>
+       <FormGroup className='mb-2 mr-sm-2 mb-sm-0 search'>
+        {/*<Label for='city' className='mr-sm-2'>
+          City
+  </Label>*/}
         <Input
           type='name'
-          name='name'
-          id='name'
-          value={values.name}
-          placeholder='activity name'
+          name='city'
+          id='city'
+          value={values.city}
+          placeholder='Where do you want your new adventure?'
           onChange={handleChange}
         />
       </FormGroup>
@@ -49,19 +51,6 @@ const Search = props => {
           onChange={handleChange}
         />
       </FormGroup>
-      <FormGroup className='mb-2 mr-sm-2 mb-sm-0 search'>
-        <Label for='city' className='mr-sm-2'>
-          City
-        </Label>
-        <Input
-          type='name'
-          name='city'
-          id='city'
-          value={values.city}
-          placeholder='city'
-          onChange={handleChange}
-        />
-      </FormGroup>
       <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
         <Label for='calendar' className='mr-sm-2'>
           Date
@@ -74,7 +63,7 @@ const Search = props => {
           onChange={handleChange}
         />
       </FormGroup>
-      <Button>Submit</Button>
+      <Button>Search</Button>
     </Form>
   )
 }
