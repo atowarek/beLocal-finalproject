@@ -202,8 +202,7 @@ routes.get('/searchByCity/:query', (req, res, next) => {
       } else {
         res.send(activity)
       }
-    })
-      
+    })  
     .catch(err => res.status(500).send(err))
 })
 
