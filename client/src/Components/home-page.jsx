@@ -1,16 +1,20 @@
 import React from 'react'
-import axios from 'axios'
 import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
+
+
 
 class HomePage extends React.Component {
   state = {
     activities: [],
     error: false,
+    allCities: false,
+    results: []
+
   }
   componentDidMount = () => {
-    this.getActivities()
+    this.getActivities() 
   }
 
   getActivities = () => {
@@ -25,13 +29,31 @@ class HomePage extends React.Component {
       })
   }
 
+  fetchSearchResults = (query = '') => {
+    fetch(`http://localhost:5000/searchByCity/${query}`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          activities: data,
+          allCities: false
+        })
+      })
+      .catch(error => {
+        this.setState({ error: true })
+        console.log('Error fetching')
+      })
+  }
+  
+
   render() {
     return (
       <div className='home'>
         This web app is amazing! :) <hr />
         Fill in at least one...
         <br></br>
-        <Search />
+        <div>
+          <Search onSearch = {this.fetchSearchResults}/>
+        </div>
         {/* <ActivityContainer activities={this.state.activities} /> */}
         {this.state.activities.map(activity => {
           const {
@@ -71,6 +93,7 @@ class HomePage extends React.Component {
           )
         })}
       </div>
+      
     )
   }
 }
