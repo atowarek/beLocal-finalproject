@@ -6,13 +6,17 @@ import ActivityContainer from './activity-container'
 
 
 class HomePage extends React.Component {
-  state = {
-    activities: [],
-    error: false,
-    allCities: false,
-    results: []
-
+  constructor(props) {
+    super(props)
+    this.state = {
+      activities: [],
+      error: false,
+      allCities: false,
+    }
   }
+  
+
+
   componentDidMount = () => {
     this.getActivities() 
   }
@@ -34,7 +38,7 @@ class HomePage extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          activities: data,
+          activities: data.activities,
           allCities: false
         })
       })
