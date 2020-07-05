@@ -1,6 +1,7 @@
 import React from 'react'
 import {  Form, FormGroup, Input, Button } from 'reactstrap'
 import './search.css'
+import ActivityContainer from './activity-container'
 
 class Search extends React.Component{
   constructor(props) {
@@ -8,21 +9,21 @@ class Search extends React.Component{
     this.state = {
       query: '',
       results: [],
-      loading: false,
-      message: ''
+      //loading: false,
+      //message: ''
     }
   }
 
   handleChange = event => {
-    const query = event.target.value 
-    this.setState({ query: query })
+    this.setState({ query: event.target.value })
   }
 
   handleSubmit = event => {
     event.preventDefault()
     this.props.onSearch(this.state.query)
-    this.setState({ loading: true, message: ''})
+    //this.fetchSearchResults(this.state.query)
   }
+
 
   render() {
     const { query } = this.state
@@ -35,7 +36,7 @@ class Search extends React.Component{
             value={query}
             id='search-input'
             placeholder='Where do you want your new adventure?'
-          onChange={this.handleChange}
+            onChange={event => this.handleChange(event)}
           />
         </FormGroup>
         <Button>Search</Button>
@@ -45,4 +46,5 @@ class Search extends React.Component{
 }
 
 export default Search
+
 

@@ -4,7 +4,6 @@ import Search from './search'
 import ActivityContainer from './activity-container'
 
 
-
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
@@ -18,35 +17,35 @@ class HomePage extends React.Component {
 
 
   componentDidMount = () => {
-    this.getActivities() 
+    this.getActivities()
+  }
+
+  fetchSearchResults = (query) => {
+    fetch(`http://localhost:5000/searchByCity/${query}`)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        this.setState({ activities: data})
+        console.log(data)
+      })
   }
 
   getActivities = () => {
     fetch('http://localhost:5000/activities')
-      .then(response => response.json())
-      .then(response => {
-        this.setState({ activities: response })
-        console.log(response)
+    .then(response => response.json())
+    .then(response => {
+      this.setState({ 
+        activities: response,
+        allCities: true
       })
-      .catch(error => {
-        this.setState({ error: true })
-      })
+      console.log(response)
+    })
+    .catch(error => {
+      this.setState({ error: true })
+    })
   }
 
-  fetchSearchResults = (query = '') => {
-    fetch(`http://localhost:5000/searchByCity/${query}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          activities: data.activities,
-          allCities: false
-        })
-      })
-      .catch(error => {
-        this.setState({ error: true })
-        console.log('Error fetching')
-      })
-  }
   
 
   render() {
@@ -56,7 +55,7 @@ class HomePage extends React.Component {
         Fill in at least one...
         <br></br>
         <div>
-          <Search onSearch = {this.fetchSearchResults}/>
+          <Search onSearch={this.fetchSearchResults}/>
         </div>
         {/* <ActivityContainer activities={this.state.activities} /> */}
         {this.state.activities.map(activity => {

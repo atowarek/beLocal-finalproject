@@ -198,7 +198,7 @@ routes.get('/searchByCity/:query', (req, res, next) => {
     })
     .then(activity => {
       if (activity.length < 1) {
-        res.send({ message : 'There is no activity in this city yet'})
+        res.send([{ message : 'There is no activity in this city yet'}])
       } else {
         res.send(activity)
       }
