@@ -11,7 +11,7 @@ import {
   // DropdownToggle,
   // DropdownMenu,
   // DropdownItem,
-  NavbarText,
+  //NavbarText,
 } from 'reactstrap'
 
 const OurNavbar = props => {
@@ -44,6 +44,7 @@ const OurNavbar = props => {
               </DropdownMenu>
             </UncontrolledDropdown> */}
           </Nav>
+          <NavLink href='/signup'>Signup</NavLink>
           <NavLink href='/login'>Login</NavLink>
         </Collapse>
       </Navbar>
