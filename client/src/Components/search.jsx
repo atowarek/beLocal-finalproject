@@ -1,82 +1,68 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import React from 'react'
+import {  Form, FormGroup, Input, Button, Col } from 'reactstrap'
 import './search.css'
 
-const Search = props => {
-  const [values, setValues] = useState({
-    name: '',
-    city: '',
-  })
 
-  const handleChange = event => {
-    event.persist()
-
-    setValues(state => ({
-      ...state,
-      [event.target.name]: event.target.value,
-    }))
+class Search extends React.Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      query: '', 
+    }
   }
 
-  const handleSubmit = event => {
+  handleChange = event => {
+    this.setState({ query: event.target.value })
+  }
+
+  handleSubmit = event => {
     event.preventDefault()
+    this.props.onSearch(this.state.query)
   }
 
-  return (
-    <Form inline onSubmit={handleSubmit}>
-      <FormGroup className='mb-2 mr-sm-2 mb-sm-0 search'>
-        <Label for='name' className='mr-sm-2'>
-          Name
-        </Label>
-        <Input
-          type='name'
-          name='name'
-          id='name'
-          value={values.name}
-          placeholder='activity name'
-          onChange={handleChange}
-        />
-      </FormGroup>
-      <FormGroup className='mb-2 mr-sm-2 mb-sm-0 search'>
-        <Label for='category' className='mr-sm-2'>
-          Category
-        </Label>
-        <Input
-          type='select'
-          name='category'
-          id='category'
-          value={values.category}
-          placeholder='category'
-          onChange={handleChange}
-        />
-      </FormGroup>
-      <FormGroup className='mb-2 mr-sm-2 mb-sm-0 search'>
-        <Label for='city' className='mr-sm-2'>
-          City
-        </Label>
-        <Input
-          type='name'
-          name='city'
-          id='city'
-          value={values.city}
-          placeholder='city'
-          onChange={handleChange}
-        />
+
+  render() {
+    const { query } = this.state
+    return (
+      <Form inline onSubmit={this.handleSubmit}>
+        <FormGroup className='mb-2 mr-sm-2 mb-sm-0 search'>
+          <Input
+            type='text'
+            name='query'
+            value={query}
+            id='search-input'
+            placeholder='Where do you want your new adventure?'
+            onChange={event => this.handleChange(event)}
+          />
+        </FormGroup>
+        <FormGroup className='mb-2 mr-sm-2 mb-sm-0 search'>
+          <Col sm={{size:10}}>
+          <Input
+            type='select'
+            name='category'
+            id='category'
+            //value={values.category}
+            placeholder='category'
+            //onChange={handleChange}
+          />
+          </Col>
       </FormGroup>
       <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
-        <Label for='calendar' className='mr-sm-2'>
-          Date
-        </Label>
         <Input
           type='calendar'
           name='calendar'
           id='calendar'
-          placeholder='calendar here!'
-          onChange={handleChange}
+          placeholder='Select dates'
+          //onChange={handleChange}
         />
-      </FormGroup>
-      <Button>Submit</Button>
-    </Form>
-  )
+        </FormGroup>
+
+        <Button>Search</Button>
+      </Form>
+    )
+  }
 }
 
 export default Search
+
+

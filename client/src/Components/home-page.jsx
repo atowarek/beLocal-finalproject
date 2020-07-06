@@ -1,29 +1,61 @@
 import React from 'react'
-import axios from 'axios'
 import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
 
+
+
 class HomePage extends React.Component {
-  state = {
-    activities: [],
-    error: false,
+  constructor(props) {
+    super(props)
+    this.state = {
+      activities: [],
+      error: false,
+      message: false
+    }
   }
+  
+
+
   componentDidMount = () => {
     this.getActivities()
   }
 
-  getActivities = () => {
-    fetch('http://localhost:5000/activities')
-      .then(response => response.json())
+  fetchSearchResults = (query = '') => {
+    fetch(`http://localhost:5000/searchByCity/${query}`)
       .then(response => {
-        this.setState({ activities: response })
-        console.log(response)
+        return response.json()
       })
-      .catch(error => {
-        this.setState({ error: true })
+      .then(data => {
+        if (data.length == 0) {
+          this.setState({ message: true })
+        } else {
+          this.setState({ 
+            activities: data,
+            message: false
+          })
+          console.log(data)
+        }
+         
       })
   }
+
+  getActivities = () => {
+    fetch('http://localhost:5000/activities')
+    .then(response => response.json())
+    .then(response => {
+      this.setState({ 
+        activities: response,
+        allCities: true
+      })
+      console.log(response)
+    })
+    .catch(error => {
+      this.setState({ error: true })
+    })
+  }
+
+  
 
   render() {
     return (
@@ -31,46 +63,57 @@ class HomePage extends React.Component {
         This web app is amazing! :) <hr />
         Fill in at least one...
         <br></br>
-        <Search />
+        <div>
+          <Search onSearch={this.fetchSearchResults}/>
+        </div>
         {/* <ActivityContainer activities={this.state.activities} /> */}
-        {this.state.activities.map(activity => {
-          const {
-            id,
-            name,
-            startDate,
-            endDate,
-            startHour,
-            endHour,
-            hostingId,
-            longitude,
-            latitude,
-            address,
-            description,
-            category,
-            picture,
-            city,
-          } = activity
-          return (
-            <ActivityContainer
-              key={activity.id}
-              id={activity.id}
-              name={activity.name}
-              startDate={activity.startDate}
-              endDate={activity.endDate}
-              startHour={activity.startHour}
-              endHour={activity.endHour}
-              hostingId={activity.hostingId}
-              longitude={activity.longitude}
-              latitude={activity.latitude}
-              address={activity.address}
-              description={activity.description}
-              category={activity.category}
-              picture={activity.picture}
-              city={activity.city}
-            />
-          )
-        })}
+        {this.state.message ? (
+          <div className='Message-add'>
+              <h5>There is no activity in this city yet. Add the first one here(link to add form/log in)</h5>
+          </div>
+          ) : (
+            this.state.activities.map(activity => {
+              const {
+                id,
+                name,
+                startDate,
+                endDate,
+                startHour,
+                endHour,
+                hostingId,
+                longitude,
+                latitude,
+                address,
+                description,
+                category,
+                picture,
+                city,
+              } = activity
+              return (
+                <ActivityContainer
+                  key={activity.id}
+                  id={activity.id}
+                  name={activity.name}
+                  startDate={activity.startDate}
+                  endDate={activity.endDate}
+                  startHour={activity.startHour}
+                  endHour={activity.endHour}
+                  hostingId={activity.hostingId}
+                  longitude={activity.longitude}
+                  latitude={activity.latitude}
+                  address={activity.address}
+                  description={activity.description}
+                  category={activity.category}
+                  picture={activity.picture}
+                  city={activity.city}
+                />
+              )
+            })
+          )}
+            
+        
       </div>
+      
     )
   }
 }
