@@ -4,8 +4,8 @@ const models = require('../models')
 const routes = express.Router()
 const jwt = require('jsonwebtoken')
 const userShouldBeLoggedIn = require('../guards/userShouldBeLoggedIn')
-
 const supersecret = process.env.SUPER_SECRET
+const bcrypt = require('bcryptjs')
 
 // GET all users
 routes.get('/users', (req, res, next) => {
@@ -43,10 +43,17 @@ routes.get('/users/:id', (req, res, next) => {
 // CREATE a user
 routes.post('/users', (req, res) => {
   const { name, mail, phone, password } = req.body
-  models.user
-    .create({ name, mail, phone, password })
-    .then(user => res.send(user))
-    .catch(err => res.status(500).send(err))
+  bcrypt.hash(password, 10).then(hash => {
+    models.user
+      .create({
+        name,
+        mail,
+        phone,
+        password: hash,
+      })
+      .then(user => res.send(user))
+      .catch(err => res.status(500).send(err))
+  })
 })
 
 // DELETE user by id
@@ -56,7 +63,12 @@ routes.delete('/users/:id', (req, res, next) => {
     .destroy({
       where: { id },
     })
-    .then(user => res.send(user))
+    .then(res => {
+      if (!error) {
+        return res.status(200).send({ message: `User ${id} was deleted` })
+      }
+      return res.status(404).send({ message: 'No user found' }) //check this
+    })
     .catch(err => res.status(500).send(err))
 })
 
@@ -188,22 +200,47 @@ routes.delete('/activities/:id', (req, res, next) => {
 })
 
 // Login user
+//OLD jwt working, compare pass not working
+// routes.post('/login', (req, res, next) => {
+//   const { name, password } = req.body
+//   models.user
+//     .findAll({
+//       where: {
+//         name,
+//         password,
+//       },
+//     })
+//     //bcrypt.compare(req.body.password, password)
+//     .then(results => {
+//       if (results.length) {
+//         //console.log(results[0].password)
+//         let token = jwt.sign({ id: results[0].id }, supersecret)
+//         res.send({ message: 'user ok, here is your token', token })
+//       } else {
+//         res.status(404).send({ message: 'User not found' })
+//       }
+//     })
+// })
+
 routes.post('/login', (req, res, next) => {
-  const { name, password } = req.body
-  models.user
-    .findAll({
-      where: {
-        name,
-        password,
-      },
+  const user = models.user
+    .findOne({
+      where: { name: req.body.name },
     })
-    .then(results => {
-      if (results.length) {
-        let token = jwt.sign({ id: results[0].id }, supersecret)
-        res.send({ message: 'user ok, here is your token', token })
-      } else {
-        res.status(404).send({ message: 'User not found' })
-      }
+    .then(user => {
+      if (!user) return res.status(400).send('Cannot find user')
+      console.log(user.password) // encrypted pass from DB, ok here
+
+      bcrypt.compare(req.body.password, user.password).then(response => {
+        console.log(req.body.password)
+        console.log(response)
+        if (response == true) {
+          let token = jwt.sign({ id: user.id }, supersecret)
+          res.send({ message: 'user ok, here is your token', token })
+        } else {
+          res.status(404).send({ message: 'User not found' })
+        }
+      })
     })
 })
 
