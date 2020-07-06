@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
+import NewActivity from './form-new-activity'
 
 class Login extends React.Component {
   constructor(props) {
@@ -102,6 +103,7 @@ class Login extends React.Component {
               Log in
             </Button>
           </Form>
+          <NewActivity />
         </div>
       </div>
     )
