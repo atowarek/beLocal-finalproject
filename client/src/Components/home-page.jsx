@@ -4,13 +4,14 @@ import Search from './search'
 import ActivityContainer from './activity-container'
 
 
+
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       activities: [],
       error: false,
-      allCities: false,
+      message: false
     }
   }
   
@@ -20,14 +21,22 @@ class HomePage extends React.Component {
     this.getActivities()
   }
 
-  fetchSearchResults = (query) => {
+  fetchSearchResults = (query = '') => {
     fetch(`http://localhost:5000/searchByCity/${query}`)
       .then(response => {
         return response.json()
       })
       .then(data => {
-        this.setState({ activities: data})
-        console.log(data)
+        if (data.length == 0) {
+          this.setState({ message: true })
+        } else {
+          this.setState({ 
+            activities: data,
+            message: false
+          })
+          console.log(data)
+        }
+         
       })
   }
 
@@ -58,43 +67,51 @@ class HomePage extends React.Component {
           <Search onSearch={this.fetchSearchResults}/>
         </div>
         {/* <ActivityContainer activities={this.state.activities} /> */}
-        {this.state.activities.map(activity => {
-          const {
-            id,
-            name,
-            startDate,
-            endDate,
-            startHour,
-            endHour,
-            hostingId,
-            longitude,
-            latitude,
-            address,
-            description,
-            category,
-            picture,
-            city,
-          } = activity
-          return (
-            <ActivityContainer
-              key={activity.id}
-              id={activity.id}
-              name={activity.name}
-              startDate={activity.startDate}
-              endDate={activity.endDate}
-              startHour={activity.startHour}
-              endHour={activity.endHour}
-              hostingId={activity.hostingId}
-              longitude={activity.longitude}
-              latitude={activity.latitude}
-              address={activity.address}
-              description={activity.description}
-              category={activity.category}
-              picture={activity.picture}
-              city={activity.city}
-            />
-          )
-        })}
+        {this.state.message ? (
+          <div className='Message-add'>
+              <h5>There is no activity in this city yet. Add the first one here(link to add form/log in)</h5>
+          </div>
+          ) : (
+            this.state.activities.map(activity => {
+              const {
+                id,
+                name,
+                startDate,
+                endDate,
+                startHour,
+                endHour,
+                hostingId,
+                longitude,
+                latitude,
+                address,
+                description,
+                category,
+                picture,
+                city,
+              } = activity
+              return (
+                <ActivityContainer
+                  key={activity.id}
+                  id={activity.id}
+                  name={activity.name}
+                  startDate={activity.startDate}
+                  endDate={activity.endDate}
+                  startHour={activity.startHour}
+                  endHour={activity.endHour}
+                  hostingId={activity.hostingId}
+                  longitude={activity.longitude}
+                  latitude={activity.latitude}
+                  address={activity.address}
+                  description={activity.description}
+                  category={activity.category}
+                  picture={activity.picture}
+                  city={activity.city}
+                />
+              )
+            })
+          )}
+            
+        
       </div>
       
     )
