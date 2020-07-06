@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
 
 class Login extends React.Component {
   constructor(props) {
@@ -8,6 +8,8 @@ class Login extends React.Component {
     this.state = {
       name: '',
       password: '',
+      error: false,
+      isLoggedIn: false,
     }
   }
 
@@ -20,7 +22,7 @@ class Login extends React.Component {
   login = event => {
     event.preventDefault()
     const { name, password } = this.state
-    axios('http://localhost:3001/login', {
+    axios('http://localhost:5000/login', {
       method: 'POST',
       data: {
         name,
@@ -29,15 +31,22 @@ class Login extends React.Component {
     })
       .then(response => {
         localStorage.setItem('token', response.data.token)
+        this.setState({ isLoggedIn: true })
         console.log(response.data)
       })
       .catch(error => {
+        this.setState({ error: true })
         console.log(error)
       })
+    this.setState({
+      name: '',
+      password: '',
+      error: false,
+    })
   }
 
   requestAccess = () => {
-    axios('http://localhost:3001/profile', {
+    axios('http://localhost:5000/profile', {
       headers: {
         'x-access-token': localStorage.getItem('token'),
       },
@@ -46,14 +55,18 @@ class Login extends React.Component {
         console.log(response.data)
       })
       .catch(error => {
+        this.setState({ error: true })
         console.log(error)
       })
   }
 
   render() {
-    const { name, password } = this.state
+    const { name, password, error } = this.state
     return (
       <div>
+        {error && (
+          <Alert color='danger'>Sorry, name or password are incorrect!</Alert>
+        )}
         <div>
           <Form inline>
             <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
