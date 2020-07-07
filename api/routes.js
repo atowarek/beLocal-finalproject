@@ -7,6 +7,8 @@ const userShouldBeLoggedIn = require('../guards/userShouldBeLoggedIn')
 const supersecret = process.env.SUPER_SECRET
 const bcrypt = require('bcryptjs')
 
+
+
 // GET all users
 routes.get('/users', (req, res, next) => {
   models.user
@@ -106,12 +108,12 @@ routes.get('/activities/:id', (req, res, next) => {
 })
 
 // ROUTE TO SEARCH ACTIVITY BY CITY
-routes.get('/searchByCity/:query', (req, res, next) => {
+/*routes.get('/searchByCity/:query', (req, res, next) => {
   const query = req.params.query 
   models.activitie
     .findAll({
       where: {
-        city: query
+        city: query,
       }
     })
     .then(activity => {
@@ -122,17 +124,33 @@ routes.get('/searchByCity/:query', (req, res, next) => {
       //}
     })  
     .catch(err => res.status(500).send(err))
-})
+})*/
 
-// GET activity by category
-routes.get('/activities/:category', (req, res, next) => {
-  const { category } = req.params
-  models.ctivitie
-    .findOne({
-      where: { category },
+// ROUTE TO SEARCH BY CITY AND/OR FILTER BY ACTIVITY
+routes.get('/search/byCity/:city', (req, res, next) => {
+  const city = req.params.city
+  const category = req.query.category
+
+  if(!category) {
+    models.activitie
+    .findAll({
+      where: {
+        city:city
+      }   
     })
-    .then(activity => res.send(activity))
-    .catch(err => res.status(500).send(err))
+      .then(activity => res.send(activity))
+      .catch(err => res.status(500).send(err))
+  }else{
+    models.activitie
+    .findAll({
+      where: {
+        city: city,
+        category: category
+      }
+    })
+      .then(activity => res.send(activity))
+      .catch(err => res.status(500).send(err))
+  }   
 })
 
 // GET activity by start date
