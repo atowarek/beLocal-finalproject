@@ -1,11 +1,11 @@
 import React from 'react'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import OurNavbar from './Components/navbar'
-import HomePage from './Components/home-page'
-import About from './Components/about'
-import Login from './Components/login'
-import Signup from './Components/form-signup'
+import OurNavbar from './components/navbar'
+import HomePage from './components/home-page'
+import About from './components/about'
+import Login from './components/login'
+import Signup from './components/form-signup'
 
 
 class App extends React.Component {
