@@ -199,52 +199,28 @@ routes.delete('/activities/:id', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-
 // ROUTE TO SEARCH ACTIVITY BY CITY
 routes.get('/searchByCity/:query', (req, res, next) => {
-  const query = req.params.query 
+  const query = req.params.query
   models.activitie
     .findAll({
       where: {
-        city: query
-      }
+        city: query,
+      },
     })
     .then(activity => {
       //if (activity.length < 1) {
-        //res.send([{ message : 'There is no activity in this city yet'}])
+      //res.send([{ message : 'There is no activity in this city yet'}])
       //} else {
-        res.send(activity)
+      res.send(activity)
       //}
-    })  
+    })
     .catch(err => res.status(500).send(err))
 })
 
 // ROUTE FOR AUTHENTICATION
 
 // Login user
-//OLD jwt working, compare pass not working
-// routes.post('/login', (req, res, next) => {
-//   const { name, password } = req.body
-//   models.user
-//     .findAll({
-//       where: {
-//         name,
-//         password,
-//       },
-//     })
-//     //bcrypt.compare(req.body.password, password)
-//     .then(results => {
-//       if (results.length) {
-//         //console.log(results[0].password)
-//         let token = jwt.sign({ id: results[0].id }, supersecret)
-//         res.send({ message: 'user ok, here is your token', token })
-//       } else {
-//         res.status(404).send({ message: 'User not found' })
-//       }
-//     })
-// })
-
-
 routes.post('/login', (req, res, next) => {
   const user = models.user
     .findOne({

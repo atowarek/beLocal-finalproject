@@ -30,7 +30,7 @@ const ActivityContainer = ({
   return (
     <CardDeck className='container'>
       <Card>
-        <CardImg top width='100%' src={picture} alt='Activity image cap' />
+        <CardImg top width='40%' src={picture} alt='Activity image cap' />
         <CardBody>
           <CardTitle>{name}</CardTitle>
           <CardSubtitle>{category}</CardSubtitle>
