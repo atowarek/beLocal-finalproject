@@ -105,15 +105,22 @@ routes.get('/activities/:id', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-// GET activity by city
-routes.get('/activities/:city', (req, res, next) => {
-  const { city } = req.params
-
+// ROUTE TO SEARCH ACTIVITY BY CITY
+routes.get('/searchByCity/:query', (req, res, next) => {
+  const query = req.params.query 
   models.activitie
-    .findOne({
-      where: { city },
+    .findAll({
+      where: {
+        city: query
+      }
     })
-    .then(activity => res.send(activity))
+    .then(activity => {
+      //if (activity.length < 1) {
+        //res.send([{ message : 'There is no activity in this city yet'}])
+      //} else {
+        res.send(activity)
+      //}
+    })  
     .catch(err => res.status(500).send(err))
 })
 
@@ -199,25 +206,6 @@ routes.delete('/activities/:id', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-
-// ROUTE TO SEARCH ACTIVITY BY CITY
-routes.get('/searchByCity/:query', (req, res, next) => {
-  const query = req.params.query 
-  models.activitie
-    .findAll({
-      where: {
-        city: query
-      }
-    })
-    .then(activity => {
-      //if (activity.length < 1) {
-        //res.send([{ message : 'There is no activity in this city yet'}])
-      //} else {
-        res.send(activity)
-      //}
-    })  
-    .catch(err => res.status(500).send(err))
-})
 
 // ROUTE FOR AUTHENTICATION
 
