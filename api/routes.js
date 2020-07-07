@@ -228,29 +228,6 @@ routes.delete('/activities/:id', (req, res, next) => {
 // ROUTE FOR AUTHENTICATION
 
 // Login user
-//OLD jwt working, compare pass not working
-// routes.post('/login', (req, res, next) => {
-//   const { name, password } = req.body
-//   models.user
-//     .findAll({
-//       where: {
-//         name,
-//         password,
-//       },
-//     })
-//     //bcrypt.compare(req.body.password, password)
-//     .then(results => {
-//       if (results.length) {
-//         //console.log(results[0].password)
-//         let token = jwt.sign({ id: results[0].id }, supersecret)
-//         res.send({ message: 'user ok, here is your token', token })
-//       } else {
-//         res.status(404).send({ message: 'User not found' })
-//       }
-//     })
-// })
-
-
 routes.post('/login', (req, res, next) => {
   const user = models.user
     .findOne({
