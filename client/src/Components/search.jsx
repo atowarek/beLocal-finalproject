@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Form, FormGroup, Input, Button, Col } from 'reactstrap'
+import {  Form, FormGroup, Input, Button, } from 'reactstrap'
 import './search.css'
 
 
@@ -7,12 +7,13 @@ class Search extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      query: '', 
+      query: '',
+      category: '' 
     }
   }
 
   handleChange = event => {
-    this.setState({ query: event.target.value })
+    this.setState({query: event.target.value})
   }
 
   handleSubmit = event => {
@@ -22,7 +23,7 @@ class Search extends React.Component{
 
 
   render() {
-    const { query } = this.state
+    const { query, category } = this.state
     return (
       <Form inline onSubmit={this.handleSubmit}>
         <FormGroup className='mb-2 mr-sm-2 mb-sm-0 search'>
@@ -35,26 +36,30 @@ class Search extends React.Component{
             onChange={event => this.handleChange(event)}
           />
         </FormGroup>
-        <FormGroup className='mb-2 mr-sm-2 mb-sm-0 search'>
-          <Col sm={{size:10}}>
+        <FormGroup>
+        <Input 
+          type='select' 
+          name='category' 
+          id='category' 
+          placeholder='Select category'
+          value= {category}
+          onChange= {event => this.setState({ category: event.target.value })}>
+          <option>Select category</option> //change css for this to #999
+          <option>Running</option>
+          <option>Cycling</option>
+          <option>Hiking</option>
+          <option>Tour</option>
+          <option>Food & Drinks</option>
+        </Input>
+      </FormGroup>
+        <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
           <Input
-            type='select'
-            name='category'
-            id='category'
-            //value={values.category}
-            placeholder='category'
+            type='calendar'
+            name='calendar'
+            id='calendar'
+            placeholder='Select dates'
             //onChange={handleChange}
           />
-          </Col>
-      </FormGroup>
-      <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
-        <Input
-          type='calendar'
-          name='calendar'
-          id='calendar'
-          placeholder='Select dates'
-          //onChange={handleChange}
-        />
         </FormGroup>
 
         <Button>Search</Button>
