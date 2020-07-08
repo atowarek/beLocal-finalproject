@@ -15,19 +15,8 @@ routes.get('/users', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-// GET user by id
-// routes.get('/users/:id', (req, res, next) => {
-//   const { id } = req.params
-//   models.user
-//     .findOne({
-//       where: { id },
-//     })
-//     .then(user => res.send(user))
-//     .catch(err => res.status(500).send(err))
-// })
-
-// GET user + activities organized
-routes.get('/userInfo/:id', (req, res, next) => {
+// GET user by id + activities organized by user
+routes.get('/users/:id', (req, res, next) => {
   const { id } = req.params
   models.user
     .findOne({
@@ -93,30 +82,16 @@ routes.get('/activities/:id', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-// // GET activity by id
-// routes.get('/activities/?hostingId=hostingId', (req, res, next) => {
-//   const { id } = req.params
-//   models.activitie
-//     .findOne({
-//       where: { hostingId },
-//     })
-//     .then(activity => res.send(activity))
-//     .catch(err => res.status(500).send(err))
-// })
-
-// GET activity by id + all the users for this activity
-// routes.get('/activities/:id', (req, res, next) => {
-//   const { id } = req.params
-//   models.activitie
-//     .findOne({
-//       where: {
-//         id,
-//       },
-//       include: models.user,
-//     })
-//     .then(activity => res.send(activity))
-//     .catch(err => res.status(500).send(err))
-// })
+// GET activity by hostingId (user's activities) NOT WORKING
+routes.get('/activities/?hostingId=3', (req, res, next) => {
+  const { hostingId } = req.params
+  models.activitie
+    .findOne({
+      where: { hostingId },
+    })
+    .then(activity => res.send(activity))
+    .catch(err => res.status(500).send(err))
+})
 
 // ROUTE TO SEARCH ACTIVITY BY CITY
 /*routes.get('/searchByCity/:query', (req, res, next) => {
@@ -163,18 +138,6 @@ routes.get('/search/byCity/:city', (req, res, next) => {
       .catch(err => res.status(500).send(err))
   }
 })
-
-// // GET activity by start date
-// routes.get('/activities/:startDate', (req, res, next) => {
-//   const { startDate } = req.params
-
-//   models.activitie
-//     .findOne({
-//       where: { startDate },
-//     })
-//     .then(activity => res.send(activity))
-//     .catch(err => res.status(500).send(err))
-// })
 
 // create an activity
 routes.post('/activities', (req, res) => {
