@@ -10,6 +10,7 @@ class HomePage extends React.Component {
       activities: [],
       error: false,
       message: false,
+      selectedActivities: ['asd'],
     }
   }
 
@@ -48,6 +49,14 @@ class HomePage extends React.Component {
       .catch(error => {
         this.setState({ error: true })
       })
+  }
+
+  handleAddActivity = id => {
+    const currentActivity = this.state.activities.filter(
+      activity => activity.id === id
+    )
+    console.log(currentActivity)
+    //this.props.addActivity(currentActivity)
   }
 
   render() {
@@ -101,6 +110,7 @@ class HomePage extends React.Component {
                 category={activity.category}
                 picture={activity.picture}
                 city={activity.city}
+                addActivity={this.handleAddActivity}
               />
             )
           })

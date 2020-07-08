@@ -29,9 +29,6 @@ const OurNavbar = props => {
             <NavItem>
               <NavLink href='/about'> How it works</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href='/'>Something</NavLink>
-            </NavItem>
             {/* <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Options

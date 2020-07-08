@@ -124,7 +124,6 @@ class Login extends React.Component {
             </Button>
           </Form>
         )}
-        <NewActivity />)
       </div>
     )
   }

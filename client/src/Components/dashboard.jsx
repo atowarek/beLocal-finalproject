@@ -6,27 +6,19 @@ class Dashboard extends React.Component {
   state = {
     isLoggedIn: false,
     user: [],
-    userActivities: [],
+    activities: [],
+    //userActivities: [],
+    selectedActivities: [],
   }
 
   componentDidMount = () => {
     this.getUserInfo()
-    //this.getUserActivities()
+    this.getActivities()
   }
-  // getUserInfo = id => {
-  //   // axios(`http://localhost:5000/users/${id}`)
-  //   axios(`http://localhost:5000/users/3`)
-  //     .then(response => {
-  //       this.setState({ user: response.data })
-  //       console.log(this.state.user)
-  //     })
-  //     .catch(error => {
-  //       this.setState({ error: true })
-  //     })
-  // }
 
   getUserInfo = id => {
-    axios(`http://localhost:5000/userInfo/3`)
+    // axios(`http://localhost:5000/users/${id}`)
+    axios(`http://localhost:5000/users/3`)
       .then(response => {
         this.setState({ user: response.data })
         console.log(this.state.user)
@@ -34,6 +26,20 @@ class Dashboard extends React.Component {
       .catch(error => {
         this.setState({ error: true })
       })
+  }
+  getActivities = () => {
+    axios(`http://localhost:5000/activities`)
+      .then(response => {
+        this.setState({ activities: response.data })
+        console.log(this.state.activities)
+      })
+      .catch(error => {
+        this.setState({ error: true })
+      })
+  }
+
+  addMyActivity = ({ id }) => {
+    this.setState({})
   }
 
   // getUserActivities = hostingId => {
@@ -49,11 +55,12 @@ class Dashboard extends React.Component {
 
   addActivity = event => {
     event.preventDefault()
-    this.props.history.push('/activity') //REDIRECT TO ADD ACTIVITY URL
+    this.props.history.push('/activity')
   }
 
   render() {
-    const { user } = this.state
+    const { user, activities, selectedActivities } = this.state
+
     return (
       <div>
         <h1> Hi, {user.name}!</h1>
@@ -67,6 +74,14 @@ class Dashboard extends React.Component {
             </Button>
           </div>
           <h2>My activities:</h2>
+          <h3>organizing:</h3>
+          {/* not really working, showing all activities */}
+          {activities.map(activity => (
+            //activities.hostingId === user.id &&
+            <li key={activity.id}>{activity.name}</li>
+          ))}
+          <h3>participating:</h3>
+          {selectedActivities.name}
         </div>
       </div>
     )
