@@ -2,8 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
 import NewActivity from './form-new-activity'
-// import Dashboard from './dashboard'
-// import { Redirect } from 'react-router-dom'
 
 class Login extends React.Component {
   constructor(props) {
@@ -35,12 +33,11 @@ class Login extends React.Component {
       .then(response => {
         localStorage.setItem('token', response.data.token)
         this.setState({ isLoggedIn: true })
-        this.props.history.push('/dashboard')
         console.log(response.data)
       })
       .catch(error => {
         this.setState({ error: true })
-        //console.log(error)
+        console.log(error)
       })
     this.setState({
       name: '',
@@ -49,13 +46,14 @@ class Login extends React.Component {
     })
   }
 
-  requestAccess = () => {
+  requestAccess = id => {
     axios('http://localhost:5000/profile', {
       headers: {
         'x-access-token': localStorage.getItem('token'),
       },
     })
       .then(response => {
+        this.props.history.push('/dashboard')
         console.log(response.data)
       })
       .catch(error => {
@@ -64,8 +62,12 @@ class Login extends React.Component {
       })
   }
 
+  homeRedirect = () => {
+    this.props.history.push('/')
+  }
+
   render() {
-    const { name, password, error } = this.state
+    const { name, password, error, isLoggedIn } = this.state
     return (
       <div>
         {error && (
@@ -73,7 +75,20 @@ class Login extends React.Component {
             Sorry, name or password are incorrect! Try again, or sign up!
           </Alert>
         )}
-        <div>
+        {isLoggedIn ? (
+          <div>
+            <h2>
+              You are now logged in! <br />
+              Check your profile or search for activities
+            </h2>
+            <Button color='success' onClick={this.requestAccess}>
+              Profile
+            </Button>
+            <Button color='primary' onClick={this.homeRedirect}>
+              Activities
+            </Button>
+          </div>
+        ) : (
           <Form inline>
             <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
               <Label for='name' className='mr-sm-2'>
@@ -108,8 +123,8 @@ class Login extends React.Component {
               Log in
             </Button>
           </Form>
-          <NewActivity />
-        </div>
+        )}
+        <NewActivity />)
       </div>
     )
   }

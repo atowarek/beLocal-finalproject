@@ -4,14 +4,29 @@ import { Button } from 'reactstrap'
 
 class Dashboard extends React.Component {
   state = {
+    isLoggedIn: false,
     user: [],
+    userActivities: [],
   }
 
   componentDidMount = () => {
     this.getUserInfo()
+    //this.getUserActivities()
   }
+  // getUserInfo = id => {
+  //   // axios(`http://localhost:5000/users/${id}`)
+  //   axios(`http://localhost:5000/users/3`)
+  //     .then(response => {
+  //       this.setState({ user: response.data })
+  //       console.log(this.state.user)
+  //     })
+  //     .catch(error => {
+  //       this.setState({ error: true })
+  //     })
+  // }
+
   getUserInfo = id => {
-    axios(`http://localhost:5000/users/3`)
+    axios(`http://localhost:5000/userInfo/3`)
       .then(response => {
         this.setState({ user: response.data })
         console.log(this.state.user)
@@ -21,11 +36,11 @@ class Dashboard extends React.Component {
       })
   }
 
-  // getUserInfo = id => {
-  //   axios(`http://localhost:5000/userAndActivity/3`)
+  // getUserActivities = hostingId => {
+  //   axios(`http://localhost:5000/userActivities/1`)
   //     .then(response => {
-  //       this.setState({ user: response.data })
-  //       console.log(this.state.user)
+  //       this.setState({ userActivities: response.data })
+  //       console.log(this.state.userActivities)
   //     })
   //     .catch(error => {
   //       this.setState({ error: true })
