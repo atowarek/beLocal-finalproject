@@ -9,7 +9,7 @@ class NewActivity extends React.Component {
         endDate:'',
         startHour: '',
         endHour: '',
-        adress: '',
+        address: '',
         city:'',
         description:'',
         category:'',
@@ -24,7 +24,7 @@ class NewActivity extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        const {name, startDate, endDate, startHour, endHour, adress, city, description, category, picture} = this.state
+        const {name, startDate, endDate, startHour, endHour, address, city, description, category, picture} = this.state
         axios('http://localhost:5000/activities', {
             method: 'POST',
             data: {
@@ -33,7 +33,7 @@ class NewActivity extends React.Component {
                 endDate,
                 startHour,
                 endHour,
-                adress,
+                address,
                 city,
                 description,
                 category,
@@ -46,11 +46,15 @@ class NewActivity extends React.Component {
         .catch(error => {
             console.log(error)
         })
+        this.goToDashboard()
+    }
 
+    goToDashboard = () => {
+        this.props.history.push('/dashboard')
     }
 
     render() {
-        const {name, startDate, endDate, startHour, endHour, adress, city, description, category, picture} = this.state
+        const {name, startDate, endDate, startHour, endHour, address, city, description, category, picture} = this.state
         return (
             <div>
                 <Form onSubmit={this.handleSubmit}>
@@ -68,7 +72,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='startDate'>
-                            asfasvfiahsbfajsnf
+                            What day does it start?
                         </Label>
                         <Input
                             value={startDate}
@@ -80,7 +84,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='endDate'>
-                            dfasdgas
+                        What day does it end?
                         </Label>
                         <Input
                             value={endDate}
@@ -92,7 +96,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='startHour'>
-                            sfad
+                        What time does it start?
                         </Label>
                         <Input
                             value={startHour}
@@ -104,7 +108,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='endHour'>
-                            asfsdjgid
+                        What time does it end?
                         </Label>
                         <Input
                             value={endHour}
@@ -116,19 +120,19 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='adress'>
-                            asfsdjgid
+                            Where is the activity happening?
                         </Label>
                         <Input
-                            value={adress}
+                            value={address}
                             onChange={this.handleChange}
-                            name='adress'
-                            placeholder='Adress'
+                            name='address'
+                            placeholder='Address'
                             type='text'>
                         </Input>
                     </FormGroup>
                     <FormGroup>
                         <Label for='city'>
-                            asfsdjgid
+                            And the city?
                         </Label>
                         <Input
                             value={city}
@@ -140,7 +144,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='description'>
-                            asfsdjgid
+                            Can you describe the activity?
                         </Label>
                         <Input
                             value={description}
@@ -152,26 +156,33 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='category'>
-                            asfsdjgid
+                            Choose the category that fits better
                         </Label>
                         <Input
                             value={category}
                             onChange={this.handleChange}
                             name='category'
                             placeholder='Category'
-                            type='text'>
+                            type='select'>
+                                <option value='running'>Running</option>
+                                <option value='biking'>Biking</option>
+                                <option value='hiking'>Hiking</option>
+                                <option value='food and drinks'>Food and drinks</option>
+                                <option value='crafts'>Crafts</option>
+                                <option value='animals'>Animals</option>
+                                <option value='dancing'>Dancing</option>
                         </Input>
                     </FormGroup>
                     <FormGroup>
                         <Label for='picture'>
-                            asfsdjgid
+                            Post a picture so the activity gets more attention
                         </Label>
-                        <Input
-                            value={picture}
-                            onChange={this.handleChange}
-                            name='picture'
-                            placeholder='Picture'
-                            type='image'>
+                        <Input 
+                        value={picture}
+                        onChange={this.handleChange}
+                        name='picture'
+                        placeholder='Picture'
+                        type='file'>
                         </Input>
                     </FormGroup>
                     <Button

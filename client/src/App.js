@@ -7,6 +7,7 @@ import About from './components/about'
 import Login from './components/login'
 import Signup from './components/form-signup'
 import Dashboard from './components/dashboard'
+import NewActivity from './components/form-new-activity'
 
 class App extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class App extends React.Component {
             <Route exact path='/about' component={About}></Route>
             <Route exact path='/signup' component={Signup}></Route>
             <Route exact path='/login' component={Login}></Route>
+            <Route exact path='/activity' component={NewActivity}></Route>
             <Route exact path='/dashboard' component={Dashboard}></Route>
           </Switch>
         </Router>
