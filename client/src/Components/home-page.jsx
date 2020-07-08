@@ -2,6 +2,7 @@ import React from 'react'
 import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
+const queryString = require('query-string')
 
 
 
@@ -10,19 +11,18 @@ class HomePage extends React.Component {
     super(props)
     this.state = {
       activities: [],
+      category: "",
       error: false,
       message: false
     }
   }
-  
-
 
   componentDidMount = () => {
     this.getActivities()
   }
 
-  fetchSearchResults = (query = '') => {
-    fetch(`http://localhost:5000/searchByCity/${query}`)
+  fetchSearchResults = (query, category = ' ') => {
+    fetch(`http://localhost:5000/search/byCity/${query}?category=${category}`)
       .then(response => {
         return response.json()
       })
@@ -32,6 +32,7 @@ class HomePage extends React.Component {
         } else {
           this.setState({ 
             activities: data,
+            category: {category},
             message: false
           })
           console.log(data)
