@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
+import './activity-container.css'
 import {
-  Card,
   Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Card,
   CardImg,
   CardTitle,
   CardText,
@@ -9,7 +14,6 @@ import {
   CardSubtitle,
   CardBody,
 } from 'reactstrap'
-import './activity-container.css'
 
 const ActivityContainer = ({
   id,
@@ -27,6 +31,10 @@ const ActivityContainer = ({
   picture,
   city,
 }) => {
+  const [modal, setModal] = useState(false)
+
+  const toggle = () => setModal(!modal)
+
   return (
     <CardDeck className='container'>
       <Card>
@@ -34,9 +42,27 @@ const ActivityContainer = ({
         <CardBody>
           <CardTitle>{name}</CardTitle>
           <CardSubtitle>{category}</CardSubtitle>
-          <CardText>{description}</CardText>
-          <Button>Join the activity!</Button>
-          <Button>Message the organizer!</Button>
+          <CardText>
+            When: {startDate} at {startHour}
+          </CardText>
+          <CardText>Meeting point: {address}</CardText>
+          <Button color='primary' onClick={toggle}>
+            Find out more!
+          </Button>
+          <Modal isOpen={modal} toggle={toggle}>
+            <ModalHeader toggle={toggle}>
+              {name} <br /> {category}
+            </ModalHeader>
+            <ModalBody>{description}</ModalBody>
+            <ModalFooter>
+              <Button color='success' onClick={toggle}>
+                Join the activity!
+              </Button>{' '}
+              <Button color='warning' onClick={toggle}>
+                Message the organizer!
+              </Button>
+            </ModalFooter>
+          </Modal>
         </CardBody>
       </Card>
     </CardDeck>

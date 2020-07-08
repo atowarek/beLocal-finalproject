@@ -7,8 +7,6 @@ const userShouldBeLoggedIn = require('../guards/userShouldBeLoggedIn')
 const supersecret = process.env.SUPER_SECRET
 const bcrypt = require('bcryptjs')
 
-
-
 // GET all users
 routes.get('/users', (req, res, next) => {
   models.user
@@ -18,26 +16,26 @@ routes.get('/users', (req, res, next) => {
 })
 
 // GET user by id
-routes.get('/users/:id', (req, res, next) => {
-  const { id } = req.params
-  models.user
-    .findOne({
-      where: { id },
-    })
-    .then(user => res.send(user))
-    .catch(err => res.status(500).send(err))
-})
+// routes.get('/users/:id', (req, res, next) => {
+//   const { id } = req.params
+//   models.user
+//     .findOne({
+//       where: { id },
+//     })
+//     .then(user => res.send(user))
+//     .catch(err => res.status(500).send(err))
+// })
 
-// GET user's activities (by user id)
-routes.get('/userActivity/:id', (req, res, next) => {
+// GET user + activities organized
+routes.get('/userInfo/:id', (req, res, next) => {
   const { id } = req.params
   models.user
     .findOne({
       where: {
         id,
       },
-      // include: models.user_activitie.findAll({
-      //   where: { id },
+      // include: models.activitie.findAll({
+      //   where: { hostingId: 3 },
       // }),
     })
     .then(user => res.send(user))
@@ -95,19 +93,30 @@ routes.get('/activities/:id', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
+// // GET activity by id
+// routes.get('/activities/?hostingId=hostingId', (req, res, next) => {
+//   const { id } = req.params
+//   models.activitie
+//     .findOne({
+//       where: { hostingId },
+//     })
+//     .then(activity => res.send(activity))
+//     .catch(err => res.status(500).send(err))
+// })
+
 // GET activity by id + all the users for this activity
-routes.get('/activities/:id', (req, res, next) => {
-  const { id } = req.params
-  models.activitie
-    .findOne({
-      where: {
-        id,
-      },
-      include: models.user,
-    })
-    .then(activity => res.send(activity))
-    .catch(err => res.status(500).send(err))
-})
+// routes.get('/activities/:id', (req, res, next) => {
+//   const { id } = req.params
+//   models.activitie
+//     .findOne({
+//       where: {
+//         id,
+//       },
+//       include: models.user,
+//     })
+//     .then(activity => res.send(activity))
+//     .catch(err => res.status(500).send(err))
+// })
 
 // ROUTE TO SEARCH ACTIVITY BY CITY
 /*routes.get('/searchByCity/:query', (req, res, next) => {
@@ -133,50 +142,39 @@ routes.get('/search/byCity/:city', (req, res, next) => {
   const city = req.params.city
   const category = req.query.category
 
-  if(!category) {
+  if (!category) {
     models.activitie
-    .findAll({
-      where: {
-        city:city
-      }   
-    })
+      .findAll({
+        where: {
+          city: city,
+        },
+      })
       .then(activity => res.send(activity))
       .catch(err => res.status(500).send(err))
-  }else{
+  } else {
     models.activitie
-    .findAll({
-      where: {
-        city: city,
-        category: category
-      }
-    })
+      .findAll({
+        where: {
+          city: city,
+          category: category,
+        },
+      })
       .then(activity => res.send(activity))
       .catch(err => res.status(500).send(err))
-  }   
+  }
 })
 
-// GET activity by start date
-routes.get('/activities/:startDate', (req, res, next) => {
-  const { startDate } = req.params
+// // GET activity by start date
+// routes.get('/activities/:startDate', (req, res, next) => {
+//   const { startDate } = req.params
 
-  models.activitie
-    .findOne({
-      where: { startDate },
-    })
-    .then(activity => res.send(activity))
-    .catch(err => res.status(500).send(err))
-})
-
-// GET activity by name
-routes.get('/activities/:name', (req, res, next) => {
-  const { name } = req.params
-  models.activitie
-    .findOne({
-      where: { name },
-    })
-    .then(activity => res.send(activity))
-    .catch(err => res.status(500).send(err))
-})
+//   models.activitie
+//     .findOne({
+//       where: { startDate },
+//     })
+//     .then(activity => res.send(activity))
+//     .catch(err => res.status(500).send(err))
+// })
 
 // create an activity
 routes.post('/activities', (req, res) => {
@@ -226,9 +224,7 @@ routes.delete('/activities/:id', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-
 // ROUTE FOR AUTHENTICATION
-
 // Login user
 routes.post('/login', (req, res, next) => {
   const user = models.user
@@ -237,8 +233,7 @@ routes.post('/login', (req, res, next) => {
     })
     .then(user => {
       if (!user) return res.status(400).send('Cannot find user')
-      console.log(user.password) // encrypted pass from DB, ok here
-
+      console.log(user.password)
       bcrypt.compare(req.body.password, user.password).then(response => {
         console.log(req.body.password)
         console.log(response)
@@ -254,6 +249,7 @@ routes.post('/login', (req, res, next) => {
 
 // ROUTE FOR PROTECTED PAGES (AUTHENTICATION)
 routes.get('/profile', userShouldBeLoggedIn, (req, res, next) => {
+  //res.send(req.id)
   res.send({ message: `here is your ${req.id}` })
 })
 
