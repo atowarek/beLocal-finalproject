@@ -9,7 +9,7 @@ class NewActivity extends React.Component {
         endDate:'',
         startHour: '',
         endHour: '',
-        adress: '',
+        address: '',
         city:'',
         description:'',
         category:'',
@@ -24,7 +24,7 @@ class NewActivity extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        const {name, startDate, endDate, startHour, endHour, adress, city, description, category, picture} = this.state
+        const {name, startDate, endDate, startHour, endHour, address, city, description, category, picture} = this.state
         axios('http://localhost:5000/activities', {
             method: 'POST',
             data: {
@@ -33,7 +33,7 @@ class NewActivity extends React.Component {
                 endDate,
                 startHour,
                 endHour,
-                adress,
+                address,
                 city,
                 description,
                 category,
@@ -54,7 +54,7 @@ class NewActivity extends React.Component {
     }
 
     render() {
-        const {name, startDate, endDate, startHour, endHour, adress, city, description, category, picture} = this.state
+        const {name, startDate, endDate, startHour, endHour, address, city, description, category, picture} = this.state
         return (
             <div>
                 <Form onSubmit={this.handleSubmit}>
@@ -123,10 +123,10 @@ class NewActivity extends React.Component {
                             Where is the activity happening?
                         </Label>
                         <Input
-                            value={adress}
+                            value={address}
                             onChange={this.handleChange}
-                            name='adress'
-                            placeholder='Adress'
+                            name='address'
+                            placeholder='Address'
                             type='text'>
                         </Input>
                     </FormGroup>
@@ -163,19 +163,26 @@ class NewActivity extends React.Component {
                             onChange={this.handleChange}
                             name='category'
                             placeholder='Category'
-                            type='text'>
+                            type='select'>
+                                <option value='running'>Running</option>
+                                <option value='biking'>Biking</option>
+                                <option value='hiking'>Hiking</option>
+                                <option value='food and drinks'>Food and drinks</option>
+                                <option value='crafts'>Crafts</option>
+                                <option value='animals'>Animals</option>
+                                <option value='dancing'>Dancing</option>
                         </Input>
                     </FormGroup>
                     <FormGroup>
                         <Label for='picture'>
                             Post a picture so the activity gets more attention
                         </Label>
-                        <Input
-                            value={picture}
-                            onChange={this.handleChange}
-                            name='picture'
-                            placeholder='Picture'
-                            type='image'>
+                        <Input 
+                        value={picture}
+                        onChange={this.handleChange}
+                        name='picture'
+                        placeholder='Picture'
+                        type='file'>
                         </Input>
                     </FormGroup>
                     <Button
