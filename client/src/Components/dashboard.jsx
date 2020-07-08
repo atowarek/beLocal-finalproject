@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
 
   addActivity = event => {
     event.preventDefault()
-    this.props.history.push('/') //REDIRECT TO ADD ACTIVITY URL
+    this.props.history.push('/activity') //REDIRECT TO ADD ACTIVITY URL
   }
 
   render() {

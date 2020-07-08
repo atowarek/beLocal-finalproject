@@ -46,7 +46,11 @@ class NewActivity extends React.Component {
         .catch(error => {
             console.log(error)
         })
+        this.goToDashboard()
+    }
 
+    goToDashboard = () => {
+        this.props.history.push('/dashboard')
     }
 
     render() {
@@ -68,7 +72,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='startDate'>
-                            asfasvfiahsbfajsnf
+                            What day does it start?
                         </Label>
                         <Input
                             value={startDate}
@@ -80,7 +84,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='endDate'>
-                            dfasdgas
+                        What day does it end?
                         </Label>
                         <Input
                             value={endDate}
@@ -92,7 +96,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='startHour'>
-                            sfad
+                        What time does it start?
                         </Label>
                         <Input
                             value={startHour}
@@ -104,7 +108,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='endHour'>
-                            asfsdjgid
+                        What time does it end?
                         </Label>
                         <Input
                             value={endHour}
@@ -116,7 +120,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='adress'>
-                            asfsdjgid
+                            Where is the activity happening?
                         </Label>
                         <Input
                             value={adress}
@@ -128,7 +132,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='city'>
-                            asfsdjgid
+                            And the city?
                         </Label>
                         <Input
                             value={city}
@@ -140,7 +144,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='description'>
-                            asfsdjgid
+                            Can you describe the activity?
                         </Label>
                         <Input
                             value={description}
@@ -152,7 +156,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='category'>
-                            asfsdjgid
+                            Choose the category that fits better
                         </Label>
                         <Input
                             value={category}
@@ -164,7 +168,7 @@ class NewActivity extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for='picture'>
-                            asfsdjgid
+                            Post a picture so the activity gets more attention
                         </Label>
                         <Input
                             value={picture}
