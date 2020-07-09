@@ -10,7 +10,6 @@ class HomePage extends React.Component {
       activities: [],
       error: false,
       message: false,
-      selectedActivities: ['asd'],
     }
   }
 

@@ -7,8 +7,7 @@ class Dashboard extends React.Component {
     isLoggedIn: false,
     user: [],
     activities: [],
-    //userActivities: [],
-    selectedActivities: [],
+    //userActivities: []
   }
 
   componentDidMount = () => {
@@ -18,7 +17,7 @@ class Dashboard extends React.Component {
 
   getUserInfo = id => {
     // axios(`http://localhost:5000/users/${id}`)
-    axios(`http://localhost:5000/users/3`)
+    axios(`http://localhost:5000/users/2`)
       .then(response => {
         this.setState({ user: response.data })
         console.log(this.state.user)
@@ -31,15 +30,11 @@ class Dashboard extends React.Component {
     axios(`http://localhost:5000/activities`)
       .then(response => {
         this.setState({ activities: response.data })
-        console.log(this.state.activities)
+        //console.log(this.state.activities)
       })
       .catch(error => {
         this.setState({ error: true })
       })
-  }
-
-  addMyActivity = ({ id }) => {
-    this.setState({})
   }
 
   // getUserActivities = hostingId => {
@@ -59,7 +54,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { user, activities, selectedActivities } = this.state
+    const { user, activities } = this.state
 
     return (
       <div>
@@ -67,21 +62,31 @@ class Dashboard extends React.Component {
         Here you can see your activities or add a new one! <br />
         <div className='container'>
           <div>
-            Add a new activity and share your experience with others!
-            <br />
-            <Button color='primary' className='btn' onClick={this.addActivity}>
-              Add a new activity
-            </Button>
+            <h2>MY ACTIVITIES:</h2>
+            <div>
+              <h3>participating:</h3>
+            </div>
+            <div>
+              <h3>organizing:</h3>
+              {activities.map(
+                activity =>
+                  activity.hostingId === user.id && (
+                    <li key={activity.id}>{activity.name}</li>
+                  )
+              )}
+            </div>
+            <hr />
+            <div>
+              Add a new activity and share your experience with others!
+              <br />
+              <Button
+                color='primary'
+                className='btn'
+                onClick={this.addActivity}>
+                Add a new activity
+              </Button>
+            </div>
           </div>
-          <h2>My activities:</h2>
-          <h3>organizing:</h3>
-          {/* not really working, showing all activities */}
-          {activities.map(activity => (
-            //activities.hostingId === user.id &&
-            <li key={activity.id}>{activity.name}</li>
-          ))}
-          <h3>participating:</h3>
-          {selectedActivities.name}
         </div>
       </div>
     )
