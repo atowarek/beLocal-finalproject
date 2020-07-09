@@ -83,8 +83,8 @@ class ActivityContainer extends React.Component {
                 <hr /> Meeting point: {address} ({city})
                 <hr />
                 <b>
-                  Clicking on <i>Join the activity!</i> will add it to your
-                  profile!
+                  Clicking on <i>Join the activity!</i> will add the activity to
+                  your profile!
                 </b>
               </ModalBody>
               <ModalFooter>
