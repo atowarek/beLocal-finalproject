@@ -13,8 +13,8 @@ module.exports = {
       latitude: "2.815438",
       address: "Girona bus station",
       description: "Catch a bus to Olot with me to do this 57-km route from Olot (440 m) to Girona (70 m). Its highest point is at Coll d´en Bas, which is a pass situated 558 metres above sea level. The trail, which is suitable for hikers and cyclists alike, is in very good condition, fitted with bridges, railings and signposting.",
-      category: "biking",
-      picture: "/img/biking-route.jpg",
+      category: "cycling",
+      picture: "/img/Ruta.jpg",
       city: "Girona"
     },{
       name: "Learn how to cook Paella",

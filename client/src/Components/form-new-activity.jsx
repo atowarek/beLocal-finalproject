@@ -165,7 +165,7 @@ class NewActivity extends React.Component {
                             placeholder='Category'
                             type='select'>
                                 <option value='running'>Running</option>
-                                <option value='biking'>Biking</option>
+                                <option value='cycling'>Cycling</option>
                                 <option value='hiking'>Hiking</option>
                                 <option value='food and drinks'>Food and drinks</option>
                                 <option value='crafts'>Crafts</option>
