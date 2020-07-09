@@ -18,8 +18,8 @@ class HomePage extends React.Component {
     this.getActivities()
   }
 
-  fetchSearchResults = (query = '') => {
-    fetch(`http://localhost:5000/searchByCity/${query}`)
+  fetchSearchResults = (query, category = ' ') => {
+    fetch(`http://localhost:5000/search/byCity/${query}?category=${category}`)
       .then(response => {
         return response.json()
       })
