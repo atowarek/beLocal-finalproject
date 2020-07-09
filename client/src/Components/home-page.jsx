@@ -2,7 +2,6 @@ import React from 'react'
 import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
-const queryString = require('query-string')
 
 class HomePage extends React.Component {
   constructor(props) {

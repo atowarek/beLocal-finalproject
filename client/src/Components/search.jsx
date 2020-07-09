@@ -12,13 +12,17 @@ class Search extends React.Component{
     }
   }
 
-  handleChange = event => {
-    this.setState({query: event.target.value})
-  }
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
+    console.log(e.target.value)
+}
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.onSearch(this.state.query)
+    const { query, category } = this.state
+    this.props.onSearch(query, category)
   }
 
 
@@ -33,7 +37,7 @@ class Search extends React.Component{
             value={query}
             id='search-input'
             placeholder='Where do you want your new adventure?'
-            onChange={event => this.handleChange(event)}
+            onChange={this.handleChange}
           />
         </FormGroup>
         <FormGroup>
@@ -43,13 +47,13 @@ class Search extends React.Component{
           id='category' 
           placeholder='Select category'
           value= {category}
-          onChange= {event => this.setState({ category: event.target.value })}>
+          onChange= {this.handleChange}>
           <option>Select category</option> //change css for this to #999
-          <option>Running</option>
+          <option>Food and Drinks</option>
           <option>Cycling</option>
-          <option>Hiking</option>
-          <option>Tour</option>
-          <option>Food & Drinks</option>
+          <option>Crafts</option>
+          <option>Animals</option>
+          <option>Dancing</option>
         </Input>
       </FormGroup>
         <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
