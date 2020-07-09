@@ -23,7 +23,7 @@ class HomePage extends React.Component {
         return response.json()
       })
       .then(data => {
-        if (data.length == 0) {
+        if (data.length === 0) {
           this.setState({ message: true })
         } else {
           this.setState({
@@ -76,22 +76,6 @@ class HomePage extends React.Component {
           </div>
         ) : (
           this.state.activities.map(activity => {
-            const {
-              id,
-              name,
-              startDate,
-              endDate,
-              startHour,
-              endHour,
-              hostingId,
-              longitude,
-              latitude,
-              address,
-              description,
-              category,
-              picture,
-              city,
-            } = activity
             return (
               <ActivityContainer
                 key={activity.id}
