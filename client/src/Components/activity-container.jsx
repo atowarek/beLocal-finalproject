@@ -1,7 +1,12 @@
 import React from 'react'
+import './activity-container.css'
 import {
-  Card,
   Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Card,
   CardImg,
   CardTitle,
   CardText,
@@ -9,38 +14,92 @@ import {
   CardSubtitle,
   CardBody,
 } from 'reactstrap'
-import './activity-container.css'
 
-const ActivityContainer = ({
-  id,
-  name,
-  startDate,
-  endDate,
-  startHour,
-  endHour,
-  hostingId,
-  longitude,
-  latitude,
-  address,
-  description,
-  category,
-  picture,
-  city,
-}) => {
-  return (
-    <CardDeck className='container'>
-      <Card>
-        <CardImg top width='40%' src={picture} alt='Activity image cap' />
-        <CardBody>
-          <CardTitle>{name}</CardTitle>
-          <CardSubtitle>{category}</CardSubtitle>
-          <CardText>{description}</CardText>
-          <Button>Join the activity!</Button>
-          <Button>Message the organizer!</Button>
-        </CardBody>
-      </Card>
-    </CardDeck>
-  )
+class ActivityContainer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      modal: false,
+    }
+  }
+
+  toggle = () => {
+    this.setState(state => ({
+      modal: !state.modal,
+    }))
+  }
+  handleClick = id => () => {
+    this.props.addActivity(id)
+    this.setState(state => ({
+      modal: !state.modal,
+    }))
+    console.log(id)
+  }
+  render() {
+    const {
+      id,
+      name,
+      startDate,
+      endDate,
+      startHour,
+      endHour,
+      hostingId,
+      longitude,
+      latitude,
+      address,
+      description,
+      category,
+      picture,
+      city,
+    } = this.props
+    return (
+      <CardDeck className='container'>
+        <Card>
+          <CardImg width='40%' src={picture} alt='Activity image cap' />
+          <CardBody>
+            <CardTitle>
+              <b>{name}</b>
+            </CardTitle>
+            <CardSubtitle>
+              <i>Category</i>: {category}
+            </CardSubtitle>
+            <CardText>
+              <i>When:</i> {startDate} <i>at</i> {startHour}
+            </CardText>
+            <CardText>
+              <i>Meeting point:</i> {address} ({city})
+            </CardText>
+            <Button color='primary' onClick={this.toggle}>
+              Find out more!
+            </Button>
+            <Modal isOpen={this.state.modal} toggle={this.toggle}>
+              <ModalHeader toggle={this.toggle}>
+                {name} <br /> {category}
+              </ModalHeader>
+              <ModalBody>
+                {description}
+                <hr /> Start: {startDate} at {startHour}
+                <hr /> Finish: {endDate} at {endHour}
+                <hr /> Meeting point: {address} ({city})
+                <hr />
+                <b>
+                  Clicking on <i>Join the activity!</i> will add it to your
+                  profile!
+                </b>
+              </ModalBody>
+              <ModalFooter>
+                <Button color='success' onClick={this.handleClick(id)}>
+                  Join the activity!
+                </Button>{' '}
+                <Button color='warning' onClick={this.toggle}>
+                  Message the organizer!
+                </Button>
+              </ModalFooter>
+            </Modal>
+          </CardBody>
+        </Card>
+      </CardDeck>
+    )
+  }
 }
-
 export default ActivityContainer
