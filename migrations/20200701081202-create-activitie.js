@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('activities', {
@@ -6,58 +6,63 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       startDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       endDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       startHour: {
-        type: Sequelize.TIME
+        type: Sequelize.TIME,
       },
       endHour: {
-        type: Sequelize.TIME
+        type: Sequelize.TIME,
       },
       hostingId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        // references: {
+
+        //   model: 'user',
+        //   key: 'id',
+        // },
       },
       longitude: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       latitude: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       address: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       description: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       category: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       picture: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       city: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      }
-    });
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+    })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('activities');
-  }
-};
+    await queryInterface.dropTable('activities')
+  },
+}
