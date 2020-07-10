@@ -2,6 +2,8 @@ import React from 'react'
 import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
+import ActivityMaps from './activity-maps'
+import {Container, Row, Col} from 'reactstrap'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -64,9 +66,12 @@ class HomePage extends React.Component {
         This web app is amazing! :) <hr />
         Fill in at least one...
         <br></br>
-        <div>
+        <Container>
+        <Row>
           <Search onSearch={this.fetchSearchResults} />
-        </div>
+        </Row>
+        
+          <Row xs='2'>
         {this.state.message ? (
           <div className='Message-add'>
             <h5>
@@ -93,7 +98,9 @@ class HomePage extends React.Component {
               city,
             } = activity
             return (
-              <ActivityContainer
+              
+              <Col xs='6'>
+                <ActivityContainer
                 key={activity.id}
                 id={activity.id}
                 name={activity.name}
@@ -110,10 +117,18 @@ class HomePage extends React.Component {
                 picture={activity.picture}
                 city={activity.city}
                 addActivity={this.handleAddActivity}
-              />
+                />
+              </Col>
+                  
             )
           })
         )}
+        </Row>
+          
+        <Row>  
+            <ActivityMaps className='map'></ActivityMaps>
+        </Row>
+      </Container>   
       </div>
     )
   }

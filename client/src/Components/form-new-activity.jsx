@@ -49,6 +49,24 @@ class NewActivity extends React.Component {
         this.goToDashboard()
     }
 
+    /*getPosition() {
+        this.state.activities.map(activity => {
+            const {address} = activity
+            axios(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`)
+            .then(response => {
+                console.log(response)
+                /*const {location} = response.geometry
+                const lat = location.latitude
+                const long = location.longitude
+                this.setState({
+                    latitude : lat,
+                    longitude : long
+                })
+            })
+        })
+        
+    }*/
+
     goToDashboard = () => {
         this.props.history.push('/dashboard')
     }

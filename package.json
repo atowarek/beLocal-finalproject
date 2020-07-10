@@ -13,6 +13,7 @@
     "dotenv": "^8.2.0",
     "emailjs-com": "^2.4.1",
     "express": "^4.17.1",
+    "google-maps-react": "^2.0.6",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
@@ -32,6 +33,6 @@
     "dev:server": "nodemon ./api/app.js",
     "dev:client": "cd ./client && yarn start",
     "start": "npm-run-all -l -p dev:server dev:client",
-    "migrate": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+    "migrate": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   }
 }
