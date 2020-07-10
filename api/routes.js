@@ -178,15 +178,34 @@ routes.delete('/activities/:id', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-//ROUTE TO SHOW USER'S ACTIVITIES
-routes.post('/userActivities/:id', (req, res, next) => {
-  const { id } = req.params
+//ROUTE TO ADD USER AND CORRESPONDING ACTIVITIES
+routes.post('/userActivities', (req, res, next) => {
+  const { userId, activityId} = req.body
   models.user_activitie
-    .findAll({
-      where: { id }
+    .create({
+      userId,
+      activityId
     })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
+})
+
+//ROUTE TO SHOW USER AND HIS ACTIVITIES
+routes.get('/userActivities/:id', (req, res, next) => {
+  const { id } = req.params
+  models.user_activitie
+    .findAll({
+      where: { userId: id},
+      attributes: ['userId'],
+      include: [
+        {
+          model: models.activitie, 
+          attributes: ['picture','name', 'address', 'startDate', 'endDate', 'startHour', 'endHour']
+        }
+      ]
+    })
+  .then(activity => res.send(activity))
+  .catch(err => res.status(500).send(err))
 })
 
 // ROUTE FOR AUTHENTICATION
