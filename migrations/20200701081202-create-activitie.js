@@ -32,10 +32,10 @@ module.exports = {
         // },
       },
       longitude: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DOUBLE,
       },
       latitude: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DOUBLE,
       },
       address: {
         type: Sequelize.TEXT,

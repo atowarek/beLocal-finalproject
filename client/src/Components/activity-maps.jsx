@@ -23,6 +23,7 @@ class ActivityMaps extends React.Component {
             })
         })
         
+        
     }
 
 
@@ -31,7 +32,8 @@ class ActivityMaps extends React.Component {
         return (
             <Map google={this.props.google} zoom={7} initialCenter={center}>
                 {this.state.activities.map((activity, index) => (
-                    <Marker key={activity.id} position={{lat:activity.latitude, lng:activity.longitude}} />
+                    console.log(activity, activity.latitude, activity.longitude),
+                    <Marker key={activity.id} lat={activity.latitude} lng={activity.longitude} />
                 ))}
             </Map>
         )
