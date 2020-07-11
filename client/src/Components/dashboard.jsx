@@ -1,34 +1,42 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {
-  Button,
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Row,
-  Col,
-  Container,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from 'reactstrap'
+
+import { Button, Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Row, Col, Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+
 import QrCode from './qr-code'
 import withUser from './withUser'
 
+
 class Dashboard extends Component {
+
   state = {
     isLoggedIn: false,
     activities: [],
-    //userActivities: []
+    userActivities: []
   }
 
   componentDidMount = () => {
+
     this.getActivities()
+  
+
+    this.getUserActivities()
+
   }
+
+
+  getUserActivities = () => {
+    axios(`http://localhost:5000/userActivities/2`) // change to id when user is login
+      .then(response => {
+       this.setState({ userActivities: response.data })
+        console.log(response.data)
+      })
+      .catch(error => {
+        this.setState({ error: true })
+      })
+  }
+
 
   getActivities = () => {
     axios(`http://localhost:5000/activities`)
@@ -46,6 +54,7 @@ class Dashboard extends Component {
     this.props.history.push('/activity')
   }
 
+
   toggle = () => {
     this.setState(state => ({
       modal: !state.modal,
@@ -57,7 +66,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { activities } = this.state
+    const { activities, userActivities } = this.state
     const { user } = this.props
     if (!user) {
       return (
@@ -78,6 +87,37 @@ class Dashboard extends Component {
             <h2>MY ACTIVITIES:</h2>
             <div>
               <h3>participating:</h3>
+              {userActivities.map((activities, index) => {
+                const {
+                  picture,
+                  name,
+                  address,
+                  city,
+                  startDate,
+                  endDate,
+                  startHour,
+                  endHour,
+                } = activities
+                return (
+                  <Container key={index}>
+                    <Row xs='4'>
+                      <Col>
+                        <Card>
+                        <CardImg top width='100%' src={activities.activitie.picture}/>
+                        <CardBody>
+                          <CardTitle>{activities.activitie.name}</CardTitle>
+                          <CardSubtitle>{activities.activitie.address}</CardSubtitle>
+                          <CardSubtitle>{activities.activitie.city}</CardSubtitle>
+                          <CardText>{activities.activitie.startDate}</CardText>
+                          <CardText>{activities.activitie.endtDate} </CardText>
+                          <CardText>{activities.activitie.startHour} {activities.activitie.endHour} </CardText>
+                        </CardBody>
+                        </Card> 
+                      </Col>
+                    </Row>
+                  </Container>
+                )
+              })}
             </div>
             <div>
               <h3>organizing:</h3>

@@ -14,6 +14,7 @@ import {
   CardSubtitle,
   CardBody,
 } from 'reactstrap'
+import axios from 'axios'
 
 class ActivityContainer extends React.Component {
   constructor(props) {
@@ -33,8 +34,28 @@ class ActivityContainer extends React.Component {
     this.setState(state => ({
       modal: !state.modal,
     }))
-    console.log(id)
+    axios(`http://localhost:5000/userActivities`, {
+      method: 'POST',
+      data: {
+        'userId': 2, //change when log in 
+        'activityId': id
+      }
+    })
+    .then(response => {
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    //this.goToDashboard()
+      console.log(id)
   }
+
+  //goToDashboard = () => {
+    //this.props.history.push('/dashboard')
+  //} 
+
+
   render() {
     const {
       id,

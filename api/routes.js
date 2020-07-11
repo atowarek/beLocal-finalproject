@@ -92,28 +92,9 @@ routes.get('/activities/:id', (req, res, next) => {
 //     .catch(err => res.status(500).send(err))
 // })
 
-// ROUTE TO SEARCH ACTIVITY BY CITY
-/*routes.get('/searchByCity/:query', (req, res, next) => {
-  const query = req.params.query 
-  models.activitie
-    .findAll({
-      where: {
-        city: query,
-      }
-    })
-    .then(activity => {
-      //if (activity.length < 1) {
-        //res.send([{ message : 'There is no activity in this city yet'}])
-      //} else {
-        res.send(activity)
-      //}
-    })  
-    .catch(err => res.status(500).send(err))
-})*/
-
 // ROUTE TO SEARCH BY CITY AND/OR FILTER BY ACTIVITY
-routes.get('/search/byCity/:city', (req, res, next) => {
-  const city = req.params.city
+routes.get('/search', (req, res, next) => {
+  const city = req.query.city
   const category = req.query.category
 
   if (!category) {
@@ -122,6 +103,15 @@ routes.get('/search/byCity/:city', (req, res, next) => {
         where: {
           city: city,
         },
+      })
+      .then(activity => res.send(activity))
+      .catch(err => res.status(500).send(err))
+  } else if (!city) {
+    models.activitie
+      .findAll({
+        where: {
+          category: category
+        }
       })
       .then(activity => res.send(activity))
       .catch(err => res.status(500).send(err))
@@ -136,6 +126,7 @@ routes.get('/search/byCity/:city', (req, res, next) => {
       .then(activity => res.send(activity))
       .catch(err => res.status(500).send(err))
   }
+  
 })
 
 // create an activity
@@ -184,6 +175,36 @@ routes.delete('/activities/:id', (req, res, next) => {
     })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
+})
+
+//ROUTE TO ADD USER AND CORRESPONDING ACTIVITIES
+routes.post('/userActivities', (req, res, next) => {
+  const { userId, activityId} = req.body
+  models.user_activitie
+    .create({
+      userId,
+      activityId
+    })
+    .then(activity => res.send(activity))
+    .catch(err => res.status(500).send(err))
+})
+
+//ROUTE TO SHOW USER AND HIS ACTIVITIES
+routes.get('/userActivities/:id', (req, res, next) => {
+  const { id } = req.params
+  models.user_activitie
+    .findAll({
+      where: { userId: id},
+      attributes: ['userId'],
+      include: [
+        {
+          model: models.activitie, 
+          attributes: ['picture','name', 'address', 'city', 'startDate', 'endDate', 'startHour', 'endHour']
+        }
+      ]
+    })
+  .then(activity => res.send(activity))
+  .catch(err => res.status(500).send(err))
 })
 
 // ROUTE FOR AUTHENTICATION
