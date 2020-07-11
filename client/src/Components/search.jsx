@@ -1,14 +1,13 @@
 import React from 'react'
-import {  Form, FormGroup, Input, Button, } from 'reactstrap'
+import { Form, FormGroup, Input, Button } from 'reactstrap'
 import './search.css'
 
-
-class Search extends React.Component{
+class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       query: '',
-      category: '' 
+      category: '',
     }
   }
 
@@ -17,14 +16,13 @@ class Search extends React.Component{
       [e.target.name]: e.target.value,
     })
     console.log(e.target.value)
-}
+  }
 
   handleSubmit = event => {
     event.preventDefault()
     const { query, category } = this.state
     this.props.onSearch(query, category)
   }
-
 
   render() {
     const { query, category } = this.state
@@ -48,7 +46,8 @@ class Search extends React.Component{
           placeholder='Select category'
           value= {category}
           onChange= {this.handleChange}>
-          <option value= ' '>All categories</option> //change css for this to #999
+          {/* change css for the first option to #999 */}
+          <option value= ' '>All categories</option> 
           <option>Food and Drinks</option>
           <option>Cycling</option>
           <option>Crafts</option>
@@ -63,5 +62,3 @@ class Search extends React.Component{
 }
 
 export default Search
-
-
