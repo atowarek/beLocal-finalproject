@@ -55,7 +55,7 @@ class ActivityContainer extends React.Component {
     return (
       <CardDeck className='container'>
         <Card>
-          <CardImg width='40%' src={picture} alt='Activity image cap' />
+          <CardImg className='image' src={picture} alt='Activity image cap' />
           <CardBody>
             <CardTitle>
               <b>{name}</b>

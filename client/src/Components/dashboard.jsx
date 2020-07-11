@@ -1,32 +1,35 @@
-import React from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import {
+  Button,
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Row,
+  Col,
+  Container,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from 'reactstrap'
 import QrCode from './qr-code'
+import withUser from './withUser'
 
-class Dashboard extends React.Component {
+class Dashboard extends Component {
   state = {
     isLoggedIn: false,
-    user: [],
     activities: [],
     //userActivities: []
   }
 
   componentDidMount = () => {
-    this.getUserInfo()
     this.getActivities()
   }
 
-  getUserInfo = id => {
-    //axios(`http://localhost:5000/users/?id=${id}`)
-    axios(`http://localhost:5000/users/2`)
-      .then(response => {
-        this.setState({ user: response.data })
-        console.log(this.state.user)
-      })
-      .catch(error => {
-        this.setState({ error: true })
-      })
-  }
   getActivities = () => {
     axios(`http://localhost:5000/activities`)
       .then(response => {
@@ -38,17 +41,6 @@ class Dashboard extends React.Component {
       })
   }
 
-  // getUserActivities = hostingId => {
-  //   axios(`http://localhost:5000/userActivities/1`)
-  //     .then(response => {
-  //       this.setState({ userActivities: response.data })
-  //       console.log(this.state.userActivities)
-  //     })
-  //     .catch(error => {
-  //       this.setState({ error: true })
-  //     })
-  // }
-
   addActivity = event => {
     event.preventDefault()
     this.props.history.push('/activity')
@@ -59,9 +51,24 @@ class Dashboard extends React.Component {
       modal: !state.modal,
     }))
   }
-  render() {
-    const { user, activities } = this.state
 
+  loginRedirect = () => {
+    this.props.history.push('/login')
+  }
+
+  render() {
+    const { activities } = this.state
+    const { user } = this.props
+    if (!user) {
+      return (
+        <div>
+          <h1>You need to log in first</h1>
+          <Button color='primary' onClick={this.loginRedirect}>
+            Login
+          </Button>{' '}
+        </div>
+      )
+    }
     return (
       <div>
         <h1> Hi, {user.name}!</h1>
@@ -77,7 +84,27 @@ class Dashboard extends React.Component {
               {activities.map(
                 activity =>
                   activity.hostingId === user.id && (
-                    <li key={activity.id}>{activity.name}</li>
+                    <Container key={activity.id}>
+                      <Row xs='4'>
+                        <Col>
+                          <Card>
+                            <CardImg className='image' src={activity.picture} />
+                            <CardBody>
+                              <CardTitle>{activity.name}</CardTitle>
+                              <CardSubtitle>
+                                {activity.address} ({activity.city})
+                              </CardSubtitle>
+                              <CardText>
+                                {activity.startDate}-{activity.endtDate}
+                              </CardText>
+                              <CardText>
+                                {activity.startHour}-{activity.endHour}{' '}
+                              </CardText>
+                            </CardBody>
+                          </Card>
+                        </Col>
+                      </Row>
+                    </Container>
                   )
               )}
             </div>
@@ -108,5 +135,4 @@ class Dashboard extends React.Component {
     )
   }
 }
-
-export default Dashboard
+export default withUser(Dashboard)
