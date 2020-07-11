@@ -1,17 +1,19 @@
 import React from 'react'
 import axios from 'axios'
-import { Button } from 'reactstrap'
+import { Button, Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle } from 'reactstrap'
 
 class Dashboard extends React.Component {
   state = {
     isLoggedIn: false,
     user: [],
     activities: [],
-    //userActivities: []
+    userActivities: []
   }
 
   componentDidMount = () => {
     this.getUserInfo()
+    this.getUserActivities()
     this.getActivities()
   }
 
@@ -26,6 +28,18 @@ class Dashboard extends React.Component {
         this.setState({ error: true })
       })
   }
+
+  getUserActivities = () => {
+    axios(`http://localhost:5000/userActivities/2`)
+      .then(response => {
+       this.setState({ userActivities: response.data })
+        console.log(response.data)
+      })
+      .catch(error => {
+        this.setState({ error: true })
+      })
+  }
+
   getActivities = () => {
     axios(`http://localhost:5000/activities`)
       .then(response => {
@@ -37,24 +51,15 @@ class Dashboard extends React.Component {
       })
   }
 
-  // getUserActivities = hostingId => {
-  //   axios(`http://localhost:5000/userActivities/1`)
-  //     .then(response => {
-  //       this.setState({ userActivities: response.data })
-  //       console.log(this.state.userActivities)
-  //     })
-  //     .catch(error => {
-  //       this.setState({ error: true })
-  //     })
-  // }
-
   addActivity = event => {
     event.preventDefault()
     this.props.history.push('/activity')
   }
 
+
+
   render() {
-    const { user, activities } = this.state
+    const { user, activities, userActivities } = this.state
 
     return (
       <div>
@@ -65,6 +70,33 @@ class Dashboard extends React.Component {
             <h2>MY ACTIVITIES:</h2>
             <div>
               <h3>participating:</h3>
+              {userActivities.map((activities, index) => {
+                const {
+                  picture,
+                  name,
+                  address,
+                  city,
+                  startDate,
+                  endDate,
+                  startHour,
+                  endHour,
+                } = activities
+                return (
+                  <div key={index}>
+                  <Card>
+                  <CardImg top width='100%' src={activities.activitie.picture}/>
+                  <CardBody>
+                    <CardTitle>{activities.activitie.name}</CardTitle>
+                    <CardSubtitle>{activities.activitie.address}</CardSubtitle>
+                    <CardSubtitle>{activities.activitie.city}</CardSubtitle>
+                    <CardText>{activities.activitie.startDate}</CardText>
+                    <CardText>{activities.activitie.endtDate} </CardText>
+                    <CardText>{activities.activitie.startHour} {activities.activitie.endHour} </CardText>
+                  </CardBody>
+                  </Card> 
+                  </div>
+                )
+              })}
             </div>
             <div>
               <h3>organizing:</h3>
