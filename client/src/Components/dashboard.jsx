@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle } from 'reactstrap'
+  CardTitle, CardSubtitle, Row, Col, Container } from 'reactstrap'
 
 class Dashboard extends React.Component {
   state = {
@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
   }
 
   getUserActivities = () => {
-    axios(`http://localhost:5000/userActivities/2`)
+    axios(`http://localhost:5000/userActivities/2`) // change to id when user is login
       .then(response => {
        this.setState({ userActivities: response.data })
         console.log(response.data)
@@ -82,19 +82,23 @@ class Dashboard extends React.Component {
                   endHour,
                 } = activities
                 return (
-                  <div key={index}>
-                  <Card>
-                  <CardImg top width='100%' src={activities.activitie.picture}/>
-                  <CardBody>
-                    <CardTitle>{activities.activitie.name}</CardTitle>
-                    <CardSubtitle>{activities.activitie.address}</CardSubtitle>
-                    <CardSubtitle>{activities.activitie.city}</CardSubtitle>
-                    <CardText>{activities.activitie.startDate}</CardText>
-                    <CardText>{activities.activitie.endtDate} </CardText>
-                    <CardText>{activities.activitie.startHour} {activities.activitie.endHour} </CardText>
-                  </CardBody>
-                  </Card> 
-                  </div>
+                  <Container key={index}>
+                    <Row xs='4'>
+                      <Col>
+                        <Card>
+                        <CardImg top width='100%' src={activities.activitie.picture}/>
+                        <CardBody>
+                          <CardTitle>{activities.activitie.name}</CardTitle>
+                          <CardSubtitle>{activities.activitie.address}</CardSubtitle>
+                          <CardSubtitle>{activities.activitie.city}</CardSubtitle>
+                          <CardText>{activities.activitie.startDate}</CardText>
+                          <CardText>{activities.activitie.endtDate} </CardText>
+                          <CardText>{activities.activitie.startHour} {activities.activitie.endHour} </CardText>
+                        </CardBody>
+                        </Card> 
+                      </Col>
+                    </Row>
+                  </Container>
                 )
               })}
             </div>
