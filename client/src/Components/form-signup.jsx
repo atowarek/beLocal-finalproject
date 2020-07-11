@@ -6,7 +6,7 @@ class Signup extends React.Component {
     state= {
         name: '',
         mail: '',
-        mail2:'',
+        confirmEmail:'',
         phone: '',
         password: ''
     }
@@ -17,13 +17,13 @@ class Signup extends React.Component {
         })
     }
 
-    /*checkRepeat = () => {
-        
-    }*/
 
     handleSubmit = event => {
         event.preventDefault()
-        const {name, mail, phone, password} = this.state
+        const {name, mail, phone, password, confirmEmail} = this.state
+        if(mail !== confirmEmail) {
+            alert(`Email don't match, please enter again your email address`)
+        }else{
         axios('http://localhost:5000/users', {
             method: 'POST',
             data: {
@@ -39,11 +39,12 @@ class Signup extends React.Component {
         .catch(error => {
             console.log(error)
         })
+        }
 
     }
 
     render() {
-        const {name, mail, mail2, phone, password} = this.state
+        const {name, mail, confirmEmail, phone, password} = this.state
         return (
             <div>
                 <Form onSubmit={this.handleSubmit}>
@@ -76,10 +77,10 @@ class Signup extends React.Component {
                             Can you repeat it? Let's check we didn't get it wrong.
                         </Label>
                         <Input
-                            value={mail2}
+                            value={confirmEmail}
                             onChange={this.handleChange}
-                            name='mail2'
-                            placeholder='Mail'
+                            name='confirmEmail'
+                            placeholder='Confirm email'
                             type='email'>
                         </Input>
                     </FormGroup>
