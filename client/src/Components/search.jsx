@@ -48,24 +48,14 @@ class Search extends React.Component{
           placeholder='Select category'
           value= {category}
           onChange= {this.handleChange}>
-          <option>Select category</option> //change css for this to #999
+          <option value= ' '>All categories</option> //change css for this to #999
           <option>Food and Drinks</option>
           <option>Cycling</option>
           <option>Crafts</option>
           <option>Animals</option>
           <option>Dancing</option>
         </Input>
-      </FormGroup>
-        <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
-          <Input
-            type='calendar'
-            name='calendar'
-            id='calendar'
-            placeholder='Select dates'
-            //onChange={handleChange}
-          />
         </FormGroup>
-
         <Button>Search</Button>
       </Form>
     )

@@ -10,10 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   )
-  user.associate = function (models) {
-    // user.hasMany(models.activitie)
-    // user.hasMany(models.activitie, { foreignKey: 'hostingId' })
-  }
+  user.associate = (models) => {
+    user.belongsToMany(models.activitie, {
+      through: 'user_activitie',
+      foreignKey: 'userId'
+    });
+  };
 
   return user
 }
+//user.belongsToMany(activitie, {through: 'user_activitie'})

@@ -2,8 +2,10 @@ import React from 'react'
 import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
+import axios from 'axios'
 import ActivityMaps from './activity-maps'
 import {Container, Row, Col} from 'reactstrap'
+
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -19,8 +21,8 @@ class HomePage extends React.Component {
     this.getActivities()
   }
 
-  fetchSearchResults = (query, category = ' ') => {
-    fetch(`http://localhost:5000/search/byCity/${query}?category=${category}`)
+  fetchSearchResults = (query= ' ', category = ' ') => {
+    fetch(`http://localhost:5000/search?city=${query}&category=${category}`)
       .then(response => {
         return response.json()
       })
@@ -39,7 +41,9 @@ class HomePage extends React.Component {
 
   getActivities = () => {
     fetch('http://localhost:5000/activities')
-      .then(response => response.json())
+    .then(response => {
+      return response.json()
+    })
       .then(response => {
         this.setState({
           activities: response,
