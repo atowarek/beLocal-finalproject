@@ -15,17 +15,15 @@ routes.get('/users', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-// GET user by id + activities organized by user
+// GET user by id
 routes.get('/users/:id', (req, res, next) => {
+  //const id = req.query.id
   const { id } = req.params
   models.user
     .findOne({
       where: {
         id,
       },
-      // include: models.activitie.findAll({
-      //   where: { hostingId: 3 },
-      // }),
     })
     .then(user => res.send(user))
     .catch(err => res.status(500).send(err))
@@ -82,16 +80,17 @@ routes.get('/activities/:id', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-// GET activity by hostingId (user's activities) NOT WORKING
-routes.get('/activities/?hostingId=3', (req, res, next) => {
-  const { hostingId } = req.params
-  models.activitie
-    .findOne({
-      where: { hostingId },
-    })
-    .then(activity => res.send(activity))
-    .catch(err => res.status(500).send(err))
-})
+// // GET activity by hostingId (user's activities) NOT WORKING
+// routes.get('/activities/?hostingId=3', (req, res, next) => {
+//   //const hostingId = req.query.hostingId
+//   const { hostingId } = req.query.hostingId
+//   models.activitie
+//     .findOne({
+//       where: { hostingId },
+//     })
+//     .then(activity => res.send(activity))
+//     .catch(err => res.status(500).send(err))
+// })
 
 // ROUTE TO SEARCH BY CITY AND/OR FILTER BY ACTIVITY
 routes.get('/search', (req, res, next) => {

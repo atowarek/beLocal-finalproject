@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Row, Col, Container } from 'reactstrap'
+  CardTitle, CardSubtitle, Row, Col, Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import QrCode from './qr-code'
+
 
 class Dashboard extends React.Component {
   state = {
@@ -18,7 +20,7 @@ class Dashboard extends React.Component {
   }
 
   getUserInfo = id => {
-    // axios(`http://localhost:5000/users/${id}`)
+    //axios(`http://localhost:5000/users/?id=${id}`)
     axios(`http://localhost:5000/users/2`)
       .then(response => {
         this.setState({ user: response.data })
@@ -57,6 +59,11 @@ class Dashboard extends React.Component {
   }
 
 
+  toggle = () => {
+    this.setState(state => ({
+      modal: !state.modal,
+    }))
+  }
 
   render() {
     const { user, activities, userActivities } = this.state
@@ -124,6 +131,16 @@ class Dashboard extends React.Component {
             </div>
           </div>
         </div>
+        <Button onClick={this.toggle}>Generate QR code!</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle}>
+            Scan this QR code for a 20% discount on your selected activity!
+          </ModalHeader>
+          <ModalBody>
+            <QrCode />
+          </ModalBody>
+          <ModalFooter>Send the QR Code by email (??)</ModalFooter>
+        </Modal>
       </div>
     )
   }
