@@ -1,42 +1,49 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import dayjs from 'dayjs'
 
-import { Button, Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Row, Col, Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import {
+  Button,
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Row,
+  Col,
+  Container,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from 'reactstrap'
 
 import QrCode from './qr-code'
 import withUser from './withUser'
 
-
 class Dashboard extends Component {
-
   state = {
     isLoggedIn: false,
     activities: [],
-    userActivities: []
+    userActivities: [],
   }
 
   componentDidMount = () => {
-
     this.getActivities()
-  
-
     this.getUserActivities()
-
   }
-
 
   getUserActivities = () => {
     axios(`http://localhost:5000/userActivities/2`) // change to id when user is login
       .then(response => {
-       this.setState({ userActivities: response.data })
+        this.setState({ userActivities: response.data })
         console.log(response.data)
       })
       .catch(error => {
         this.setState({ error: true })
       })
   }
-
 
   getActivities = () => {
     axios(`http://localhost:5000/activities`)
@@ -53,7 +60,6 @@ class Dashboard extends Component {
     event.preventDefault()
     this.props.history.push('/activity')
   }
-
 
   toggle = () => {
     this.setState(state => ({
@@ -103,16 +109,32 @@ class Dashboard extends Component {
                     <Row xs='4'>
                       <Col>
                         <Card>
-                        <CardImg top width='100%' src={activities.activitie.picture}/>
-                        <CardBody>
-                          <CardTitle>{activities.activitie.name}</CardTitle>
-                          <CardSubtitle>{activities.activitie.address}</CardSubtitle>
-                          <CardSubtitle>{activities.activitie.city}</CardSubtitle>
-                          <CardText>{activities.activitie.startDate}</CardText>
-                          <CardText>{activities.activitie.endtDate} </CardText>
-                          <CardText>{activities.activitie.startHour} {activities.activitie.endHour} </CardText>
-                        </CardBody>
-                        </Card> 
+                          <CardImg
+                            top
+                            width='100%'
+                            src={activities.activitie.picture}
+                          />
+                          <CardBody>
+                            <CardTitle>{activities.activitie.name}</CardTitle>
+                            <CardSubtitle>
+                              {activities.activitie.address} (
+                              {activities.activitie.city})
+                            </CardSubtitle>
+                            <CardText>
+                              {dayjs(activities.activitie.startDate).format(
+                                'DD/MM/YYYY'
+                              )}
+                              -
+                              {dayjs(activities.activitie.endDate).format(
+                                'DD/MM/YYYY'
+                              )}
+                            </CardText>
+                            <CardText>
+                              {activities.activitie.startHour}-
+                              {activities.activitie.endHour}{' '}
+                            </CardText>
+                          </CardBody>
+                        </Card>
                       </Col>
                     </Row>
                   </Container>
@@ -135,7 +157,8 @@ class Dashboard extends Component {
                                 {activity.address} ({activity.city})
                               </CardSubtitle>
                               <CardText>
-                                {activity.startDate}-{activity.endtDate}
+                                {dayjs(activity.startDate).format('DD/MM/YYYY')}
+                                -{dayjs(activity.endDate).format('DD/MM/YYYY')}
                               </CardText>
                               <CardText>
                                 {activity.startHour}-{activity.endHour}{' '}

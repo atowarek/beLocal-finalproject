@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     'activitie',
     {
       name: DataTypes.STRING,
-      startDate: DataTypes.DATE,
-      endDate: DataTypes.DATE,
+      startDate: DataTypes.DATEONLY,
+      endDate: DataTypes.DATEONLY,
       startHour: DataTypes.TIME,
       endHour: DataTypes.TIME,
       //hostingId: DataTypes.INTEGER,
@@ -29,12 +29,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   )
-  activitie.associate = (models) => {
+  activitie.associate = models => {
     activitie.belongsToMany(models.user, {
       through: 'user_activitie',
-      foreignKey: 'activityId'
+      foreignKey: 'activityId',
     })
-  };
+  }
 
   return activitie
 }

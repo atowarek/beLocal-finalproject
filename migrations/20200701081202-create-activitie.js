@@ -12,10 +12,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       startDate: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       endDate: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       startHour: {
         type: Sequelize.TIME,
@@ -55,10 +55,12 @@ module.exports = {
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        timestamps: false,
       },
       updatedAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        timestamps: false,
       },
     })
   },

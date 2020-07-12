@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 const userShouldBeLoggedIn = require('../guards/userShouldBeLoggedIn')
 const supersecret = process.env.SUPER_SECRET
 const bcrypt = require('bcryptjs')
+const dayjs = require('dayjs')
 
 // GET all users
 routes.get('/users', (req, res, next) => {
@@ -80,18 +81,6 @@ routes.get('/activities/:id', (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-// // GET activity by hostingId (user's activities) NOT WORKING
-// routes.get('/activities/?hostingId=3', (req, res, next) => {
-//   //const hostingId = req.query.hostingId
-//   const { hostingId } = req.query.hostingId
-//   models.activitie
-//     .findOne({
-//       where: { hostingId },
-//     })
-//     .then(activity => res.send(activity))
-//     .catch(err => res.status(500).send(err))
-// })
-
 // ROUTE TO SEARCH BY CITY AND/OR FILTER BY ACTIVITY
 routes.get('/search', (req, res, next) => {
   const city = req.query.city
@@ -110,8 +99,8 @@ routes.get('/search', (req, res, next) => {
     models.activitie
       .findAll({
         where: {
-          category: category
-        }
+          category: category,
+        },
       })
       .then(activity => res.send(activity))
       .catch(err => res.status(500).send(err))
@@ -126,7 +115,6 @@ routes.get('/search', (req, res, next) => {
       .then(activity => res.send(activity))
       .catch(err => res.status(500).send(err))
   }
-  
 })
 
 // create an activity
@@ -173,17 +161,17 @@ routes.delete('/activities/:id', (req, res, next) => {
     .destroy({
       where: { id },
     })
-    .then(activity => res.send(activity))
+    //.then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
 
 //ROUTE TO ADD USER AND CORRESPONDING ACTIVITIES
 routes.post('/userActivities', (req, res, next) => {
-  const { userId, activityId} = req.body
+  const { userId, activityId } = req.body
   models.user_activitie
     .create({
       userId,
-      activityId
+      activityId,
     })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
@@ -194,17 +182,26 @@ routes.get('/userActivities/:id', (req, res, next) => {
   const { id } = req.params
   models.user_activitie
     .findAll({
-      where: { userId: id},
+      where: { userId: id },
       attributes: ['userId'],
       include: [
         {
-          model: models.activitie, 
-          attributes: ['picture','name', 'address', 'city', 'startDate', 'endDate', 'startHour', 'endHour']
-        }
-      ]
+          model: models.activitie,
+          attributes: [
+            'picture',
+            'name',
+            'address',
+            'city',
+            'startDate',
+            'endDate',
+            'startHour',
+            'endHour',
+          ],
+        },
+      ],
     })
-  .then(activity => res.send(activity))
-  .catch(err => res.status(500).send(err))
+    .then(activity => res.send(activity))
+    .catch(err => res.status(500).send(err))
 })
 
 // ROUTE FOR AUTHENTICATION

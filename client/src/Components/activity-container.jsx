@@ -37,24 +37,23 @@ class ActivityContainer extends React.Component {
     axios(`http://localhost:5000/userActivities`, {
       method: 'POST',
       data: {
-        'userId': 2, //change when log in 
-        'activityId': id
-      }
+        userId: 2, //change when log in
+        activityId: id,
+      },
     })
-    .then(response => {
-      console.log(response.data)
-    })
-    .catch(error => {
-      console.log(error)
-    })
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
     //this.goToDashboard()
-      console.log(id)
+    console.log(id)
   }
 
   //goToDashboard = () => {
-    //this.props.history.push('/dashboard')
-  //} 
-
+  //this.props.history.push('/dashboard')
+  //}
 
   render() {
     const {

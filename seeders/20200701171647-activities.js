@@ -1,12 +1,13 @@
 'use strict'
+const dayjs = require('dayjs')
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('activities', [
       {
         name: 'Narrow-Gauge Railway Route',
-        startDate: '2020-07-29',
-        endDate: '2020-07-29',
+        startDate: '29-07-2020',
+        endDate: '29-07-2020',
         startHour: '16:00:00',
         endHour: '21:00:00',
         hostingId: '3',
@@ -21,8 +22,8 @@ module.exports = {
       },
       {
         name: 'Learn how to cook Paella',
-        startDate: '2020-07-21',
-        endDate: '2020-07-21',
+        startDate: '21-07-2020',
+        endDate: '21-07-2020',
         startHour: '11:30:00',
         endHour: '15:00:00',
         hostingId: '2',
@@ -37,8 +38,8 @@ module.exports = {
       },
       {
         name: 'Create your own ring',
-        startDate: '2020-07-23',
-        endDate: '2020-07-23',
+        startDate: '23-07-2020',
+        endDate: '23-07-2020',
         startHour: '16:00:00',
         endHour: '19:30:00',
         hostingId: '1',
@@ -53,8 +54,8 @@ module.exports = {
       },
       {
         name: 'Ride Medieval Landscapes',
-        startDate: '2020-07-25',
-        endDate: '2020-07-25',
+        startDate: '25-07-2020',
+        endDate: '25-07-2020',
         startHour: '10:00:00',
         endHour: '18:00:00',
         hostingId: '3',
@@ -69,8 +70,8 @@ module.exports = {
       },
       {
         name: 'Tango lessons & drinks',
-        startDate: '2020-07-26',
-        endDate: '2020-07-26',
+        startDate: '26-07-2020',
+        endDate: '26-07-2020',
         startHour: '19:00:00',
         endHour: '20:00:00',
         hostingId: '1',
@@ -85,8 +86,8 @@ module.exports = {
       },
       {
         name: 'Wine and alpacas at Can Marlès',
-        startDate: '2020-07-28',
-        endDate: '2020-07-28',
+        startDate: '28-07-2020',
+        endDate: '28-07-2020',
         startHour: '12:00:00',
         endHour: '14:30:00',
         hostingId: '2',
