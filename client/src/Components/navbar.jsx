@@ -61,7 +61,7 @@ class OurNavbar extends React.Component{
             {this.state.loggedIn ? (
               <NavItem>
                 <NavLink href="/dashboard">Profile</NavLink>
-                <Button onClick={() => this.props.clickLogout()}>Logout</Button>
+                <NavLink onClick={() => this.props.clickLogout()}>Logout</NavLink>
               </NavItem>
             ) : (
               <NavItem>
