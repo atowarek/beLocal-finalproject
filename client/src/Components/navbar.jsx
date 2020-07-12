@@ -7,7 +7,8 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Button
+  Button, 
+  Modal
   // UncontrolledDropdown,
   // DropdownToggle,
   // DropdownMenu,
@@ -15,14 +16,25 @@ import {
   //NavbarText,
 } from 'reactstrap'
 
+
 class OurNavbar extends React.Component{
   constructor(props) {
     super(props)
-
     this.state = {
       isOpen: false,
+      loggedIn: false
     }
 
+  }
+
+  componentWillMount() {
+    if (
+      localStorage.getItem("token") !== null
+    ) {
+      this.setState({ loggedIn: true });
+    } else {
+      this.setState({ loggedIn: false });
+    }
   }
 
   toggle() {
@@ -44,13 +56,19 @@ class OurNavbar extends React.Component{
               <NavItem>
                 <NavLink href='/about'> How it works</NavLink>
               </NavItem>
+            </Nav>
+            
+            {this.state.loggedIn ? (
               <NavItem>
+                <NavLink href="/dashboard">Profile</NavLink>
                 <Button onClick={() => this.props.clickLogout()}>Logout</Button>
               </NavItem>
-            </Nav>
-            <NavLink href='/signup'>Signup</NavLink>
-            <NavLink href='/login'>Login</NavLink>
-            <NavLink href='/dashboard'>Profile</NavLink>
+            ) : (
+              <NavItem>
+                <NavLink href='/signup'>Signup</NavLink>
+                <NavLink href='/login'>Login</NavLink>
+              </NavItem>
+            )}
           </Collapse>
         </Navbar>
       </div>
