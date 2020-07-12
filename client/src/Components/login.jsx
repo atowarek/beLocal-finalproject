@@ -1,8 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
+
 import { Link } from 'react-router-dom'
 //import NewActivity from './form-new-activity'
+
 
 class Login extends React.Component {
   constructor(props) {
@@ -47,25 +49,9 @@ class Login extends React.Component {
     })
   }
 
-  requestAccess = id => {
-    axios('http://localhost:5000/profile', {
-      headers: {
-        'x-access-token': localStorage.getItem('token'),
-      },
-    })
-      .then(response => {
-        this.props.history.push('/dashboard')
-        console.log(response.data)
-      })
-      .catch(error => {
-        this.setState({ error: true })
-        console.log(error)
-      })
-  }
-
-  homeRedirect = () => {
-    this.props.history.push('/')
-  }
+  // homeRedirect = () => {
+  //   this.props.history.push('/')
+  // }
 
   render() {
     const { name, password, error, isLoggedIn } = this.state
@@ -82,12 +68,13 @@ class Login extends React.Component {
               You are now logged in! <br />
               Check your profile or search for activities
             </h2>
-            <Button color='success' onClick={this.requestAccess}>
+            {/* buttton to profile not working here */}
+            {/* <Button color='success' onClick={this.requestAccess}>
               Profile
             </Button>
             <Button color='primary' onClick={this.homeRedirect}>
               Activities
-            </Button>
+            </Button> */}
           </div>
         ) : (
           <Form>

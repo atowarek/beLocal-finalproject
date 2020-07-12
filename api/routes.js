@@ -220,7 +220,7 @@ routes.post('/login', (req, res, next) => {
       bcrypt.compare(req.body.password, user.password).then(response => {
         console.log(req.body.password)
         console.log(response)
-        if (response == true) {
+        if (response === true) {
           let token = jwt.sign({ id: user.id }, supersecret)
           res.send({ message: 'user ok, here is your token', token })
         } else {
@@ -232,8 +232,8 @@ routes.post('/login', (req, res, next) => {
 
 // ROUTE FOR PROTECTED PAGES (AUTHENTICATION)
 routes.get('/profile', userShouldBeLoggedIn, (req, res, next) => {
-  //res.send(req.id)
-  res.send({ message: `here is your ${req.id}` })
+  let userId = req.id
+  res.status(200).send({ userId })
 })
 
 module.exports = routes

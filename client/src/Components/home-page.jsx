@@ -7,6 +7,7 @@ import {Container, Row, Col} from 'reactstrap'
 import { Link } from 'react-router-dom'
 
 
+
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
@@ -34,7 +35,7 @@ class HomePage extends React.Component {
             activities: data,
             message: false,
           })
-          console.log(data)
+          //console.log(data)
         }
       })
   }
@@ -71,11 +72,11 @@ class HomePage extends React.Component {
         
         <br></br>
         <Container>
-        <Row>
-          <Search onSearch={this.fetchSearchResults} />
-        </Row>
-        
+          <Row>
+            <Search onSearch={this.fetchSearchResults} />
+          </Row>
           <Row xs='2'>
+
         {this.state.message ? (
           <div className='Message-add'>
             <h5>
@@ -113,9 +114,10 @@ class HomePage extends React.Component {
         </Row>
           
         <Row>  
+
             <ActivityMaps className='map'></ActivityMaps>
-        </Row>
-      </Container>   
+          </Row>
+        </Container>
       </div>
     )
   }
