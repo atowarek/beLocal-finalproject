@@ -67,8 +67,8 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className='home'>
-        This web app is amazing! :) <hr />
-        Fill in at least one...
+       <hr />
+        
         <br></br>
         <Container>
         <Row>
