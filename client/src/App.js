@@ -10,11 +10,37 @@ import Dashboard from './components/dashboard'
 import NewActivity from './components/form-new-activity'
 
 class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      sessionToken: ''
+    }
+  }
+
+  componentWillMount() {
+    const token = localStorage.getItem('token')
+    if(token && !this.state.sessionToken) {
+      this.setState({ sessionToken: token })
+    }
+  }
+
+  setSessionState = (token) => {
+    localStorage.setItem('token', token)
+    this.setState({ sessionToken: token})
+  }
+
+  logout = () => {
+    this.setState({ 
+      sessionToken: '', 
+    });
+    localStorage.clear();
+  }
+
   render() {
     return (
       <div className='App'>
         <Router>
-          <OurNavbar />
+          <OurNavbar clickLogout={this.logout}/>
           <Switch>
             <Route
               exact

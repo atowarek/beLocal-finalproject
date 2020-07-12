@@ -2,10 +2,10 @@ import React from 'react'
 import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
-import axios from 'axios'
 import ActivityMaps from './activity-maps'
 import { Container, Row, Col } from 'reactstrap'
 import dayjs from 'dayjs'
+import { Link } from 'react-router-dom'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -87,50 +87,53 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className='home'>
-        This web app is amazing! :) <hr />
-        Fill in at least one...
+       <hr />
+        
         <br></br>
         <Container>
           <Row>
             <Search onSearch={this.fetchSearchResults} />
           </Row>
           <Row xs='2'>
-            {this.state.message ? (
-              <div className='Message-add'>
-                <h5>
-                  There is no activity in this city yet. Add the first one
-                  here(link to add form/log in)
-                </h5>
-              </div>
-            ) : (
-              this.state.activities.map(activity => {
-                return (
-                  <Col xs='6'>
-                    <ActivityContainer
-                      key={activity.id}
-                      id={activity.id}
-                      name={activity.name}
-                      startDate={activity.startDate}
-                      endDate={activity.endDate}
-                      startHour={activity.startHour}
-                      endHour={activity.endHour}
-                      hostingId={activity.hostingId}
-                      longitude={activity.longitude}
-                      latitude={activity.latitude}
-                      address={activity.address}
-                      description={activity.description}
-                      category={activity.category}
-                      picture={activity.picture}
-                      city={activity.city}
-                      addActivity={this.handleAddActivity}
-                    />
-                  </Col>
-                )
-              })
-            )}
-          </Row>
 
-          <Row>
+        {this.state.message ? (
+          <div className='Message-add'>
+            <h5>
+              There is no activity in this city yet. Add the first one <Link to='/activity'>here</Link>
+            </h5>
+          </div>
+        ) : (
+          this.state.activities.map(activity => {
+            return (
+              
+              <Col xs='6'>
+                <ActivityContainer
+                key={activity.id}
+                id={activity.id}
+                name={activity.name}
+                startDate={activity.startDate}
+                endDate={activity.endDate}
+                startHour={activity.startHour}
+                endHour={activity.endHour}
+                hostingId={activity.hostingId}
+                longitude={activity.longitude}
+                latitude={activity.latitude}
+                address={activity.address}
+                description={activity.description}
+                category={activity.category}
+                picture={activity.picture}
+                city={activity.city}
+                addActivity={this.handleAddActivity}
+                />
+              </Col>
+                  
+            )
+          })
+        )}
+        </Row>
+          
+        <Row>  
+
             <ActivityMaps className='map'></ActivityMaps>
           </Row>
         </Container>

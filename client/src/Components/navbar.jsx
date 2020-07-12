@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   Collapse,
   Navbar,
@@ -7,6 +7,8 @@ import {
   Nav,
   NavItem,
   NavLink,
+  Button, 
+  Modal
   // UncontrolledDropdown,
   // DropdownToggle,
   // DropdownMenu,
@@ -14,40 +16,65 @@ import {
   //NavbarText,
 } from 'reactstrap'
 
-const OurNavbar = props => {
-  const [isOpen, setIsOpen] = useState(false)
 
-  const toggle = () => setIsOpen(!isOpen)
+class OurNavbar extends React.Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      isOpen: false,
+      loggedIn: false
+    }
 
-  return (
-    <div>
-      <Navbar color='light' light expand='md'>
-        <NavbarBrand href='/'>Home Page</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className='mr-auto' navbar>
-            <NavItem>
-              <NavLink href='/about'> How it works</NavLink>
-            </NavItem>
-            {/* <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown> */}
-          </Nav>
-          <NavLink href='/signup'>Signup</NavLink>
-          <NavLink href='/login'>Login</NavLink>
-          <NavLink href='/dashboard'>Profile</NavLink>
-        </Collapse>
-      </Navbar>
-    </div>
-  )
+  }
+
+  componentWillMount() {
+    if (
+      localStorage.getItem("token") !== null
+    ) {
+      this.setState({ loggedIn: true });
+    } else {
+      this.setState({ loggedIn: false });
+    }
+  }
+
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  }
+
+
+
+  render(){
+    return (
+      <div>
+        <Navbar color='light' light expand='md'>
+          <NavbarBrand href='/'>Home Page</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className='mr-auto' navbar>
+              <NavItem>
+                <NavLink href='/about'> How it works</NavLink>
+              </NavItem>
+            </Nav>
+            
+            {this.state.loggedIn ? (
+              <NavItem>
+                <NavLink href="/dashboard">Profile</NavLink>
+                <NavLink onClick={() => this.props.clickLogout()}>Logout</NavLink>
+              </NavItem>
+            ) : (
+              <NavItem>
+                <NavLink href='/signup'>Signup</NavLink>
+                <NavLink href='/login'>Login</NavLink>
+              </NavItem>
+            )}
+          </Collapse>
+        </Navbar>
+      </div>
+    )
+  }
 }
+  
 
 export default OurNavbar
