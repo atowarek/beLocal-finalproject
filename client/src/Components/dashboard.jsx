@@ -142,9 +142,7 @@ class Dashboard extends Component {
                           {activities.activitie.startHour}-
                           {activities.activitie.endHour}
                         </CardText>
-                        <Button onClick={this.deleteUserActivity}>
-                          Delete activity
-                        </Button>
+                        <Button>Delete activity</Button>
                         <Button color='primary' onClick={this.toggle}>
                           Generate QR code!
                         </Button>
@@ -186,9 +184,7 @@ class Dashboard extends Component {
                           <CardText>
                             {activity.startHour}-{activity.endHour}
                           </CardText>
-                          <Button onClick={this.deleteActivity(activity.id)}>
-                            Delete activity
-                          </Button>
+                          <Button>Delete activity</Button>
                         </CardBody>
                       </Card>
                     )
