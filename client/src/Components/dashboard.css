@@ -16,12 +16,16 @@ h5 {
   font-family: 'Open Sans', cursive;
 }
 
-/* .btn {
-  float: left;
-} */
+.btn {
+  float: right;
+}
 
 .image {
-  width: 40px;
-  height: 40px;
+  max-width: 40px;
+  max-height: 40px;
   object-fit: cover;
+}
+
+.column {
+  margin: 20px;
 }
