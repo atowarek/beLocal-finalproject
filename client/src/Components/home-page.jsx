@@ -2,9 +2,9 @@ import React from 'react'
 import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
-import axios from 'axios'
 import ActivityMaps from './activity-maps'
 import {Container, Row, Col} from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 
 class HomePage extends React.Component {
@@ -79,8 +79,7 @@ class HomePage extends React.Component {
         {this.state.message ? (
           <div className='Message-add'>
             <h5>
-              There is no activity in this city yet. Add the first one here(link
-              to add form/log in)
+              There is no activity in this city yet. Add the first one <Link to='/activity'>here</Link>
             </h5>
           </div>
         ) : (
