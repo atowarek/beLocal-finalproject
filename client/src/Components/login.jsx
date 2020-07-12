@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
-import { Router, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 //import NewActivity from './form-new-activity'
 
 class Login extends React.Component {
