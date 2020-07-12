@@ -5,7 +5,7 @@ import ActivityContainer from './activity-container'
 import axios from 'axios'
 import ActivityMaps from './activity-maps'
 import { Container, Row, Col } from 'reactstrap'
-
+import dayjs from 'dayjs'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class HomePage extends React.Component {
     this.getActivities()
   }
 
-  fetchSearchResults = (query= ' ', category = ' ') => {
+  fetchSearchResults = (query = ' ', category = ' ') => {
     fetch(`http://localhost:5000/search?city=${query}&category=${category}`)
       .then(response => {
         return response.json()
@@ -41,15 +41,35 @@ class HomePage extends React.Component {
 
   getActivities = () => {
     fetch('http://localhost:5000/activities')
-    .then(response => {
-      return response.json()
-    })
       .then(response => {
+        return response.json()
+      })
+      .then(response => {
+        const parsedData = response.map(activity => {
+          const startDate = dayjs(activity.startDate).format('DD/MM/YYYY')
+          const endDate = dayjs(activity.endDate).format('DD/MM/YYYY')
+          return {
+            id: activity.id,
+            name: activity.name,
+            startDate,
+            endDate,
+            startHour: activity.startHour,
+            endHour: activity.endHour,
+            hostingId: activity.hostingId,
+            longitude: activity.longitude,
+            latitude: activity.latitude,
+            address: activity.address,
+            description: activity.description,
+            category: activity.category,
+            picture: activity.picture,
+            city: activity.city,
+          }
+        })
         this.setState({
-          activities: response,
+          activities: parsedData,
           allCities: true,
         })
-        console.log(response)
+        console.log(parsedData)
       })
       .catch(error => {
         this.setState({ error: true })
