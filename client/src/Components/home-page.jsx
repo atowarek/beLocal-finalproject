@@ -86,56 +86,50 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <div className='home'>
-        <hr />
-
-        <br></br>
-        <Container>
-          <Row>
-            <Search onSearch={this.fetchSearchResults} />
-          </Row>
-          <Row xs='2'>
-            {this.state.message ? (
-              <div className='Message-add'>
-                <h5>
-                  There is no activity in this city yet. Add the first one{' '}
-                  <Link to='/activity'>here</Link>
-                </h5>
-              </div>
-            ) : (
-              this.state.activities.map(activity => {
-                return (
-                  <Col xs='6'>
-                    <ActivityContainer
-                      key={activity.id}
-                      id={activity.id}
-                      name={activity.name}
-                      startDate={activity.startDate}
-                      endDate={activity.endDate}
-                      startHour={activity.startHour}
-                      endHour={activity.endHour}
-                      hostingId={activity.hostingId}
-                      longitude={activity.longitude}
-                      latitude={activity.latitude}
-                      address={activity.address}
-                      description={activity.description}
-                      category={activity.category}
-                      picture={activity.picture}
-                      city={activity.city}
-                      addActivity={this.handleAddActivity}
-                      history={this.props.history}
-                    />
-                  </Col>
-                )
-              })
-            )}
-          </Row>
-
-          <Row>
-            <ActivityMaps className='map'></ActivityMaps>
-          </Row>
-        </Container>
-      </div>
+      <Container>
+        <Row>
+          <Search onSearch={this.fetchSearchResults} />
+        </Row>
+        <Row xs='2'>
+          {this.state.message ? (
+            <div className='Message-add'>
+              <h5>
+                There is no activity in this city yet. Add the first one{' '}
+                <Link to='/activity'>here</Link>
+              </h5>
+            </div>
+          ) : (
+            this.state.activities.map(activity => {
+              return (
+                <Col xs='6'>
+                  <ActivityContainer
+                    key={activity.id}
+                    id={activity.id}
+                    name={activity.name}
+                    startDate={activity.startDate}
+                    endDate={activity.endDate}
+                    startHour={activity.startHour}
+                    endHour={activity.endHour}
+                    hostingId={activity.hostingId}
+                    longitude={activity.longitude}
+                    latitude={activity.latitude}
+                    address={activity.address}
+                    description={activity.description}
+                    category={activity.category}
+                    picture={activity.picture}
+                    city={activity.city}
+                    addActivity={this.handleAddActivity}
+                    history={this.props.history}
+                  />
+                </Col>
+              )
+            })
+          )}
+        </Row>
+        <Row>
+          <ActivityMaps className='map'></ActivityMaps>
+        </Row>
+      </Container>
     )
   }
 }

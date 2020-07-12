@@ -1,5 +1,11 @@
 .body {
   font-family: 'Raleway', sans-serif;
+  text-align: center;
+}
+
+.dashboard {
+  margin: 20px;
+  align-items: center;
 }
 
 .h1,
@@ -10,18 +16,12 @@ h5 {
   font-family: 'Open Sans', cursive;
 }
 
-.container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 /* .btn {
   float: left;
 } */
 
 .image {
-  width: 100px;
-  height: 100px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
 }
