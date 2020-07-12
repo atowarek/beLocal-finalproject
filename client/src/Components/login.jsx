@@ -1,10 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
-
 import { Link } from 'react-router-dom'
-//import NewActivity from './form-new-activity'
-
 
 class Login extends React.Component {
   constructor(props) {
@@ -13,7 +10,7 @@ class Login extends React.Component {
       name: '',
       password: '',
       error: false,
-      isLoggedIn: false,
+      loggedIn: false,
     }
   }
 
@@ -35,7 +32,7 @@ class Login extends React.Component {
     })
       .then(response => {
         localStorage.setItem('token', response.data.token)
-        this.setState({ isLoggedIn: true })
+        this.setState({ loggedIn: true })
         console.log(response.data)
       })
       .catch(error => {
@@ -49,12 +46,16 @@ class Login extends React.Component {
     })
   }
 
-  // homeRedirect = () => {
-  //   this.props.history.push('/')
-  // }
+  homeRedirect = () => {
+    this.props.history.push('/')
+  }
+
+  dashboardRedirect = () => {
+    this.props.history.push('/dashboard')
+  }
 
   render() {
-    const { name, password, error, isLoggedIn } = this.state
+    const { name, password, error, loggedIn } = this.state
     return (
       <div>
         {error && (
@@ -62,19 +63,19 @@ class Login extends React.Component {
             Sorry, name or password are incorrect! Try again, or sign up!
           </Alert>
         )}
-        {isLoggedIn ? (
+        {loggedIn ? (
           <div>
             <h2>
               You are now logged in! <br />
               Check your profile or search for activities
             </h2>
             {/* buttton to profile not working here */}
-            {/* <Button color='success' onClick={this.requestAccess}>
+            <Button color='success' onClick={this.dashboardRedirect}>
               Profile
             </Button>
             <Button color='primary' onClick={this.homeRedirect}>
               Activities
-            </Button> */}
+            </Button>
           </div>
         ) : (
           <Form>

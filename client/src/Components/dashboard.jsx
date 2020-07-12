@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import dayjs from 'dayjs'
-
+import QrCode from './qr-code'
+import withUser from './withUser'
 import {
   Button,
   Card,
@@ -19,12 +20,9 @@ import {
   ModalFooter,
 } from 'reactstrap'
 
-import QrCode from './qr-code'
-import withUser from './withUser'
-
 class Dashboard extends Component {
   state = {
-    isLoggedIn: false,
+    //loggedIn: false,
     activities: [],
     userActivities: [],
   }
@@ -132,7 +130,24 @@ class Dashboard extends Component {
                             <CardText>
                               {activities.activitie.startHour}-
                               {activities.activitie.endHour}{' '}
-                            </CardText>
+                            </CardText>{' '}
+                            <Button onClick={this.toggle}>
+                              Generate QR code!
+                            </Button>
+                            <Modal
+                              isOpen={this.state.modal}
+                              toggle={this.toggle}>
+                              <ModalHeader toggle={this.toggle}>
+                                Scan this QR code for a 20% discount on your
+                                selected activity!
+                              </ModalHeader>
+                              <ModalBody>
+                                <QrCode />
+                              </ModalBody>
+                              <ModalFooter>
+                                Send the QR Code by email (??)
+                              </ModalFooter>
+                            </Modal>
                           </CardBody>
                         </Card>
                       </Col>
@@ -184,18 +199,9 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
-        <Button onClick={this.toggle}>Generate QR code!</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>
-            Scan this QR code for a 20% discount on your selected activity!
-          </ModalHeader>
-          <ModalBody>
-            <QrCode />
-          </ModalBody>
-          <ModalFooter>Send the QR Code by email (??)</ModalFooter>
-        </Modal>
       </div>
     )
   }
 }
+
 export default withUser(Dashboard)
