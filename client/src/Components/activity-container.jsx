@@ -29,6 +29,7 @@ class ActivityContainer extends React.Component {
       modal: !state.modal,
     }))
   }
+
   handleClick = id => () => {
     this.props.addActivity(id)
     this.setState(state => ({
@@ -47,13 +48,13 @@ class ActivityContainer extends React.Component {
       .catch(error => {
         console.log(error)
       })
-    //this.goToDashboard()
+    this.goToDashboard()
     console.log(id)
   }
 
-  //goToDashboard = () => {
-  //this.props.history.push('/dashboard')
-  //}
+  goToDashboard = () => {
+    this.props.history.push('/dashboard')
+  }
 
   render() {
     const {
@@ -108,12 +109,15 @@ class ActivityContainer extends React.Component {
                 </b>
               </ModalBody>
               <ModalFooter>
-                <Button color='success' onClick={this.handleClick(id)}>
+                <Button
+                  color='success'
+                  title='Please log in before adding an activity'
+                  onClick={this.handleClick(id)}>
                   Join the activity!
                 </Button>{' '}
-                <Button color='warning' onClick={this.toggle}>
+                {/* <Button color='warning' onClick={this.toggle}>
                   Message the organizer!
-                </Button>
+                </Button> */}
               </ModalFooter>
             </Modal>
           </CardBody>

@@ -7,8 +7,8 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Button, 
-  Modal
+  //Button,
+  //Modal,
   // UncontrolledDropdown,
   // DropdownToggle,
   // DropdownMenu,
@@ -16,36 +16,30 @@ import {
   //NavbarText,
 } from 'reactstrap'
 
-
-class OurNavbar extends React.Component{
+class OurNavbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isOpen: false,
-      loggedIn: false
+      loggedIn: false,
     }
-
   }
 
-  componentWillMount() {
-    if (
-      localStorage.getItem("token") !== null
-    ) {
-      this.setState({ loggedIn: true });
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      this.setState({ loggedIn: true })
     } else {
-      this.setState({ loggedIn: false });
+      this.setState({ loggedIn: false })
     }
   }
 
   toggle() {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
     })
   }
 
-
-
-  render(){
+  render() {
     return (
       <div>
         <Navbar color='light' light expand='md'>
@@ -57,24 +51,26 @@ class OurNavbar extends React.Component{
                 <NavLink href='/about'> How it works</NavLink>
               </NavItem>
             </Nav>
-            
-            {this.state.loggedIn ? (
-              <NavItem>
-                <NavLink href="/dashboard">Profile</NavLink>
-                <NavLink onClick={() => this.props.clickLogout()}>Logout</NavLink>
-              </NavItem>
-            ) : (
-              <NavItem>
-                <NavLink href='/signup'>Signup</NavLink>
-                <NavLink href='/login'>Login</NavLink>
-              </NavItem>
-            )}
+            <Nav>
+              {this.state.loggedIn ? (
+                <Nav>
+                  <NavLink href='/dashboard'>Profile</NavLink>
+                  <NavLink href='/' onClick={() => this.props.clickLogout()}>
+                    Logout
+                  </NavLink>
+                </Nav>
+              ) : (
+                <Nav>
+                  <NavLink href='/signup'>Signup</NavLink>
+                  <NavLink href='/login'>Login</NavLink>
+                </Nav>
+              )}
+            </Nav>
           </Collapse>
         </Navbar>
       </div>
     )
   }
 }
-  
 
 export default OurNavbar

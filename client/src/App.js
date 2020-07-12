@@ -13,34 +13,34 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      sessionToken: ''
+      sessionToken: '',
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const token = localStorage.getItem('token')
-    if(token && !this.state.sessionToken) {
+    if (token && !this.state.sessionToken) {
       this.setState({ sessionToken: token })
     }
   }
 
-  setSessionState = (token) => {
+  setSessionState = token => {
     localStorage.setItem('token', token)
-    this.setState({ sessionToken: token})
+    this.setState({ sessionToken: token })
   }
 
   logout = () => {
-    this.setState({ 
-      sessionToken: '', 
-    });
-    localStorage.clear();
+    this.setState({
+      sessionToken: '',
+    })
+    localStorage.clear()
   }
 
   render() {
     return (
       <div className='App'>
         <Router>
-          <OurNavbar clickLogout={this.logout}/>
+          <OurNavbar clickLogout={this.logout} />
           <Switch>
             <Route
               exact

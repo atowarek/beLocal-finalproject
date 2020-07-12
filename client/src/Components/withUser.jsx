@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const withUser = Component => props => {
@@ -25,15 +25,14 @@ const withUser = Component => props => {
       })
   }, [])
 
-  //there is somehting worng here, the fetch doesn't stop (on console.log)
   useEffect(() => {
     axios(`http://localhost:5000/users/${userId}`).then(response => {
       setUserData(response.data)
       //console.log(userData)
     })
-  }, [userData])
+  }, [userId])
 
-  return <Component {...props} user={userData} />
+  return <Component {...props} userId={userId} user={userData} />
 }
 
 export default withUser
