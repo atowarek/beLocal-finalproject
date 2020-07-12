@@ -161,7 +161,7 @@ routes.delete('/activities/:id', (req, res, next) => {
     .destroy({
       where: { id },
     })
-    //.then(activity => res.send(activity))
+    .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
 
@@ -205,15 +205,15 @@ routes.get('/userActivities/:id', (req, res, next) => {
 })
 
 // DELETE user activity by id >> NOT WORKING?
-// routes.delete('/userActivities/:id', (req, res, next) => {
-//   const { id } = req.params
-//   models.user_activitie
-//     .destroy({
-//       where: { id },
-//     })
-//     .then(activity => res.send(activity))
-//     .catch(err => res.status(500).send(err))
-// })
+routes.delete('/userActivities/:id', (req, res, next) => {
+  const { id } = req.params
+  models.user_activitie
+    .destroy({
+      where: { activityId: id },
+    })
+    .then(activity => res.send(activity))
+    .catch(err => res.status(500).send(err))
+})
 
 // ROUTE FOR AUTHENTICATION
 // Login user

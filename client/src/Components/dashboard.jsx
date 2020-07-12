@@ -69,19 +69,38 @@ class Dashboard extends Component {
     this.props.history.push('/login')
   }
 
-  // deleteActivity = id => async () => {
-  //   fetch(`http://localhost:5000/activities/${id}`, {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   }).then(response => response.json())
-  //   await this.getActivities()
+  //only working when refresh
+  deleteActivity = id => async () => {
+    fetch(`http://localhost:5000/activities/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(response => response.json())
+    await this.getActivities()
 
-  //   // .catch(() => {
-  //   //   this.setState({ error: true })
-  //   // })
-  // }
+    // .catch(() => {
+    //   this.setState({ error: true })
+    // })
+  }
+
+  //NOT WORKING >> what id should be passed here (activityId or id?)? also check route on back
+  deleteUserActivity = id => async () => {
+    fetch(
+      `http://localhost:5000/userActivities/${id}`, //working with given id here
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    ).then(response => response.json())
+    await this.getUserActivities()
+
+    // .catch(() => {
+    //   this.setState({ error: true })
+    // })
+  }
 
   render() {
     const { activities, userActivities } = this.state
@@ -99,11 +118,19 @@ class Dashboard extends Component {
     return (
       <div className='dashboard'>
         <h2> Hi, {user.name}!</h2> <br />
-        <h3>Here you can see your activities or add a new one!</h3> <br />
+        <h3>
+          Here you can see the activities you organize or participate. <br />
+          Or create a new one!
+        </h3>
+        <br />
+        {/* move this button to the right? or in the upper right corner?*/}
+        <Button className='btn' onClick={this.addActivity}>
+          Create a new activity!
+        </Button>
         <h3> MY ACTIVITIES: </h3>
         <Container className='themed-container' fluid='sm'>
           <Row>
-            <Col xs='6'>
+            <Col xs='6' className='column'>
               <h4> participating: </h4>
               <Row>
                 {userActivities.map((activities, index) => {
@@ -142,7 +169,12 @@ class Dashboard extends Component {
                           {activities.activitie.startHour}-
                           {activities.activitie.endHour}
                         </CardText>
-                        <Button>Delete activity</Button>
+                        <Button
+                          onClick={this.deleteUserActivity(
+                            activities.activitie.id
+                          )}>
+                          Delete activity
+                        </Button>
                         <Button color='primary' onClick={this.toggle}>
                           Generate QR code!
                         </Button>
@@ -184,7 +216,9 @@ class Dashboard extends Component {
                           <CardText>
                             {activity.startHour}-{activity.endHour}
                           </CardText>
-                          <Button>Delete activity</Button>
+                          <Button onClick={this.deleteActivity(activity.id)}>
+                            Delete activity
+                          </Button>
                         </CardBody>
                       </Card>
                     )
@@ -192,14 +226,6 @@ class Dashboard extends Component {
               </Row>
             </Col>
           </Row>
-          <hr />
-          <div>
-            Add a new activity and share your experience with others!
-            <br />
-            <Button color='primary' className='btn' onClick={this.addActivity}>
-              Add a new activity
-            </Button>
-          </div>
         </Container>
       </div>
     )
