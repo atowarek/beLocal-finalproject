@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
+import { Router, Link } from 'react-router-dom'
 //import NewActivity from './form-new-activity'
 
 class Login extends React.Component {
@@ -89,7 +90,7 @@ class Login extends React.Component {
             </Button>
           </div>
         ) : (
-          <Form inline>
+          <Form>
             <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
               <Label for='name' className='mr-sm-2'>
                 Name
@@ -101,6 +102,7 @@ class Login extends React.Component {
                 placeholder='Name'
                 type='text'
                 className='form-name'
+                required='required'
               />
             </FormGroup>
             <FormGroup>
@@ -114,6 +116,7 @@ class Login extends React.Component {
                 placeholder='Password'
                 type='password'
                 className='form-password'
+                required='required'
               />
             </FormGroup>
             <Button
@@ -122,6 +125,8 @@ class Login extends React.Component {
               disabled={!name || !password}>
               Log in
             </Button>
+            <p>Forgot Password?</p>
+            <Link to='/signup'>Don't have an account? Sign up.</Link>
           </Form>
         )}
       </div>
