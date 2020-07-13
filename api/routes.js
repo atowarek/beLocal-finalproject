@@ -187,16 +187,6 @@ routes.get('/userActivities/:id', (req, res, next) => {
       include: [
         {
           model: models.activitie,
-          attributes: [
-            'picture',
-            'name',
-            'address',
-            'city',
-            'startDate',
-            'endDate',
-            'startHour',
-            'endHour',
-          ],
         },
       ],
     })

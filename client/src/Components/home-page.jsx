@@ -6,6 +6,7 @@ import ActivityMaps from './activity-maps'
 import { Container, Row, Col } from 'reactstrap'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
+import withUser from './withUser'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -85,6 +86,7 @@ class HomePage extends React.Component {
   }
 
   render() {
+    const { user } = this.props
     return (
       <Container>
         <Row>
@@ -120,6 +122,7 @@ class HomePage extends React.Component {
                     city={activity.city}
                     addActivity={this.handleAddActivity}
                     history={this.props.history}
+                    user={user}
                   />
                 </Col>
               )
@@ -133,4 +136,6 @@ class HomePage extends React.Component {
     )
   }
 }
-export default HomePage
+//export default HomePage
+
+export default withUser(HomePage)

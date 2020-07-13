@@ -22,25 +22,11 @@ import {
 
 class Dashboard extends Component {
   state = {
-    //loggedIn: false,
     activities: [],
-    userActivities: [],
   }
 
   componentDidMount = () => {
     this.getActivities()
-    this.getUserActivities()
-  }
-
-  getUserActivities = () => {
-    axios(`http://localhost:5000/userActivities/2`) // change to id when user is login
-      .then(response => {
-        this.setState({ userActivities: response.data })
-        console.log(response.data)
-      })
-      .catch(error => {
-        this.setState({ error: true })
-      })
   }
 
   getActivities = () => {
@@ -69,42 +55,25 @@ class Dashboard extends Component {
     this.props.history.push('/login')
   }
 
-  //only working when refresh
-  deleteActivity = id => async () => {
+  deleteActivity = id => () => {
     fetch(`http://localhost:5000/activities/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then(response => response.json())
-    await this.getActivities()
-
-    // .catch(() => {
-    //   this.setState({ error: true })
-    // })
-  }
-
-  //NOT WORKING >> what id should be passed here (activityId or id?)? also check route on back
-  deleteUserActivity = id => async () => {
-    fetch(
-      `http://localhost:5000/userActivities/${id}`, //working with given id here
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    ).then(response => response.json())
-    await this.getUserActivities()
-
-    // .catch(() => {
-    //   this.setState({ error: true })
-    // })
+    })
+      .then(response => response.json())
+      .then(() => {
+        this.getActivities()
+      })
+      .catch(() => {
+        this.setState({ error: true })
+      })
   }
 
   render() {
-    const { activities, userActivities } = this.state
-    const { user } = this.props
+    const { activities } = this.state
+    const { user, userActivities, deleteUserActivity } = this.props
     if (!user) {
       return (
         <div>
@@ -170,9 +139,7 @@ class Dashboard extends Component {
                           {activities.activitie.endHour}
                         </CardText>
                         <Button
-                          onClick={this.deleteUserActivity(
-                            activities.activitie.id
-                          )}>
+                          onClick={deleteUserActivity(activities.activitie.id)}>
                           Delete activity
                         </Button>
                         <Button color='primary' onClick={this.toggle}>
