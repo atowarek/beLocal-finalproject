@@ -195,6 +195,7 @@ routes.get('/userActivities/:id', (req, res, next) => {
       include: [
         {
           model: models.activitie 
+
         },
       ],
     })

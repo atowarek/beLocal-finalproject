@@ -38,7 +38,7 @@ class ActivityContainer extends React.Component {
     axios(`http://localhost:5000/userActivities`, {
       method: 'POST',
       data: {
-        userId: 2, //change when log in
+        userId: this.props.user.id,
         activityId: id,
       },
     })

@@ -33,6 +33,7 @@ class Login extends React.Component {
       .then(response => {
         localStorage.setItem('token', response.data.token)
         this.setState({ loggedIn: true })
+        this.dashboardRedirect()
         console.log(response.data)
       })
       .catch(error => {
@@ -44,10 +45,6 @@ class Login extends React.Component {
       password: '',
       error: false,
     })
-  }
-
-  homeRedirect = () => {
-    this.props.history.push('/')
   }
 
   dashboardRedirect = () => {
@@ -69,13 +66,6 @@ class Login extends React.Component {
               You are now logged in! <br />
               Check your profile or search for activities
             </h2>
-            {/* buttton to profile not working here */}
-            <Button color='success' onClick={this.dashboardRedirect}>
-              Profile
-            </Button>
-            <Button color='primary' onClick={this.homeRedirect}>
-              Activities
-            </Button>
           </div>
         ) : (
           <Form>
