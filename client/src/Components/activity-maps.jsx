@@ -1,5 +1,5 @@
 import React from 'react'
-import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import axios from 'axios'
 
 const apiKey = process.env.REACT_APP_GOOGLE_API_KEY
@@ -32,8 +32,12 @@ class ActivityMaps extends React.Component {
         return (
             <Map google={this.props.google} zoom={7} initialCenter={center}>
                 {this.state.activities.map((activity, index) => (
-                    console.log(activity, activity.latitude, activity.longitude),
-                    <Marker key={activity.id} lat={activity.latitude} lng={activity.longitude} />
+                    console.log(activity),
+                    <Marker 
+                        name={activity.name}
+                        key={activity.id} 
+                        position={{lat:activity.latitude,lng:activity.longitude}}
+                        />
                 ))}
             </Map>
         )

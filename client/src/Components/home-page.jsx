@@ -64,6 +64,7 @@ class HomePage extends React.Component {
             category: activity.category,
             picture: activity.picture,
             city: activity.city,
+            price: activity.price
           }
         })
         this.setState({
@@ -120,6 +121,7 @@ class HomePage extends React.Component {
                     category={activity.category}
                     picture={activity.picture}
                     city={activity.city}
+                    price={activity.price}
                     addActivity={this.handleAddActivity}
                     history={this.props.history}
                     user={user}
