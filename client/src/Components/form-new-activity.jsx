@@ -13,6 +13,7 @@ class NewActivity extends React.Component {
         city:'',
         description:'',
         category:'',
+        price:'',
         picture:''
     }
 
@@ -24,7 +25,7 @@ class NewActivity extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        const {name, startDate, endDate, startHour, endHour, address, city, description, category, picture} = this.state
+        const {name, startDate, endDate, startHour, endHour, address, city, description, category, price, picture} = this.state
         axios('http://localhost:5000/activities', {
             method: 'POST',
             data: {
@@ -37,6 +38,7 @@ class NewActivity extends React.Component {
                 city,
                 description,
                 category,
+                price,
                 picture,
             },
         })
@@ -72,7 +74,7 @@ class NewActivity extends React.Component {
     }
 
     render() {
-        const {name, startDate, endDate, startHour, endHour, address, city, description, category, picture} = this.state
+        const {name, startDate, endDate, startHour, endHour, address, city, description, category, price, picture} = this.state
         return (
             <div>
                 <Form onSubmit={this.handleSubmit}>
@@ -189,6 +191,18 @@ class NewActivity extends React.Component {
                                 <option value='crafts'>Crafts</option>
                                 <option value='animals'>Animals</option>
                                 <option value='dancing'>Dancing</option>
+                        </Input>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for='price'>
+                            What's the price for your activity?
+                        </Label>
+                        <Input 
+                            value={price}
+                            onChange={this.handleChange}
+                            name='price'
+                            placeholder='Price'
+                            type='number'>
                         </Input>
                     </FormGroup>
                     <FormGroup>
