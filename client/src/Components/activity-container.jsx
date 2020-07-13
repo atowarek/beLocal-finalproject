@@ -71,6 +71,7 @@ class ActivityContainer extends React.Component {
       description,
       category,
       picture,
+      price,
       city,
     } = this.props
     return (
@@ -84,6 +85,9 @@ class ActivityContainer extends React.Component {
             <CardSubtitle>
               <i>Category</i>: {category}
             </CardSubtitle>
+            <CardText>
+              <i>Price:</i> {price} 
+            </CardText>
             <CardText>
               <i>When:</i> {startDate} <i>at</i> {startHour}
             </CardText>
@@ -102,7 +106,7 @@ class ActivityContainer extends React.Component {
                 <hr /> Start: {startDate} at {startHour}
                 <hr /> Finish: {endDate} at {endHour}
                 <hr /> Meeting point: {address} ({city})
-                <hr />
+                <hr /> 
                 <b>
                   Clicking on <i>Join the activity!</i> will add the activity to
                   your profile!
