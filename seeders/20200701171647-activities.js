@@ -19,6 +19,7 @@ module.exports = {
         category: 'cycling',
         picture: '/img/Ruta.jpg',
         city: 'Girona',
+        price: '5'
       },
       {
         name: 'Learn how to cook Paella',
@@ -35,6 +36,7 @@ module.exports = {
         category: 'food and drinks',
         picture: '/img/paella.jpg',
         city: 'Barcelona',
+        price: '8'
       },
       {
         name: 'Create your own ring',
@@ -51,6 +53,7 @@ module.exports = {
         category: 'crafts',
         picture: '/img/ring.jpeg',
         city: 'Palamós',
+        price: '8'
       },
       {
         name: 'Ride Medieval Landscapes',
@@ -67,6 +70,7 @@ module.exports = {
         category: 'animals',
         picture: '/img/horse-riding.jpg',
         city: "L'ametlla de Segarra",
+        price: '8'
       },
       {
         name: 'Tango lessons & drinks',
@@ -83,6 +87,7 @@ module.exports = {
         category: 'dancing',
         picture: '/img/tango.jpg',
         city: 'Tàrrega',
+        price: '5'
       },
       {
         name: 'Wine and alpacas at Can Marlès',
@@ -99,6 +104,7 @@ module.exports = {
         category: 'food and drinks',
         picture: '/img/alpaca.jpg',
         city: 'Can Ferrer de la Cogullada',
+        price: '10'
       },
     ])
   },
