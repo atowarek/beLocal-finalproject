@@ -171,13 +171,19 @@ routes.delete('/activities/:id', (req, res, next) => {
 routes.post('/userActivities', (req, res, next) => {
   const { userId, activityId } = req.body
   models.user_activitie
-    .create({
-      userId,
-      activityId,
+    .findOrCreate({
+      where: {
+        activityId
+      },
+      defaults: {
+        userId,
+        activityId
+      }
     })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
+
 
 //ROUTE TO SHOW USER AND HIS ACTIVITIES
 routes.get('/userActivities/:id', (req, res, next) => {
@@ -188,23 +194,14 @@ routes.get('/userActivities/:id', (req, res, next) => {
       attributes: ['userId'],
       include: [
         {
-          model: models.activitie,
-          attributes: [
-            'picture',
-            'name',
-            'address',
-            'city',
-            'startDate',
-            'endDate',
-            'startHour',
-            'endHour',
-          ],
+          model: models.activitie 
         },
       ],
     })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
+
 
 // DELETE user activity by id >> NOT WORKING?
 routes.delete('/userActivities/:id', (req, res, next) => {
