@@ -132,6 +132,7 @@ routes.post('/activities', (req, res) => {
     description,
     category,
     picture,
+    price,
     city,
   } = req.body
   models.activitie
@@ -148,6 +149,7 @@ routes.post('/activities', (req, res) => {
       description,
       category,
       picture,
+      price,
       city,
     })
     .then(activity => res.send(activity))
