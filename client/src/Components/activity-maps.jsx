@@ -9,6 +9,11 @@ const center = {
   lng: 1.822515,
 }
 
+const mapStyles = {
+    width: "100%",
+    height: "400px",
+};
+
 class ActivityMaps extends React.Component {
   state = {
     activities: [],
@@ -22,9 +27,25 @@ class ActivityMaps extends React.Component {
     })
   }
 
+  componentDidUpdate() {
+    const homeActivities = this.props.onSearch
+    
+    if(homeActivities !== this.state.activities) {
+        this.setState({
+            activities: homeActivities
+        })
+    }
+  }
+  /*handleSearch = event => {
+      event.preventDefault()
+    const { query, category } = this.state
+    this.props.onSearch(query, category)
+    console.log(this.props.onSearch(query, category))
+  }*/
+  
   render() {
     return (
-      <Map google={this.props.google} zoom={7} initialCenter={center}>
+      <Map google={this.props.google} styles={mapStyles} zoom={7} initialCenter={center}>
         {this.state.activities.map((activity, index) => (
           //console.log(activity),
           <Marker
