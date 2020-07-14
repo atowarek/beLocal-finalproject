@@ -6,7 +6,6 @@ import ActivityMaps from './activity-maps'
 import { Container, Row, Col } from 'reactstrap'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
-import withUser from './withUser'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -64,7 +63,7 @@ class HomePage extends React.Component {
             category: activity.category,
             picture: activity.picture,
             city: activity.city,
-            price: activity.price
+            price: activity.price,
           }
         })
         this.setState({
@@ -83,7 +82,6 @@ class HomePage extends React.Component {
       activity => activity.id === id
     )
     console.log(currentActivity)
-    //this.props.addActivity(currentActivity)
   }
 
   render() {
@@ -124,7 +122,6 @@ class HomePage extends React.Component {
                     price={activity.price}
                     addActivity={this.handleAddActivity}
                     history={this.props.history}
-                    user={user}
                   />
                 </Col>
               )
@@ -138,6 +135,4 @@ class HomePage extends React.Component {
     )
   }
 }
-//export default HomePage
-
-export default withUser(HomePage)
+export default HomePage

@@ -23,10 +23,24 @@ import {
 class Dashboard extends Component {
   state = {
     activities: [],
+    userActivities: [],
   }
 
   componentDidMount = () => {
     this.getActivities()
+    this.getUserActivities()
+  }
+
+  getUserActivities = () => {
+    const { id } = this.props.user
+    axios(`http://localhost:5000/userActivities/${id}`)
+      .then(response => {
+        //console.log(response.data)
+        this.setState({ userActivities: response.data })
+      })
+      .catch(error => {
+        this.setState({ error: true })
+      })
   }
 
   getActivities = () => {
@@ -55,6 +69,23 @@ class Dashboard extends Component {
     this.props.history.push('/login')
   }
 
+  deleteUserActivity = id => () => {
+    axios(`http://localhost:5000/userActivities/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .catch(error => {
+        console.log(error)
+      })
+
+      .then(response => {
+        //console.log(response.data)
+        this.getUserActivities()
+      })
+  }
+
   deleteActivity = id => () => {
     fetch(`http://localhost:5000/activities/${id}`, {
       method: 'DELETE',
@@ -72,8 +103,8 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { activities } = this.state
-    const { user, userActivities, deleteUserActivity } = this.props
+    const { activities, userActivities } = this.state
+    const { user } = this.props
     if (!user) {
       return (
         <div>
@@ -139,7 +170,9 @@ class Dashboard extends Component {
                           {activities.activitie.endHour}
                         </CardText>
                         <Button
-                          onClick={deleteUserActivity(activities.activitie.id)}>
+                          onClick={this.deleteUserActivity(
+                            activities.activitie.id
+                          )}>
                           Delete activity
                         </Button>
                         <Button color='primary' onClick={this.toggle}>

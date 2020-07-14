@@ -15,6 +15,7 @@ import {
   CardBody,
 } from 'reactstrap'
 import axios from 'axios'
+import withUser from './withUser'
 
 class ActivityContainer extends React.Component {
   constructor(props) {
@@ -31,7 +32,6 @@ class ActivityContainer extends React.Component {
   }
 
   handleClick = id => () => {
-    this.props.addActivity(id)
     this.setState(state => ({
       modal: !state.modal,
     }))
@@ -43,12 +43,12 @@ class ActivityContainer extends React.Component {
       },
     })
       .then(response => {
+        this.goToDashboard()
         console.log(response.data)
       })
       .catch(error => {
         console.log(error)
       })
-    this.goToDashboard()
     console.log(id)
   }
 
@@ -86,7 +86,7 @@ class ActivityContainer extends React.Component {
               <i>Category</i>: {category}
             </CardSubtitle>
             <CardText>
-              <i>Price:</i> {price} 
+              <i>Price:</i> {price}
             </CardText>
             <CardText>
               <i>When:</i> {startDate} <i>at</i> {startHour}
@@ -106,7 +106,7 @@ class ActivityContainer extends React.Component {
                 <hr /> Start: {startDate} at {startHour}
                 <hr /> Finish: {endDate} at {endHour}
                 <hr /> Meeting point: {address} ({city})
-                <hr /> 
+                <hr />
                 <b>
                   Clicking on <i>Join the activity!</i> will add the activity to
                   your profile!
@@ -130,4 +130,4 @@ class ActivityContainer extends React.Component {
     )
   }
 }
-export default ActivityContainer
+export default withUser(ActivityContainer, { renderNull: false })
