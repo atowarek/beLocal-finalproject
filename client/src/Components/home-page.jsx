@@ -1,5 +1,4 @@
 import React from 'react'
-import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
 import ActivityMaps from './activity-maps'
@@ -27,8 +26,10 @@ class HomePage extends React.Component {
         return response.json()
       })
       .then(data => {
-        if (data.length === 0) {
+        if (data.length === 0 && Search) {
           this.setState({ message: true })
+        } else if(data.length === 0 && ActivityMaps) {
+          return
         } else {
           this.setState({
             activities: data,
@@ -86,6 +87,7 @@ class HomePage extends React.Component {
 
   render() {
     const { user } = this.props
+    const { activities } = this.state
     return (
       <Container>
         <Row>
@@ -129,7 +131,7 @@ class HomePage extends React.Component {
           )}
         </Row>
         <Row>
-          <ActivityMaps className='map'></ActivityMaps>
+          <ActivityMaps onSearch={activities} />
         </Row>
       </Container>
     )
