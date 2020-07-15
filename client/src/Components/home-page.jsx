@@ -23,7 +23,7 @@ class HomePage extends React.Component {
   }
 
   fetchSearchResults = (query = ' ', category = ' ') => {
-    fetch(`/search?city=${query}&category=${category}`)
+    fetch(`/api/search?city=${query}&category=${category}`)
       .then(response => {
         return response.json()
       })
@@ -41,7 +41,7 @@ class HomePage extends React.Component {
   }
 
   getActivities = () => {
-    fetch('/activities')
+    fetch('/api/activities')
       .then(response => {
         return response.json()
       })

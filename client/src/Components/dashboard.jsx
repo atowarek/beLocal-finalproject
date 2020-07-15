@@ -87,7 +87,7 @@ class Dashboard extends Component {
   }
 
   deleteActivity = id => () => {
-    fetch(`/activities/${id}`, {
+    fetch(`/api/activities/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
