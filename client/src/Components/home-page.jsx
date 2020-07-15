@@ -5,6 +5,8 @@ import ActivityMaps from './activity-maps'
 import { Container, Row, Col } from 'reactstrap'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
+//import BottomNavbar from './bottom-navbar'
+
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -26,10 +28,8 @@ class HomePage extends React.Component {
         return response.json()
       })
       .then(data => {
-        if (data.length === 0 && Search) {
+        if (data.length === 0) {
           this.setState({ message: true })
-        } else if(data.length === 0 && ActivityMaps) {
-          return
         } else {
           this.setState({
             activities: data,
@@ -89,6 +89,7 @@ class HomePage extends React.Component {
     const { user } = this.props
     const { activities } = this.state
     return (
+      <div>
       <Container>
         <Row>
           <Search onSearch={this.fetchSearchResults} />
@@ -130,10 +131,14 @@ class HomePage extends React.Component {
             })
           )}
         </Row>
-        <Row>
-          <ActivityMaps onSearch={activities} />
-        </Row>
+        
+          
       </Container>
+       
+      <ActivityMaps onSearch={activities} />
+      
+      {/*<BottomNavbar/>*/}
+      </div>
     )
   }
 }

@@ -8,6 +8,10 @@ import Login from './components/login'
 import Signup from './components/form-signup'
 import Dashboard from './components/dashboard'
 import NewActivity from './components/form-new-activity'
+import Terms from './components/terms-and-conditions'
+import BottomNavbar from './components/bottom-navbar'
+import Contact from './components/contact-us'
+
 
 class App extends React.Component {
   constructor() {
@@ -52,7 +56,10 @@ class App extends React.Component {
             <Route exact path='/login' component={Login}></Route>
             <Route exact path='/activity' component={NewActivity}></Route>
             <Route exact path='/dashboard' component={Dashboard}></Route>
+            <Route exact path='/terms' component={Terms}></Route>
+            <Route exact path='/contact' component={Contact}></Route>
           </Switch>
+          <BottomNavbar/>
         </Router>
       </div>
     )
