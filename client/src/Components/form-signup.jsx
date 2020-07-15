@@ -108,6 +108,12 @@ class Signup extends React.Component {
                             type='password'>
                         </Input>
                     </FormGroup>
+                    <FormGroup check>
+                        <Label check>
+                        <Input type="checkbox" required/>{' '}
+                        You need to agree with the Terms and Conditions
+                        </Label>
+                    </FormGroup>
                     <Button
                         className='button'>
                         Sign up
