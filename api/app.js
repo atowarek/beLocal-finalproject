@@ -38,5 +38,5 @@ app.get('/', (req, res) => {
 app.use(express.static('./client/public/img'))
 
 app.listen(process.env.API_PORT, () => {
-  console.log(`Starting server in PORT ${process.env.API_PORT}`)
+  console.log(`Starting server in PORT ${process.env.PORT}`)
 })
