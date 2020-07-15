@@ -128,34 +128,6 @@ routes.get('/search', (req, res, next) => {
   }
 })
 
-//IMAGE POST
-/*routes.post('/activities/img', (req, res) => {
-  const { imagefile } = req.files
-  console.log(imagefile)
-
-  let extension = mime.extension(imagefile.mimetype)
-  let filename = uuidv4() + '.' + extension
-
-  let tmp_path = imagefile.tempFilePath
-  let target_path = path.join(__dirname, '../client/public/img/') + filename
-
-  fs.rename(tmp_path, target_path, function (err) {
-    if (err) throw err
-    fs.unlink(tmp_path, function (err) {
-      if (err) throw err
-
-      models.activitie
-        .create({
-          picture: filename
-        })
-        .then((results) => {
-          getImages(req, res)
-        })
-        .catch((err) => res.status(500).send(err))
-    })
-  })
-})*/
-
 // create an activity
 routes.post('/activities', upload.single('picture'), (req, res) => {
   const {

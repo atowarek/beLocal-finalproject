@@ -29,16 +29,6 @@ class NewActivity extends React.Component {
         this.setState({ picture: event.target.files[0]})
     }
 
-    /*onFileUpload = () => {
-        const formData = new FormData()
-
-        formData.append(
-            'imagefile',
-            this.state.selectedFile,
-            this.state.selectedFile.name
-        )
-    }*/
-
     handleSubmit = event => {
         event.preventDefault()
         const formData = new FormData()
