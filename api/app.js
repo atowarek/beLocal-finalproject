@@ -2,6 +2,8 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+//const fileUpload = require('express-fileupload')
+
 
 const apiRoutes = require('./routes')
 
@@ -17,6 +19,16 @@ app.get('/', (req, res) => {
     message: 'hi',
   })
 })
+
+
+/*app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: './tmp/'
+  })
+)*/
+
+app.use(express.static('./client/public/img'))
 
 app.listen(process.env.API_PORT, () => {
   console.log(`Starting server in PORT ${process.env.API_PORT}`)

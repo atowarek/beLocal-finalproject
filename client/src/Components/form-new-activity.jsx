@@ -9,6 +9,7 @@ class NewActivity extends React.Component {
         endDate:'',
         startHour: '',
         endHour: '',
+        hostingId: '',
         address: '',
         city:'',
         description:'',
@@ -23,23 +24,41 @@ class NewActivity extends React.Component {
         })
     }
 
+    onFileChange = (event) => {
+        this.setState({ picture: event.target.files[0]})
+    }
+
+    /*onFileUpload = () => {
+        const formData = new FormData()
+
+        formData.append(
+            'imagefile',
+            this.state.selectedFile,
+            this.state.selectedFile.name
+        )
+    }*/
+
     handleSubmit = event => {
         event.preventDefault()
-        const {name, startDate, endDate, startHour, endHour, address, city, description, category, price, picture} = this.state
-        axios('http://localhost:5000/activities', {
-            method: 'POST',
-            data: {
-                name,
-                startDate,
-                endDate,
-                startHour,
-                endHour,
-                address,
-                city,
-                description,
-                category,
-                price,
-                picture,
+        const formData = new FormData()
+
+        formData.append('name', this.state.name)
+        formData.append('startDate', this.state.startDate)
+        formData.append('endDate', this.state.endDate)
+        formData.append('startHour', this.state.startHour)
+        formData.append('endHour', this.state.endHour)
+        formData.append('hostingId', 2)
+        formData.append('address', this.state.address)
+        formData.append('city', this.state.city)
+        formData.append('description', this.state.description)
+        formData.append('category', this.state.category)
+        formData.append('price', this.state.price)
+        formData.append('picture',this.state.picture)
+        //const {name, startDate, endDate, startHour, endHour, address, city, description, category, price} = this.state
+        axios
+        .post('http://localhost:5000/activities', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
             },
         })
         .then(response => {
@@ -48,7 +67,8 @@ class NewActivity extends React.Component {
         .catch(error => {
             console.log(error)
         })
-        this.goToDashboard()
+        
+        //this.goToDashboard()
     }
 
     /*getPosition() {
@@ -210,8 +230,7 @@ class NewActivity extends React.Component {
                             Post a picture so the activity gets more attention
                         </Label>
                         <Input 
-                        value={picture}
-                        onChange={this.handleChange}
+                        onChange={this.onFileChange}
                         name='picture'
                         placeholder='Picture'
                         type='file'>
