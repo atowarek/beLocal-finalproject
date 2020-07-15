@@ -5,27 +5,25 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 //const fileUpload = require('express-fileupload')
 
+const clientPath = path.join(__dirname, '../', 'client', 'build')
 
 const apiRoutes = require('./routes')
 
 const app = express()
-
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+app.use(express.static(clientPath));
 
 app.use(cors())
 app.use(bodyParser.json())
 
+console.log('paaath', clientPath)
+
 app.use('/', apiRoutes)
 
-app.get('/', (req, res) => {
-  res.send({
-    message: 'hi',
-  })
-})
+
+app.get('/', function(req, res) {
+  res.sendFile(clientPath);
+});
+
 
 
 /*app.use(
