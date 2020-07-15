@@ -33,7 +33,7 @@ class Dashboard extends Component {
 
   getUserActivities = () => {
     const { id } = this.props.user
-    axios(`http://localhost:5000/userActivities/${id}`)
+    axios(`/userActivities/${id}`)
       .then(response => {
         //console.log(response.data)
         this.setState({ userActivities: response.data })
@@ -44,7 +44,7 @@ class Dashboard extends Component {
   }
 
   getActivities = () => {
-    axios(`http://localhost:5000/activities`)
+    axios(`/activities`)
       .then(response => {
         this.setState({ activities: response.data })
         //console.log(this.state.activities)
@@ -70,7 +70,7 @@ class Dashboard extends Component {
   }
 
   deleteUserActivity = id => () => {
-    axios(`http://localhost:5000/userActivities/${id}`, {
+    axios(`/userActivities/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ class Dashboard extends Component {
   }
 
   deleteActivity = id => () => {
-    fetch(`http://localhost:5000/activities/${id}`, {
+    fetch(`/activities/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

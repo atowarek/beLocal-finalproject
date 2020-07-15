@@ -24,7 +24,7 @@ class Signup extends React.Component {
         if(mail !== confirmEmail) {
             alert(`Email don't match, please enter again your email address`)
         }else{
-        axios('http://localhost:5000/users', {
+        axios('/users', {
             method: 'POST',
             data: {
                 name,

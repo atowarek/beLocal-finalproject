@@ -57,7 +57,7 @@ onFileChange = (event) => {
         formData.append('picture',this.state.picture)
         //const {name, startDate, endDate, startHour, endHour, address, city, description, category, price} = this.state
         axios
-        .post('http://localhost:5000/activities', formData, {
+        .post('/activities', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

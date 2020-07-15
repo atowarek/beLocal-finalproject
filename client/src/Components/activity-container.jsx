@@ -35,7 +35,7 @@ class ActivityContainer extends React.Component {
     this.setState(state => ({
       modal: !state.modal,
     }))
-    axios(`http://localhost:5000/userActivities`, {
+    axios(`/userActivities`, {
       method: 'POST',
       data: {
         userId: this.props.user.id,
