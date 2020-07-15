@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import OurNavbar from './components/navbar'
@@ -13,57 +13,42 @@ import BottomNavbar from './components/bottom-navbar'
 import Contact from './components/contact-us'
 
 
-class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      sessionToken: '',
-    }
-  }
+const App = () => {
+  const [sessionToken, setSessionToken] = useState(null)
 
-  componentDidMount() {
+  useEffect(() => {
     const token = localStorage.getItem('token')
-    if (token && !this.state.sessionToken) {
-      this.setState({ sessionToken: token })
-    }
-  }
+    setSessionToken(token)
+  }, [])
 
-  setSessionState = token => {
-    localStorage.setItem('token', token)
-    this.setState({ sessionToken: token })
-  }
-
-  logout = () => () => {
-    this.setState({
-      sessionToken: '',
-    })
+  const handleLogout = () => () => {
+    setSessionToken(null)
     localStorage.clear()
   }
-
-  render() {
-    return (
-      <div className='App'>
-        <Router>
-          <OurNavbar clickLogout={this.logout} />
-          <Switch>
-            <Route
-              exact
-              path='/'
-              component={HomePage}
-              addActivity={this.addSelectedActivity}></Route>
-            <Route exact path='/about' component={About}></Route>
-            <Route exact path='/signup' component={Signup}></Route>
-            <Route exact path='/login' component={Login}></Route>
-            <Route exact path='/activity' component={NewActivity}></Route>
-            <Route exact path='/dashboard' component={Dashboard}></Route>
-            <Route exact path='/terms' component={Terms}></Route>
+  
+  return (
+    <div className='App'>
+      <Router>
+        <OurNavbar sessionToken={sessionToken} logout={handleLogout} />
+        <Switch>
+          <Route exact path='/' component={HomePage}></Route>
+          <Route exact path='/about' component={About}></Route>
+          <Route exact path='/signup' component={Signup}></Route>
+          <Route exact path='/login' component={Login}></Route>
+          <Route
+            exact
+            path='/activity'
+            component={NewActivity}
+            //sessionToken={sessionToken}
+          ></Route>
+          <Route exact path='/dashboard' component={Dashboard}></Route>
+                <Route exact path='/terms' component={Terms}></Route>
             <Route exact path='/contact' component={Contact}></Route>
-          </Switch>
-          <BottomNavbar/>
-        </Router>
-      </div>
-    )
-  }
+                  <BottomNavbar/>
+        </Switch>
+      </Router>
+    </div>
+  )
 }
 
 export default App

@@ -22,6 +22,10 @@ class Search extends React.Component {
     event.preventDefault()
     const { query, category } = this.state
     this.props.onSearch(query, category)
+    this.setState({
+      query: '',
+      category: '',
+    })
   }
 
   render() {

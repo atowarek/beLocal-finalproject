@@ -68,7 +68,7 @@ class Login extends React.Component {
             </h2>
           </div>
         ) : (
-          <Form>
+          <Form onSubmit={this.login}>
             <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
               <Label for='name' className='mr-sm-2'>
                 Name
@@ -97,10 +97,7 @@ class Login extends React.Component {
                 required='required'
               />
             </FormGroup>
-            <Button
-              className='button'
-              onClick={this.login}
-              disabled={!name || !password}>
+            <Button className='button' disabled={!name || !password}>
               Log in
             </Button>
             <p>Forgot Password?</p>

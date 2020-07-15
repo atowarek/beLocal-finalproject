@@ -1,76 +1,48 @@
-import React from 'react'
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  //Button,
-  //Modal,
-  // UncontrolledDropdown,
-  // DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem,
-  //NavbarText,
-} from 'reactstrap'
+import React, { useEffect, useState } from 'react'
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 
-class OurNavbar extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isOpen: false,
-      loggedIn: false,
-    }
-  }
+const OurNavbar = props => {
+  //const [loggedIn, setLoggedIn] = useState(false)
+  // const [sessionToken, setSessionToken] = useState(null)
 
-  componentDidMount() {
-    if (localStorage.getItem('token')) {
-      this.setState({ loggedIn: true })
-    } else {
-      this.setState({ loggedIn: false })
-    }
-  }
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token')
+  //   setSessionToken(token)
+  // }, [])
 
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    })
-  }
+  // const logout = () => {
+  //   setSessionToken(null)
+  //   localStorage.clear()
+  // }
 
-  render() {
-    return (
-      <div>
-        <Navbar color='light' light expand='md'>
-          <NavbarBrand href='/'>BeLocal</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className='mr-auto' navbar>
-              <NavItem>
-                <NavLink href='/about'> How it works</NavLink>
-              </NavItem>
-            </Nav>
+
+  return (
+    <div>
+      <Navbar color='light' light expand='md'>
+        <NavbarBrand href='/'>BeLocal</NavbarBrand>
+        <Nav className='mr-auto' navbar>
+          <NavItem>
+            <NavLink href='/about'> How it works</NavLink>
+          </NavItem>
+        </Nav>
+        <Nav>
+          {props.sessionToken ? (
             <Nav>
-              {this.state.loggedIn ? (
-                <Nav>
-                  <NavLink href='/dashboard'>Profile</NavLink>
-                  <NavLink href='/' onClick={this.props.clickLogout()}>
-                    Logout
-                  </NavLink>
-                </Nav>
-              ) : (
-                <Nav>
-                  <NavLink href='/signup'>Signup</NavLink>
-                  <NavLink href='/login'>Login</NavLink>
-                </Nav>
-              )}
+              <NavLink href='/dashboard'>Profile</NavLink>
+              <NavLink href='/' onClick={props.logout()}>
+                Logout
+              </NavLink>            
             </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
-    )
-  }
+          ) : (
+            <Nav>
+              <NavLink href='/signup'>Signup</NavLink>
+              <NavLink href='/login'>Login</NavLink>
+            </Nav>
+          )}
+        </Nav>
+      </Navbar>
+    </div>
+  )
 }
 
 export default OurNavbar

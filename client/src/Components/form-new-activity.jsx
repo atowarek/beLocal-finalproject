@@ -19,13 +19,13 @@ class NewActivity extends React.Component {
         picture:''
     }
 
-    handleChange = e => {
-        this.setState({
-          [e.target.name]: e.target.value,
-        })
-    }
+handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
+  }
 
-    onFileChange = (event) => {
+onFileChange = (event) => {
         this.setState({ picture: event.target.files[0]})
     }
 
@@ -72,7 +72,7 @@ class NewActivity extends React.Component {
         this.goToDashboard()
     }
 
-    /*getPosition() {
+  /*getPosition() {
         this.state.activities.map(activity => {
             const {address} = activity
             axios(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`)
@@ -90,11 +90,15 @@ class NewActivity extends React.Component {
         
     }*/
 
-    goToDashboard = () => {
-        this.props.history.push('/dashboard')
-    }
+  goToDashboard = () => {
+    this.props.history.push('/dashboard')
+  }
 
-    render() {
+  //   loginRedirect = () => {
+  //     this.props.history.push('/login')
+  //   }
+
+      render() {
         const {name, startDate, endDate, startHour, endHour, address, city, description, category, price, picture} = this.state
         return (
             <div>
@@ -247,4 +251,4 @@ class NewActivity extends React.Component {
     }
 }
 
-export default withUser(NewActivity) //{ renderNull: false });
+export default withUser(NewActivity)
