@@ -15,12 +15,9 @@ app.use(express.static(clientPath));
 app.use(cors())
 app.use(bodyParser.json())
 
-console.log('paaath', clientPath)
-
 app.use('/', apiRoutes)
 
-
-app.get('/', function(req, res) {
+app.get('/*', function(req, res) {
   res.sendFile(clientPath);
 });
 
