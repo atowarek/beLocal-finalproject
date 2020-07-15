@@ -191,7 +191,7 @@ routes.post('/activities', upload.single('picture'), (req, res) => {
       address,
       description,
       category,
-      picture: req.file,
+      picture: `/img/${req.file.filename}`,
       price,
       city,
     })

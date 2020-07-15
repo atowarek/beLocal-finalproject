@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import withUser from './withUser'
 
 class NewActivity extends React.Component {
     state= {
@@ -47,7 +48,7 @@ class NewActivity extends React.Component {
         formData.append('endDate', this.state.endDate)
         formData.append('startHour', this.state.startHour)
         formData.append('endHour', this.state.endHour)
-        formData.append('hostingId', 2)
+        formData.append('hostingId', this.props.user.id)
         formData.append('address', this.state.address)
         formData.append('city', this.state.city)
         formData.append('description', this.state.description)
@@ -68,7 +69,7 @@ class NewActivity extends React.Component {
             console.log(error)
         })
         
-        //this.goToDashboard()
+        this.goToDashboard()
     }
 
     /*getPosition() {
@@ -246,4 +247,4 @@ class NewActivity extends React.Component {
     }
 }
 
-export default NewActivity;
+export default withUser(NewActivity) //{ renderNull: false });
