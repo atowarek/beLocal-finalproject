@@ -30,7 +30,6 @@ routes.get('/users', (req, res, next) => {
 
 // GET user by id
 routes.get('/users/:id', (req, res, next) => {
-  //const id = req.query.id
   const { id } = req.params
   models.user
     .findOne({
@@ -218,17 +217,16 @@ routes.post('/userActivities', (req, res, next) => {
   models.user_activitie
     .findOrCreate({
       where: {
-        activityId
+        activityId,
       },
       defaults: {
         userId,
-        activityId
-      }
+        activityId,
+      },
     })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
-
 
 //ROUTE TO SHOW USER AND HIS ACTIVITIES
 routes.get('/userActivities/:id', (req, res, next) => {
@@ -239,14 +237,13 @@ routes.get('/userActivities/:id', (req, res, next) => {
       attributes: ['userId'],
       include: [
         {
-          model: models.activitie 
+          model: models.activitie,
         },
       ],
     })
     .then(activity => res.send(activity))
     .catch(err => res.status(500).send(err))
 })
-
 
 // DELETE user activity by id >> NOT WORKING?
 routes.delete('/userActivities/:id', (req, res, next) => {

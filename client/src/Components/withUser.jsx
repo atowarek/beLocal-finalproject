@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const withUser = Component => props => {
+const withUser = (Component, options = { renderNull: true }) => props => {
   const [userData, setUserData] = useState(null)
   const [userId, setUserId] = useState(null)
   const [error, setError] = useState(false)
@@ -16,7 +16,6 @@ const withUser = Component => props => {
     })
       .then(response => {
         const id = response.data.userId
-        //console.log(id)
         setUserId(id)
       })
       .catch(error => {
@@ -27,12 +26,13 @@ const withUser = Component => props => {
 
   useEffect(() => {
     axios(`http://localhost:5000/users/${userId}`).then(response => {
+      //console.log(response.data)
       setUserData(response.data)
-      //console.log(userData)
     })
   }, [userId])
 
-  return <Component {...props} userId={userId} user={userData} />
+  if (!userData && options.renderNull) return null
+  return <Component {...props} user={userData} />
 }
 
 export default withUser

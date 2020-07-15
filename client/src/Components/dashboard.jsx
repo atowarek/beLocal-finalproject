@@ -22,7 +22,6 @@ import {
 
 class Dashboard extends Component {
   state = {
-    //loggedIn: false,
     activities: [],
     userActivities: [],
   }
@@ -33,10 +32,11 @@ class Dashboard extends Component {
   }
 
   getUserActivities = () => {
-    axios(`http://localhost:5000/userActivities/2`) // change to id when user is login
+    const { id } = this.props.user
+    axios(`http://localhost:5000/userActivities/${id}`)
       .then(response => {
+        //console.log(response.data)
         this.setState({ userActivities: response.data })
-        console.log(response.data)
       })
       .catch(error => {
         this.setState({ error: true })
@@ -69,37 +69,37 @@ class Dashboard extends Component {
     this.props.history.push('/login')
   }
 
-  //only working when refresh
-  deleteActivity = id => async () => {
+  deleteUserActivity = id => () => {
+    axios(`http://localhost:5000/userActivities/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .catch(error => {
+        console.log(error)
+      })
+
+      .then(response => {
+        //console.log(response.data)
+        this.getUserActivities()
+      })
+  }
+
+  deleteActivity = id => () => {
     fetch(`http://localhost:5000/activities/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then(response => response.json())
-    await this.getActivities()
-
-    // .catch(() => {
-    //   this.setState({ error: true })
-    // })
-  }
-
-  //NOT WORKING >> what id should be passed here (activityId or id?)? also check route on back
-  deleteUserActivity = id => async () => {
-    fetch(
-      `http://localhost:5000/userActivities/${id}`, //working with given id here
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    ).then(response => response.json())
-    await this.getUserActivities()
-
-    // .catch(() => {
-    //   this.setState({ error: true })
-    // })
+    })
+      .then(response => response.json())
+      .then(() => {
+        this.getActivities()
+      })
+      .catch(() => {
+        this.setState({ error: true })
+      })
   }
 
   render() {

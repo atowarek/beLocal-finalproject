@@ -15,6 +15,7 @@ import {
   CardBody,
 } from 'reactstrap'
 import axios from 'axios'
+import withUser from './withUser'
 
 class ActivityContainer extends React.Component {
   constructor(props) {
@@ -31,24 +32,23 @@ class ActivityContainer extends React.Component {
   }
 
   handleClick = id => () => {
-    this.props.addActivity(id)
     this.setState(state => ({
       modal: !state.modal,
     }))
     axios(`http://localhost:5000/userActivities`, {
       method: 'POST',
       data: {
-        userId: 2, //change when log in
+        userId: this.props.user.id,
         activityId: id,
       },
     })
       .then(response => {
+        this.goToDashboard()
         console.log(response.data)
       })
       .catch(error => {
         console.log(error)
       })
-    this.goToDashboard()
     console.log(id)
   }
 
@@ -71,6 +71,7 @@ class ActivityContainer extends React.Component {
       description,
       category,
       picture,
+      price,
       city,
     } = this.props
     return (
@@ -84,6 +85,9 @@ class ActivityContainer extends React.Component {
             <CardSubtitle>
               <i>Category</i>: {category}
             </CardSubtitle>
+            <CardText>
+              <i>Price:</i> {price}
+            </CardText>
             <CardText>
               <i>When:</i> {startDate} <i>at</i> {startHour}
             </CardText>
@@ -126,4 +130,4 @@ class ActivityContainer extends React.Component {
     )
   }
 }
-export default ActivityContainer
+export default withUser(ActivityContainer, { renderNull: false })

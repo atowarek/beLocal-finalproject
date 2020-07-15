@@ -29,7 +29,7 @@ class App extends React.Component {
     this.setState({ sessionToken: token })
   }
 
-  logout = () => {
+  logout = () => () => {
     this.setState({
       sessionToken: '',
     })
