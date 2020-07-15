@@ -43,7 +43,7 @@
     "dev": "npm-run-all -l -p dev:server dev:client",
     "start:server": "node ./api/app.js",
     "start": "yarn npm-run-all -l -p start:server dev:client",
-    "build": "cd ./client && yarn build",
+    "build": "yarn && cd ./client && yarn && yarn build",
     "migrate": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   }
 }
