@@ -77,13 +77,6 @@ class HomePage extends React.Component {
       })
   }
 
-  handleAddActivity = id => {
-    const currentActivity = this.state.activities.filter(
-      activity => activity.id === id
-    )
-    console.log(currentActivity)
-  }
-
   render() {
     const { user } = this.props
     return (
@@ -95,7 +88,7 @@ class HomePage extends React.Component {
           {this.state.message ? (
             <div className='Message-add'>
               <h5>
-                There is no activity in this city yet. Add the first one{' '}
+                There is no activity in this city yet. Add the first one
                 <Link to='/activity'>here</Link>
               </h5>
             </div>
@@ -120,7 +113,6 @@ class HomePage extends React.Component {
                     picture={activity.picture}
                     city={activity.city}
                     price={activity.price}
-                    addActivity={this.handleAddActivity}
                     history={this.props.history}
                   />
                 </Col>
