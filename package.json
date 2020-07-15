@@ -40,7 +40,9 @@
   "scripts": {
     "dev:server": "nodemon ./api/app.js",
     "dev:client": "cd ./client && yarn start",
-    "start": "npm-run-all -l -p dev:server dev:client",
+    "dev": "npm-run-all -l -p dev:server dev:client",
+    "start:server": "node ./api/app.js",
+    "start": "npm-run-all -l -p start:server dev:client",
     "migrate": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   }
 }
