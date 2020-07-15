@@ -15,10 +15,11 @@ const OurNavbar = props => {
   //   localStorage.clear()
   // }
 
+
   return (
     <div>
       <Navbar color='light' light expand='md'>
-        <NavbarBrand href='/'>Home Page</NavbarBrand>
+        <NavbarBrand href='/'>BeLocal</NavbarBrand>
         <Nav className='mr-auto' navbar>
           <NavItem>
             <NavLink href='/about'> How it works</NavLink>
@@ -30,7 +31,7 @@ const OurNavbar = props => {
               <NavLink href='/dashboard'>Profile</NavLink>
               <NavLink href='/' onClick={props.logout()}>
                 Logout
-              </NavLink>
+              </NavLink>            
             </Nav>
           ) : (
             <Nav>

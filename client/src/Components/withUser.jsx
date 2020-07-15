@@ -26,7 +26,7 @@ const withUser = (Component, options = { renderNull: true }) => props => {
 
   useEffect(() => {
     axios(`http://localhost:5000/users/${userId}`).then(response => {
-      console.log(response.data)
+      //console.log(response.data)
       setUserData(response.data)
     })
   }, [userId])

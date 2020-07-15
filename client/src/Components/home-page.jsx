@@ -1,11 +1,12 @@
 import React from 'react'
-import './home-page.css'
 import Search from './search'
 import ActivityContainer from './activity-container'
 import ActivityMaps from './activity-maps'
 import { Container, Row, Col } from 'reactstrap'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
+//import BottomNavbar from './bottom-navbar'
+
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -79,7 +80,9 @@ class HomePage extends React.Component {
 
   render() {
     const { user } = this.props
+    const { activities } = this.state
     return (
+      <div>
       <Container>
         <Row>
           <Search onSearch={this.fetchSearchResults} />
@@ -120,10 +123,14 @@ class HomePage extends React.Component {
             })
           )}
         </Row>
-        <Row>
-          <ActivityMaps className='map'></ActivityMaps>
-        </Row>
+        
+          
       </Container>
+       
+      <ActivityMaps onSearch={activities} />
+      
+      {/*<BottomNavbar/>*/}
+      </div>
     )
   }
 }

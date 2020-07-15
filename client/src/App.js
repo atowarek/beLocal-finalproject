@@ -8,6 +8,10 @@ import Login from './components/login'
 import Signup from './components/form-signup'
 import Dashboard from './components/dashboard'
 import NewActivity from './components/form-new-activity'
+import Terms from './components/terms-and-conditions'
+import BottomNavbar from './components/bottom-navbar'
+import Contact from './components/contact-us'
+
 
 const App = () => {
   const [sessionToken, setSessionToken] = useState(null)
@@ -21,7 +25,7 @@ const App = () => {
     setSessionToken(null)
     localStorage.clear()
   }
-
+  
   return (
     <div className='App'>
       <Router>
@@ -38,6 +42,9 @@ const App = () => {
             //sessionToken={sessionToken}
           ></Route>
           <Route exact path='/dashboard' component={Dashboard}></Route>
+                <Route exact path='/terms' component={Terms}></Route>
+            <Route exact path='/contact' component={Contact}></Route>
+                  <BottomNavbar/>
         </Switch>
       </Router>
     </div>
