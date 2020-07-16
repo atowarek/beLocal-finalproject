@@ -9,7 +9,6 @@ import Signup from './components/form-signup'
 import Dashboard from './components/dashboard'
 import NewActivity from './components/form-new-activity'
 import Terms from './components/terms-and-conditions'
-import BottomNavbar from './components/bottom-navbar'
 import Contact from './components/contact-us'
 
 

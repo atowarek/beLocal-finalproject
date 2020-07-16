@@ -24,27 +24,52 @@ class ActivityContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      modal: false,
+      modalActivitie: false,
+      modalMessage: false,
+      message:false
     }
   }
 
   toggle = () => {
     this.setState(state => ({
-      modal: !state.modal,
+      modalActivitie: !state.modalActivitie,
+      modalMessage: !state.modalMessage
     }))
   }
 
-  handleClick = id => () => {
+  /*toggleMessage = () => {
     this.setState(state => ({
-      modal: !state.modal,
+      modalMessage: !state.modalMessage,
+    }))
+  }*/
+
+  handleClick = id => () => {
+    const {user} = this.props
+    if(!user) {
+      this.props.history.push('/login')
+      return
+    }
+
+    const userId = this.props.user.id
+    const hostingId = this.props.hosting.id
+    if ( userId === hostingId) {
+      this.setState(state => ({
+        message:true,
+        modalMessage:true,
+      }))
+      return
+    }
+    this.setState(state => ({
+      modalActivitie: !state.modalActivitie,
     }))
     axios(`http://localhost:5000/userActivities`, {
       method: 'POST',
       data: {
-        userId: this.props.user.id,
+        userId: userId,
         activityId: id,
       },
     })
+    
       .then(response => {
         this.goToDashboard()
         console.log(response.data)
@@ -67,7 +92,7 @@ class ActivityContainer extends React.Component {
       'mail': this.props.hosting.mail
     }
 
-    
+
 
     emailjs.send('default_service', 'confirmation_email', templateParams, 'user_2853rwzQwOgtGRHnfnFJO')
     .then(function(response) {
@@ -145,7 +170,10 @@ class ActivityContainer extends React.Component {
             <Button color='primary' onClick={this.toggle}>
               Find out more!
             </Button>
-            <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          </CardBody>
+        </Card>
+            
+            <Modal isOpen={this.state.modalActivitie} toggle={this.toggle}>
               <ModalHeader toggle={this.toggle}>
                 {name} <br /> {category}
               </ModalHeader>
@@ -172,8 +200,15 @@ class ActivityContainer extends React.Component {
                 </Button> */}
               </ModalFooter>
             </Modal>
-          </CardBody>
-        </Card>
+            {this.state.message &&(
+            <Modal isOpen={this.state.modalMessage} toggle={this.toggle}>
+              <ModalHeader toggle={this.toggle}>
+              <b>This is not possible</b>
+              </ModalHeader>
+              <ModalBody>
+              You host this activity. Of course you're attending <span role="img" aria-label="wink">😉</span>
+              </ModalBody>
+            </Modal>) }
       </CardDeck>
     )
   }
