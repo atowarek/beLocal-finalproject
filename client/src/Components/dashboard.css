@@ -4,8 +4,19 @@
 }
 
 .dashboard {
-  margin: 20px;
-  align-items: center;
+  background-color: #7bb062;
+  text-align: center;
+  width: 100vw;
+  height: 200vh;
+}
+
+.dashboard-container {
+  text-align: center;
+  margin-top: 0;
+}
+
+.card-dash {
+  display: flex;
 }
 
 .h1,
@@ -16,14 +27,8 @@ h5 {
   font-family: 'Open Sans', cursive;
 }
 
-.btn {
+.btn2 {
   float: right;
-}
-
-.image {
-  max-width: 40px;
-  max-height: 40px;
-  object-fit: cover;
 }
 
 .column {

@@ -1,13 +1,13 @@
 .App {
-  text-align: center;
+  /* text-align: center;
+  background-color: #7bb062; */
+  /* background-size: cover;
+  background-position: center center;
+  background-attachment: fixed; */
 }
 
 ul {
   list-style-type: none;
-}
-
-.body {
-  font-family: 'Raleway', sans-serif;
 }
 
 .h1,
@@ -17,4 +17,3 @@ h4,
 h5 {
   font-family: 'Open Sans', cursive;
 }
-

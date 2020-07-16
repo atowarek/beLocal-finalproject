@@ -1,0 +1,28 @@
+.login {
+  background-image: url('/img/mountain.jpg');
+  margin-top: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+
+.login-container {
+  font-family: 'Raleway';
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  background: white;
+  padding: 60px;
+  border-radius: 8px;
+  height: auto;
+  min-height: 60vh;
+  width: 30%;
+  font-weight: 600;
+  opacity: 85%;
+}

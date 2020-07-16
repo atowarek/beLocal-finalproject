@@ -1,0 +1,11 @@
+.home {
+  text-align: center;
+  background-color: #7bb062;
+  /* background-size: cover;
+  background-position: center center;
+  background-attachment: fixed; */
+}
+
+.home-container {
+  margin-top: 0;
+}
