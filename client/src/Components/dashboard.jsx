@@ -238,7 +238,7 @@ class Dashboard extends Component {
             </Col>
           </Row>
         </Container>
-        <footer className='page-footer fixed-bottom'>
+        <footer className='page-footer'>
           <BottomNavbar/>
         </footer>
       </div>
