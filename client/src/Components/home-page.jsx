@@ -5,8 +5,8 @@ import ActivityMaps from './activity-maps'
 import { Container, Row, Col } from 'reactstrap'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
+import './home-page.css'
 import BottomNavbar from './bottom-navbar'
-
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -82,23 +82,24 @@ class HomePage extends React.Component {
     const { user } = this.props
     const { activities } = this.state
     return (
-      <div>
-      <Container>
-        <Row>
-          <Search onSearch={this.fetchSearchResults} />
-        </Row>
-        <Row xs='2'>
-          {this.state.message ? (
-            <div className='Message-add'>
-              <h5>
-                There is no activity in this city yet. Add the first one
-                <Link to='/activity'>here</Link>
-              </h5>
-            </div>
-          ) : (
-            this.state.activities.map(activity => {
-              return (
-                <Col xs='6'>
+      <div className='home'>
+        <br />
+        <Container className='home-container'>
+          <Row>
+            <Search onSearch={this.fetchSearchResults} />
+          </Row>
+          <Row xs='2'>
+            {this.state.message ? (
+              <div className='Message-add'>
+                <br />
+                <h5>
+                  There is no activity in this city yet. Add the first one{' '}
+                  <Link to='/activity'> here</Link>.
+                </h5>
+              </div>
+            ) : (
+              this.state.activities.map(activity => {
+                return (
                   <ActivityContainer
                     key={activity.id}
                     id={activity.id}
@@ -118,6 +119,8 @@ class HomePage extends React.Component {
                     price={activity.price}
                     history={this.props.history}
                   />
+
+          //<ActivityMaps onSearch={activities} />
                 </Col>
               )
             })

@@ -6,19 +6,19 @@ const jwt = require('jsonwebtoken')
 const userShouldBeLoggedIn = require('../guards/userShouldBeLoggedIn')
 const supersecret = process.env.SUPER_SECRET
 const bcrypt = require('bcryptjs')
-const dayjs = require('dayjs')
 const multer = require('multer')
 
 const storage = multer.diskStorage({
-  destination:'./client/public/img',
+  destination: './client/public/img',
   filename: (req, file, cb) => {
     cb(null, file.originalname)
-  }
+  },
 })
 
 const upload = multer({
   storage: storage,
-  dest: './client/public/img'})
+  dest: './client/public/img',
+})
 
 // GET all users
 routes.get('/users', (req, res, next) => {
@@ -154,7 +154,6 @@ routes.post('/activities', upload.single('picture'), (req, res) => {
   //const {picture} =req.file
   console.log(req.file)
 
-
   models.activitie
     .create({
       name,
@@ -173,8 +172,7 @@ routes.post('/activities', upload.single('picture'), (req, res) => {
       city,
     })
     .then(activity => res.send(activity))
-    .catch(err => res.status(500).send(err))  
- 
+    .catch(err => res.status(500).send(err))
 })
 
 // DELETE activity by id
