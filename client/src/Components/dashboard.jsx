@@ -19,6 +19,7 @@ import {
   ModalBody,
   ModalFooter,
 } from 'reactstrap'
+import './dashboard.css'
 
 class Dashboard extends Component {
   state = {
@@ -105,127 +106,110 @@ class Dashboard extends Component {
   render() {
     const { activities, userActivities } = this.state
     const { user } = this.props
-    if (!user) {
-      return (
-        <div>
-          <h1>You need to log in first</h1>
-          <Button color='primary' onClick={this.loginRedirect}>
-            Login
-          </Button>
-        </div>
-      )
-    }
+    if (!user) return
     return (
       <div className='dashboard'>
-        <h2> Hi, {user.name}!</h2> <br />
+        <br />
+        <h2> Hi, {user.name}!</h2>
+        <br />
         <h3>
           Here you can see the activities you organize or participate. <br />
-          Or create a new one!
+          Or create a new one! <br />
+          <br />
+          <Button color='secondary' onClick={this.addActivity}>
+            Create a new activity!
+          </Button>
+          <hr />
         </h3>
-        <br />
-        {/* move this button to the right? or in the upper right corner?*/}
-        <Button className='btn' onClick={this.addActivity}>
-          Create a new activity!
-        </Button>
         <h3> MY ACTIVITIES: </h3>
-        <Container className='themed-container' fluid='sm'>
-          <Row>
-            <Col xs='6' className='column'>
-              <h4> participating: </h4>
-              <Row>
-                {userActivities.map((activities, index) => {
-                  const {
-                    picture,
-                    name,
-                    address,
-                    city,
-                    startDate,
-                    endDate,
-                    startHour,
-                    endHour,
-                  } = activities
-                  return (
-                    <Card key={index}>
-                      <CardImg
-                        className='image'
-                        src={activities.activitie.picture}
-                      />
-                      <CardBody>
-                        <CardTitle>{activities.activitie.name}</CardTitle>
-                        <CardSubtitle>
-                          {activities.activitie.address} (
-                          {activities.activitie.city})
-                        </CardSubtitle>
-                        <CardText>
-                          {dayjs(activities.activitie.startDate).format(
-                            'DD/MM/YYYY'
-                          )}
-                          -
-                          {dayjs(activities.activitie.endDate).format(
-                            'DD/MM/YYYY'
-                          )}
-                        </CardText>
-                        <CardText>
-                          {activities.activitie.startHour}-
-                          {activities.activitie.endHour}
-                        </CardText>
-                        <Button
-                          onClick={this.deleteUserActivity(
-                            activities.activitie.id
-                          )}>
-                          Delete activity
-                        </Button>
-                        <Button color='primary' onClick={this.toggle}>
-                          Generate QR code!
-                        </Button>
-                        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                          <ModalHeader toggle={this.toggle}>
-                            Scan this QR code for a 20% discount on your
-                            selected activity!
-                          </ModalHeader>
-                          <ModalBody>
-                            <QrCode />
-                          </ModalBody>
-                          <ModalFooter>
-                            Send the QR Code by email (??)
-                          </ModalFooter>
-                        </Modal>
-                      </CardBody>
-                    </Card>
-                  )
-                })}
-              </Row>
-            </Col>
-            <Col xs='6'>
-              <h4> organizing: </h4>
-              <Row>
-                {activities.map(
-                  activity =>
-                    activity.hostingId === user.id && (
-                      <Card key={activity.id}>
-                        <CardImg className='image' src={activity.picture} />
-                        <CardBody>
-                          <CardTitle>{activity.name}</CardTitle>
-                          <CardSubtitle>
-                            {activity.address} ({activity.city})
-                          </CardSubtitle>
-                          <CardText>
-                            {dayjs(activity.startDate).format('DD/MM/YYYY')}-
-                            {dayjs(activity.endDate).format('DD/MM/YYYY')}
-                          </CardText>
-                          <CardText>
-                            {activity.startHour}-{activity.endHour}
-                          </CardText>
-                          <Button onClick={this.deleteActivity(activity.id)}>
-                            Delete activity
-                          </Button>
-                        </CardBody>
-                      </Card>
-                    )
-                )}
-              </Row>
-            </Col>
-          </Row>
+        <Container className='card-dash' fluid='sm'>
+          <Col xs='6' className='column'>
+            <h4> participating: </h4>
+            {userActivities.map((activities, index) => {
+              const {
+                picture,
+                name,
+                address,
+                city,
+                startDate,
+                endDate,
+                startHour,
+                endHour,
+              } = activities
+              return (
+                <Card key={index}>
+                  <CardImg
+                    className='image'
+                    src={activities.activitie.picture}
+                  />
+                  <CardBody>
+                    <CardTitle>{activities.activitie.name}</CardTitle>
+                    <CardSubtitle>
+                      {activities.activitie.address} (
+                      {activities.activitie.city})
+                    </CardSubtitle>
+                    <CardText>
+                      {dayjs(activities.activitie.startDate).format(
+                        'DD/MM/YYYY'
+                      )}
+                      -
+                      {dayjs(activities.activitie.endDate).format('DD/MM/YYYY')}
+                    </CardText>
+                    <CardText>
+                      {activities.activitie.startHour}-
+                      {activities.activitie.endHour}
+                    </CardText>
+                    <Button
+                      onClick={this.deleteUserActivity(
+                        activities.activitie.id
+                      )}>
+                      Delete activity
+                    </Button>
+                    <Button color='primary' onClick={this.toggle}>
+                      Generate QR code!
+                    </Button>
+                    <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                      <ModalHeader toggle={this.toggle}>
+                        Scan this QR code for a 20% discount on your selected
+                        activity!
+                      </ModalHeader>
+                      <ModalBody>
+                        <QrCode />
+                      </ModalBody>
+                      <ModalFooter>Send the QR Code by email (??)</ModalFooter>
+                    </Modal>
+                  </CardBody>
+                </Card>
+              )
+            })}
+          </Col>
+          <Col xs='6' className='column'>
+            <h4> organizing: </h4>
+            {activities.map(
+              activity =>
+                activity.hostingId === user.id && (
+                  <Card key={activity.id}>
+                    <CardImg className='image' src={activity.picture} />
+                    <CardBody>
+                      <CardTitle>{activity.name}</CardTitle>
+                      <CardSubtitle>
+                        {activity.address} ({activity.city})
+                      </CardSubtitle>
+                      <CardText>
+                        {dayjs(activity.startDate).format('DD/MM/YYYY')}-
+                        {dayjs(activity.endDate).format('DD/MM/YYYY')}
+                      </CardText>
+                      <CardText>
+                        {activity.startHour}-{activity.endHour}
+                      </CardText>
+                      <Button onClick={this.deleteActivity(activity.id)}>
+                        Delete activity
+                      </Button>
+                    </CardBody>
+                  </Card>
+                )
+            )}
+          </Col>
         </Container>
       </div>
     )
