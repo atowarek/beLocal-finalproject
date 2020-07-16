@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import BottomNavbar from './bottom-navbar'
 
 class Contact extends React.Component {
     state = {
@@ -17,6 +18,7 @@ class Contact extends React.Component {
     render () {
         const { name, mail, message} = this.state
         return (
+            <div>
             <Form>
                 <FormGroup>
                     <Label for='name'>
@@ -59,6 +61,10 @@ class Contact extends React.Component {
                     Contact us!
                 </Button>
             </Form>
+            <footer className='page-footer fixed-bottom'>
+            <BottomNavbar/>
+          </footer>
+          </div>
         )
     }
 }

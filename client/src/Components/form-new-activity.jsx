@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import withUser from './withUser'
+import BottomNavbar from './bottom-navbar'
 
 class NewActivity extends React.Component {
     state= {
@@ -246,6 +247,9 @@ onFileChange = (event) => {
                         New activity
                     </Button>
                 </Form>
+                <footer className='page-footer fixed-bottom'>
+                    <BottomNavbar/>
+                </footer>
             </div>
         )
     }

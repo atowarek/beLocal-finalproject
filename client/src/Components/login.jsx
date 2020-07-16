@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import BottomNavbar from './bottom-navbar'
 
 class Login extends React.Component {
   constructor(props) {
@@ -104,6 +105,9 @@ class Login extends React.Component {
             <Link to='/signup'>Don't have an account? Sign up.</Link>
           </Form>
         )}
+        <footer className='page-footer fixed-bottom'>
+        <BottomNavbar/>
+      </footer>
       </div>
     )
   }

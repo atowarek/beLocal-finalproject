@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import BottomNavbar from './bottom-navbar'
 
 class Signup extends React.Component {
     state= {
@@ -119,6 +120,9 @@ class Signup extends React.Component {
                         Sign up
                     </Button>
                 </Form>
+                <footer className='page-footer fixed-bottom'>
+                    <BottomNavbar/>
+                </footer>
             </div>
         )
     }
