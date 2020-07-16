@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import dayjs from 'dayjs'
-import QrCode from './qr-code'
+//import QRCode from 'qrcode.react'
 import withUser from './withUser'
 import BottomNavbar from './bottom-navbar'
 import {
@@ -20,6 +20,7 @@ import {
   ModalBody,
   ModalFooter,
 } from 'reactstrap'
+
 
 class Dashboard extends Component {
   state = {
@@ -116,6 +117,7 @@ class Dashboard extends Component {
         </div>
       )
     }
+
     return (
       <div className='dashboard'>
         <h2> Hi, {user.name}!</h2> <br />
@@ -185,7 +187,15 @@ class Dashboard extends Component {
                             selected activity!
                           </ModalHeader>
                           <ModalBody>
-                            <QrCode />
+                            
+                            {/*<QrCode 
+                               id='123456'
+                               value= "Hola"
+                               size={400}
+                               level={'H'}
+                               includeMargin={true}
+                            />*/}
+                          
                           </ModalBody>
                           <ModalFooter>
                             Send the QR Code by email (??)

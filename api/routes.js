@@ -76,8 +76,13 @@ routes.delete('/users/:id', (req, res, next) => {
 // GET all activities
 routes.get('/activities', (req, res, next) => {
   models.activitie
-    .findAll()
-    .then(activity => res.send(activity))
+    .findAll({
+      include: {
+        model: models.user,
+        as: 'hosting'
+      } 
+    })
+    .then(activity => {console.log(activity); res.send(activity)})
     .catch(err => res.status(500).send(err))
 })
 
@@ -127,34 +132,6 @@ routes.get('/search', (req, res, next) => {
       .catch(err => res.status(500).send(err))
   }
 })
-
-//IMAGE POST
-/*routes.post('/activities/img', (req, res) => {
-  const { imagefile } = req.files
-  console.log(imagefile)
-
-  let extension = mime.extension(imagefile.mimetype)
-  let filename = uuidv4() + '.' + extension
-
-  let tmp_path = imagefile.tempFilePath
-  let target_path = path.join(__dirname, '../client/public/img/') + filename
-
-  fs.rename(tmp_path, target_path, function (err) {
-    if (err) throw err
-    fs.unlink(tmp_path, function (err) {
-      if (err) throw err
-
-      models.activitie
-        .create({
-          picture: filename
-        })
-        .then((results) => {
-          getImages(req, res)
-        })
-        .catch((err) => res.status(500).send(err))
-    })
-  })
-})*/
 
 // create an activity
 routes.post('/activities', upload.single('picture'), (req, res) => {

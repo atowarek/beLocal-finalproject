@@ -56,7 +56,7 @@ class HomePage extends React.Component {
             endDate,
             startHour: activity.startHour,
             endHour: activity.endHour,
-            hostingId: activity.hostingId,
+            hosting: activity.hosting,
             longitude: activity.longitude,
             latitude: activity.latitude,
             address: activity.address,
@@ -107,7 +107,7 @@ class HomePage extends React.Component {
                     endDate={activity.endDate}
                     startHour={activity.startHour}
                     endHour={activity.endHour}
-                    hostingId={activity.hostingId}
+                    hosting={activity.hosting}
                     longitude={activity.longitude}
                     latitude={activity.latitude}
                     address={activity.address}

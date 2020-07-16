@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import emailjs from 'emailjs-com'
 import BottomNavbar from './bottom-navbar'
+
 
 class Signup extends React.Component {
     state= {
@@ -41,6 +43,18 @@ class Signup extends React.Component {
             console.log(error)
         })
         }
+
+        let params = {
+            'name': name,
+            'email': mail
+        }
+
+        emailjs.send('default_service', 'signup_email', params, 'user_wq89NyyrCjVtaFyHAKKin')
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+            console.log('FAILED...', error);
+        });
 
     }
 
