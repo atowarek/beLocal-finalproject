@@ -74,6 +74,7 @@ class ActivityContainer extends React.Component {
       price,
       city,
     } = this.props
+    const newPrice = Math.floor(price * 0.7)
     return (
       <CardDeck className='container'>
         <Card>
@@ -86,13 +87,14 @@ class ActivityContainer extends React.Component {
               <i>Category</i>: {category}
             </CardSubtitle>
             <CardText>
-              <i>Price:</i> {price}
-            </CardText>
-            <CardText>
               <i>When:</i> {startDate} <i>at</i> {startHour}
             </CardText>
             <CardText>
               <i>Meeting point:</i> {address} ({city})
+            </CardText>
+            <CardText>
+              <i>Price:</i> {price} <br />
+              <i>Our price:</i> {newPrice}
             </CardText>
             <Button color='primary' onClick={this.toggle}>
               Find out more!
@@ -103,6 +105,7 @@ class ActivityContainer extends React.Component {
               </ModalHeader>
               <ModalBody>
                 {description}
+                <hr /> Our price: {newPrice}
                 <hr /> Start: {startDate} at {startHour}
                 <hr /> Finish: {endDate} at {endHour}
                 <hr /> Meeting point: {address} ({city})
@@ -118,10 +121,7 @@ class ActivityContainer extends React.Component {
                   title='Please log in before adding an activity'
                   onClick={this.handleClick(id)}>
                   Join the activity!
-                </Button>{' '}
-                {/* <Button color='warning' onClick={this.toggle}>
-                  Message the organizer!
-                </Button> */}
+                </Button>
               </ModalFooter>
             </Modal>
           </CardBody>
