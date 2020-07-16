@@ -24,3 +24,12 @@
   font-weight: 600;
   opacity: 90%;
 }
+
+.sign-alert {
+  text-align: center;
+  margin: auto;
+  padding: 60px;
+  width: 40%;
+  font-weight: 600;
+  font-size: 20px;
+}
