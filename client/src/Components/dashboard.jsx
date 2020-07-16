@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import dayjs from 'dayjs'
-//import QRCode from 'qrcode.react'
+import QRCode from 'qrcode.react'
 import withUser from './withUser'
 import BottomNavbar from './bottom-navbar'
 import {
@@ -187,19 +187,14 @@ class Dashboard extends Component {
                             selected activity!
                           </ModalHeader>
                           <ModalBody>
-                            
-                            {/*<QrCode 
+                            <QRCode 
                                id='123456'
-                               value= "Hola"
+                               value= {activities.activitie.name} //'https://i.redd.it/54ss55ix0vwy.jpg'
                                size={400}
                                level={'H'}
                                includeMargin={true}
-                            />*/}
-                          
+                            />
                           </ModalBody>
-                          <ModalFooter>
-                            Send the QR Code by email (??)
-                          </ModalFooter>
                         </Modal>
                       </CardBody>
                     </Card>

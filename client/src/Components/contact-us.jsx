@@ -1,12 +1,14 @@
 import React from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import BottomNavbar from './bottom-navbar'
+import emailjs from 'emailjs-com'
 
 class Contact extends React.Component {
     state = {
         name: '',
         mail: '',
-        message: ''
+        message: '',
+        sent: false
     }
 
     handleChange = e => {
@@ -15,11 +17,33 @@ class Contact extends React.Component {
         })
     }
 
+    handleSubmit = event => {
+        event.preventDefault()
+
+        emailjs.sendForm('default_service', 'contact_form', event.target, 'user_2853rwzQwOgtGRHnfnFJO')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+
+        this.resetForm()
+    }
+
+    resetForm() {
+        this.setState({
+          name: '',
+          mail: '',
+          message: '',
+          sent: true,
+        })
+      }
+
     render () {
         const { name, mail, message} = this.state
         return (
             <div>
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
                 <FormGroup>
                     <Label for='name'>
                         Let's start with your name.
@@ -39,7 +63,7 @@ class Contact extends React.Component {
                     <Input 
                         value={mail}
                         onChange={this.handleChange}
-                        name='mail '
+                        name='mail'
                         placeholder='Mail'
                         type='text'>
                     </Input>
