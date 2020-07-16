@@ -9,16 +9,16 @@ module.exports = (sequelize, DataTypes) => {
       endDate: DataTypes.DATEONLY,
       startHour: DataTypes.TIME,
       endHour: DataTypes.TIME,
-      //hostingId: DataTypes.INTEGER,
+      hostingId: DataTypes.INTEGER,
       //change for the one below? not sure if needed
-      hostingId: {
+      /*hostingId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: 'user',
           key: 'id',
         },
-      },
+      },*/
       longitude: DataTypes.DOUBLE,
       latitude: DataTypes.DOUBLE,
       address: DataTypes.TEXT,
@@ -35,7 +35,10 @@ module.exports = (sequelize, DataTypes) => {
       through: 'user_activitie',
       foreignKey: 'activityId',
     })
+    activitie.belongsTo(models.user, { as: 'hosting'})
   }
+
+  
 
   return activitie
 }

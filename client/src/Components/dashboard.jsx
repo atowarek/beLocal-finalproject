@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import dayjs from 'dayjs'
-import QrCode from './qr-code'
+import QRCode from 'qrcode.react'
 import withUser from './withUser'
+import BottomNavbar from './bottom-navbar'
 import {
   Button,
   Card,
@@ -20,6 +21,7 @@ import {
   ModalFooter,
 } from 'reactstrap'
 import './dashboard.css'
+
 
 class Dashboard extends Component {
   state = {
@@ -173,10 +175,16 @@ class Dashboard extends Component {
                         Scan this QR code for a 20% discount on your selected
                         activity!
                       </ModalHeader>
-                      <ModalBody>
-                        <QrCode />
-                      </ModalBody>
-                      <ModalFooter>Send the QR Code by email (??)</ModalFooter>
+ <ModalBody>
+                            <QRCode 
+                               id='123456'
+                               value= {activities.activitie.name} //'https://i.redd.it/54ss55ix0vwy.jpg'
+                               size={400}
+                               level={'H'}
+                               includeMargin={true}
+                            />
+                          </ModalBody>
+    
                     </Modal>
                   </CardBody>
                 </Card>
@@ -211,6 +219,9 @@ class Dashboard extends Component {
             )}
           </Col>
         </Container>
+        <footer className='page-footer'>
+          <BottomNavbar/>
+        </footer>
       </div>
     )
   }

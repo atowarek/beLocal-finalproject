@@ -3,116 +3,108 @@ import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import withUser from './withUser'
 import './form-new-activity.css'
+import BottomNavbar from './bottom-navbar'
+const apiKey = process.env.REACT_APP_GOOGLE_API_KEY
 
 class NewActivity extends React.Component {
-  state = {
-    name: '',
-    startDate: '',
-    endDate: '',
-    startHour: '',
-    endHour: '',
-    hostingId: '',
-    address: '',
-    city: '',
-    description: '',
-    category: '',
-    price: '',
-    picture: '',
-  }
+    state= {
+        name: '',
+        startDate: '',
+        endDate:'',
+        startHour: '',
+        endHour: '',
+        hostingId: '',
+        address: '',
+        city:'',
+        description:'',
+        category:'',
+        price:'',
+        picture:'',
+        longitude:'',
+        latitude:''
+    }
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    })
-  }
+    handleChange = e => {
+        this.setState({
+        [e.target.name]: e.target.value,
+        })
+    }
 
-  onFileChange = event => {
-    this.setState({ picture: event.target.files[0] })
-  }
+    onFileChange = (event) => {
+        this.setState({ picture: event.target.files[0]})
+        this.getPosition()
+    }
 
-  /*onFileUpload = () => {
-        const formData = new FormData()
-
-        formData.append(
-            'imagefile',
-            this.state.selectedFile,
-            this.state.selectedFile.name
-        )
-    }*/
+    getPosition() {
+        
+        const {address,city} = this.state
+        let fullAdress = `${address} ${city}`
+        const fullAdressLength = fullAdress.length
+        for (let i = 0; i < fullAdressLength ; i++) {
+            fullAdress = fullAdress.replace(' ', '%20')
+        }
+        
+        axios
+        .get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${fullAdress}&inputtype=textquery&fields=geometry&key=${apiKey}`)
+        .then(response => {
+            const {location} = response.data.candidates[0].geometry
+            const lat = location.lat
+            const lng = location.lng
+            this.setState({
+                latitude : lat,
+                longitude : lng
+            })
+        })
+            
+    }
 
   handleSubmit = event => {
     event.preventDefault()
     const formData = new FormData()
 
-    formData.append('name', this.state.name)
-    formData.append('startDate', this.state.startDate)
-    formData.append('endDate', this.state.endDate)
-    formData.append('startHour', this.state.startHour)
-    formData.append('endHour', this.state.endHour)
-    formData.append('hostingId', this.props.user.id)
-    formData.append('address', this.state.address)
-    formData.append('city', this.state.city)
-    formData.append('description', this.state.description)
-    formData.append('category', this.state.category)
-    formData.append('price', this.state.price)
-    formData.append('picture', this.state.picture)
-    //const {name, startDate, endDate, startHour, endHour, address, city, description, category, price} = this.state
-    axios
-      .post('http://localhost:5000/activities', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then(response => {
-        console.log(response.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    this.goToDashboard()
-  }
-
-  /*getPosition() {
-        this.state.activities.map(activity => {
-            const {address} = activity
-            axios(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`)
-            .then(response => {
-                console.log(response)
-                /*const {location} = response.geometry
-                const lat = location.latitude
-                const long = location.longitude
-                this.setState({
-                    latitude : lat,
-                    longitude : long
-                })
-            })
+        formData.append('name', this.state.name)
+        formData.append('startDate', this.state.startDate)
+        formData.append('endDate', this.state.endDate)
+        formData.append('startHour', this.state.startHour)
+        formData.append('endHour', this.state.endHour)
+        formData.append('hostingId', this.props.user.id)
+        formData.append('address', this.state.address)
+        formData.append('city', this.state.city)
+        formData.append('description', this.state.description)
+        formData.append('category', this.state.category)
+        formData.append('price', this.state.price)
+        formData.append('picture',this.state.picture)
+        formData.append('longitude',this.state.longitude)
+        formData.append('latitude',this.state.latitude)
+        
+        //const {name, startDate, endDate, startHour, endHour, address, city, description, category, price} = this.state
+        axios
+        .post('http://localhost:5000/activities', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        .then(response => {
+            console.log(response.data)
+        })
+        .catch(error => {
+            console.log(error)
         })
         
-    }*/
+        this.goToDashboard()
+    }
 
-  goToDashboard = () => {
-    this.props.history.push('/dashboard')
-  }
+    goToDashboard = () => {
+        this.props.history.push('/dashboard')
+    }
 
   loginRedirect = () => {
     this.props.history.push('/login')
   }
 
-  render() {
-    const {
-      name,
-      startDate,
-      endDate,
-      startHour,
-      endHour,
-      address,
-      city,
-      description,
-      category,
-      price,
-      picture,
-    } = this.state
-    const { user } = this.props
+    render() {
+        const {name, startDate, endDate, startHour, endHour, address, city, description, category, price, picture} = this.state
+            const { user } = this.props
     if (!user) {
       return (
         <div className='login'>

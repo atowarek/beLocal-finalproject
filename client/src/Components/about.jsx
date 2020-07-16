@@ -1,5 +1,7 @@
 import React from 'react'
+import BottomNavbar from './bottom-navbar'
 import './about.css'
+
 const About = props => {
   return (
     <div className='about'>
@@ -63,8 +65,11 @@ const About = props => {
           </div>
         </div>
       </div>
+       <footer className='page-footer fixed-bottom'>
+        <BottomNavbar/>
+    </footer>
     </div>
   )
-}
+
 
 export default About

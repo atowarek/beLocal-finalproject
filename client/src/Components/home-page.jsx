@@ -6,8 +6,7 @@ import { Container, Row, Col } from 'reactstrap'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
 import './home-page.css'
-
-//import BottomNavbar from './bottom-navbar'
+import BottomNavbar from './bottom-navbar'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -57,7 +56,7 @@ class HomePage extends React.Component {
             endDate,
             startHour: activity.startHour,
             endHour: activity.endHour,
-            hostingId: activity.hostingId,
+            hosting: activity.hosting,
             longitude: activity.longitude,
             latitude: activity.latitude,
             address: activity.address,
@@ -109,7 +108,7 @@ class HomePage extends React.Component {
                     endDate={activity.endDate}
                     startHour={activity.startHour}
                     endHour={activity.endHour}
-                    hostingId={activity.hostingId}
+                    hosting={activity.hosting}
                     longitude={activity.longitude}
                     latitude={activity.latitude}
                     address={activity.address}
@@ -120,13 +119,21 @@ class HomePage extends React.Component {
                     price={activity.price}
                     history={this.props.history}
                   />
-                )
-              })
-            )}
-          </Row>
-          <ActivityMaps onSearch={activities} />
-        </Container>
-        {/*<BottomNavbar/>*/}
+
+          //<ActivityMaps onSearch={activities} />
+                </Col>
+              )
+            })
+          )}
+        </Row>
+        <div style={{height:'400px', width:'400px', position:'relative'}}>
+          <ActivityMaps activities={activities} />
+        </div>  
+      </Container>
+      
+      <footer className='page-footer'>
+        <BottomNavbar/>
+      </footer>
       </div>
     )
   }

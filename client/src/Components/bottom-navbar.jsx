@@ -8,6 +8,7 @@ import {
   NavLink,
 } from 'reactstrap'
 
+
 class BottomNavbar extends React.Component {
     constructor(props) {
       super(props)
@@ -34,7 +35,7 @@ class BottomNavbar extends React.Component {
     render() {
       return (
         <div>
-          <Navbar color='light' light expand='md'>
+          <Navbar className='container-fluid text-center'  color='light' light expand='md'>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className='mr-auto' navbar>

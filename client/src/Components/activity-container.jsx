@@ -16,32 +16,60 @@ import {
 } from 'reactstrap'
 import axios from 'axios'
 import withUser from './withUser'
+import emailjs from 'emailjs-com'
+
+
 
 class ActivityContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      modal: false,
+      modalActivitie: false,
+      modalMessage: false,
+      message:false
     }
   }
 
   toggle = () => {
     this.setState(state => ({
-      modal: !state.modal,
+      modalActivitie: !state.modalActivitie,
+      modalMessage: !state.modalMessage
     }))
   }
 
-  handleClick = id => () => {
+  /*toggleMessage = () => {
     this.setState(state => ({
-      modal: !state.modal,
+      modalMessage: !state.modalMessage,
+    }))
+  }*/
+
+  handleClick = id => () => {
+    const {user} = this.props
+    if(!user) {
+      this.props.history.push('/login')
+      return
+    }
+
+    const userId = this.props.user.id
+    const hostingId = this.props.hosting.id
+    if ( userId === hostingId) {
+      this.setState(state => ({
+        message:true,
+        modalMessage:true,
+      }))
+      return
+    }
+    this.setState(state => ({
+      modalActivitie: !state.modalActivitie,
     }))
     axios(`http://localhost:5000/userActivities`, {
       method: 'POST',
       data: {
-        userId: this.props.user.id,
+        userId: userId,
         activityId: id,
       },
     })
+    
       .then(response => {
         this.goToDashboard()
         console.log(response.data)
@@ -50,7 +78,52 @@ class ActivityContainer extends React.Component {
         console.log(error)
       })
     console.log(id)
+
+    let templateParams = {
+      'email': this.props.user.mail,
+      'name': this.props.user.name,
+      'date': this.props.startDate,
+      'activity': this.props.name,
+      'hour': this.props.startHour,
+      'address': this.props.address,
+      'location': this.props.city,
+      'host': this.props.hosting.name,
+      'phone': this.props.hosting.phone,
+      'mail': this.props.hosting.mail
+    }
+
+
+
+    emailjs.send('default_service', 'confirmation_email', templateParams, 'user_2853rwzQwOgtGRHnfnFJO')
+    .then(function(response) {
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+       console.log('FAILED...', error);
+    });
+
+    let params = {
+      'activity': this.props.name,
+      'name': this.props.hosting.name,
+      'date': this.props.startDate,
+      'hour': this.props.startHour,
+      'address': this.props.address,
+      'city': this.props.city,
+      'attendee': this.props.user.name,
+      'phone': this.props.user.phone,
+      'mail': this.props.user.mail,
+      'email': this.props.hosting.mail
+    }
+
+    
+
+    emailjs.send('default_service', 'template_7GTJlsxc', params, 'user_wq89NyyrCjVtaFyHAKKin')
+    .then(function(response) {
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+       console.log('FAILED...', error);
+    });
   }
+  
 
   goToDashboard = () => {
     this.props.history.push('/dashboard')
@@ -64,7 +137,7 @@ class ActivityContainer extends React.Component {
       endDate,
       startHour,
       endHour,
-      hostingId,
+      hosting,
       longitude,
       latitude,
       address,
@@ -99,7 +172,10 @@ class ActivityContainer extends React.Component {
             <Button color='primary' onClick={this.toggle}>
               Find out more!
             </Button>
-            <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          </CardBody>
+        </Card>
+            
+            <Modal isOpen={this.state.modalActivitie} toggle={this.toggle}>
               <ModalHeader toggle={this.toggle}>
                 {name} <br /> {category}
               </ModalHeader>
@@ -124,8 +200,15 @@ class ActivityContainer extends React.Component {
                 </Button>
               </ModalFooter>
             </Modal>
-          </CardBody>
-        </Card>
+            {this.state.message &&(
+            <Modal isOpen={this.state.modalMessage} toggle={this.toggle}>
+              <ModalHeader toggle={this.toggle}>
+              <b>This is not possible</b>
+              </ModalHeader>
+              <ModalBody>
+              You host this activity. Of course you're attending <span role="img" aria-label="wink">😉</span>
+              </ModalBody>
+            </Modal>) }
       </CardDeck>
     )
   }

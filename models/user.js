@@ -17,6 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
+  
+
   return user
 }
 //user.belongsToMany(activitie, {through: 'user_activitie'})
