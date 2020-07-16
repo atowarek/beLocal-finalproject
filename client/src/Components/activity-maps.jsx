@@ -20,7 +20,7 @@ class ActivityMaps extends React.Component {
   }
 
   componentDidMount() {
-    axios(`/activities`).then(response => {
+    axios(`/api/activities`).then(response => {
       this.setState({
         activities: response.data,
       })
