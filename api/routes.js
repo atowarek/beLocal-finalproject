@@ -76,8 +76,13 @@ routes.delete('/users/:id', (req, res, next) => {
 // GET all activities
 routes.get('/activities', (req, res, next) => {
   models.activitie
-    .findAll()
-    .then(activity => res.send(activity))
+    .findAll({
+      include: {
+        model: models.user,
+        as: 'hosting'
+      } 
+    })
+    .then(activity => {console.log(activity); res.send(activity)})
     .catch(err => res.status(500).send(err))
 })
 

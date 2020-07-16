@@ -16,6 +16,8 @@ import {
 } from 'reactstrap'
 import axios from 'axios'
 import withUser from './withUser'
+import emailjs from 'emailjs-com'
+
 
 class ActivityContainer extends React.Component {
   constructor(props) {
@@ -50,7 +52,52 @@ class ActivityContainer extends React.Component {
         console.log(error)
       })
     console.log(id)
+
+    let templateParams = {
+      'email': this.props.user.mail,
+      'name': this.props.user.name,
+      'date': this.props.startDate,
+      'activity': this.props.name,
+      'hour': this.props.startHour,
+      'address': this.props.address,
+      'location': this.props.city,
+      'host': this.props.hosting.name,
+      'phone': this.props.hosting.phone,
+      'mail': this.props.hosting.mail
+    }
+
+    const userId = process.env.YOUR_USER_ID
+
+    emailjs.send('default_service', 'confirmation_email', templateParams, 'user_2853rwzQwOgtGRHnfnFJO')
+    .then(function(response) {
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+       console.log('FAILED...', error);
+    });
+
+    let params = {
+      'activity': this.props.name,
+      'name': this.props.hosting.name,
+      'date': this.props.startDate,
+      'hour': this.props.startHour,
+      'address': this.props.address,
+      'city': this.props.city,
+      'attendee': this.props.user.name,
+      'phone': this.props.user.phone,
+      'mail': this.props.user.mail,
+      'email': this.props.hosting.mail
+    }
+
+    const key = process.env.MY_USER_ID
+
+    emailjs.send('default_service', 'template_7GTJlsxc', params, 'user_wq89NyyrCjVtaFyHAKKin')
+    .then(function(response) {
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+       console.log('FAILED...', error);
+    });
   }
+  
 
   goToDashboard = () => {
     this.props.history.push('/dashboard')
@@ -64,7 +111,7 @@ class ActivityContainer extends React.Component {
       endDate,
       startHour,
       endHour,
-      hostingId,
+      hosting,
       longitude,
       latitude,
       address,
