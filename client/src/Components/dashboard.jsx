@@ -3,6 +3,7 @@ import axios from 'axios'
 import dayjs from 'dayjs'
 //import QRCode from 'qrcode.react'
 import withUser from './withUser'
+import BottomNavbar from './bottom-navbar'
 import {
   Button,
   Card,
@@ -237,6 +238,9 @@ class Dashboard extends Component {
             </Col>
           </Row>
         </Container>
+        <footer className='page-footer fixed-bottom'>
+          <BottomNavbar/>
+        </footer>
       </div>
     )
   }

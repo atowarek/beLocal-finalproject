@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import emailjs from 'emailjs-com'
+import BottomNavbar from './bottom-navbar'
+
 
 class Signup extends React.Component {
     state= {
@@ -121,11 +123,20 @@ class Signup extends React.Component {
                             type='password'>
                         </Input>
                     </FormGroup>
+                    <FormGroup check>
+                        <Label check>
+                        <Input type="checkbox" required/>{' '}
+                        You need to agree with the Terms and Conditions
+                        </Label>
+                    </FormGroup>
                     <Button
                         className='button'>
                         Sign up
                     </Button>
                 </Form>
+                <footer className='page-footer fixed-bottom'>
+                    <BottomNavbar/>
+                </footer>
             </div>
         )
     }

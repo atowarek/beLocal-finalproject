@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import BottomNavbar from './bottom-navbar'
 
 class Login extends React.Component {
   constructor(props) {
@@ -68,7 +69,7 @@ class Login extends React.Component {
             </h2>
           </div>
         ) : (
-          <Form>
+          <Form onSubmit={this.login}>
             <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
               <Label for='name' className='mr-sm-2'>
                 Name
@@ -97,16 +98,16 @@ class Login extends React.Component {
                 required='required'
               />
             </FormGroup>
-            <Button
-              className='button'
-              onClick={this.login}
-              disabled={!name || !password}>
+            <Button className='button' disabled={!name || !password}>
               Log in
             </Button>
             <p>Forgot Password?</p>
             <Link to='/signup'>Don't have an account? Sign up.</Link>
           </Form>
         )}
+        <footer className='page-footer fixed-bottom'>
+        <BottomNavbar/>
+      </footer>
       </div>
     )
   }
