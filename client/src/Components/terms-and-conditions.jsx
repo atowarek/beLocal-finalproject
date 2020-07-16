@@ -1,5 +1,6 @@
 import React from 'react'
 import {ListGroup, ListGroupItem } from 'reactstrap'
+import BottomNavbar from './bottom-navbar'
 
 class Terms extends React.Component {
     state = {
@@ -295,6 +296,9 @@ class Terms extends React.Component {
                 <p>22.6 You may not assign, transfer or delegate this Agreement and your rights and obligations hereunder without {brandName}'s prior written consent. {brandName} may without restriction assign, transfer or delegate this Agreement and any rights and obligations hereunder, at its sole discretion, with 30 days prior notice. Your right to terminate this Agreement at any time remains unaffected.</p>
                 <p>22.7 Unless specified otherwise, any notices or other communications to Members permitted or required under this Agreement, will be provided electronically and given by {brandName} via email, {brandName} Platform notification, or messaging service (including SMS and WeChat). If your booking is in respect of a Listing in Japan, you agree and acknowledge that such notifications via electronic means in lieu of a written statement, satisfies {brandName}’s obligations under Article 59 Paragraph 1 of the Japanese Housing Accommodation Business Act.</p>
                 <p>22.8 If you have any questions about these Terms please email us.</p>
+                <footer className='page-footer fixed-bottom'>
+                    <BottomNavbar/>
+                </footer>
             </div>
             
         )

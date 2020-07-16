@@ -5,7 +5,7 @@ import ActivityMaps from './activity-maps'
 import { Container, Row, Col } from 'reactstrap'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
-//import BottomNavbar from './bottom-navbar'
+import BottomNavbar from './bottom-navbar'
 
 
 class HomePage extends React.Component {
@@ -123,13 +123,14 @@ class HomePage extends React.Component {
             })
           )}
         </Row>
-        
-          
+        <div style={{height:'400px', width:'400px', position:'relative'}}>
+          <ActivityMaps activities={activities} />
+        </div>  
       </Container>
-       
-      <ActivityMaps onSearch={activities} />
       
-      {/*<BottomNavbar/>*/}
+      <footer className='page-footer'>
+        <BottomNavbar/>
+      </footer>
       </div>
     )
   }
