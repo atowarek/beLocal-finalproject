@@ -19,6 +19,7 @@ import withUser from './withUser'
 import emailjs from 'emailjs-com'
 
 
+
 class ActivityContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -66,7 +67,7 @@ class ActivityContainer extends React.Component {
       'mail': this.props.hosting.mail
     }
 
-    const userId = process.env.YOUR_USER_ID
+    
 
     emailjs.send('default_service', 'confirmation_email', templateParams, 'user_2853rwzQwOgtGRHnfnFJO')
     .then(function(response) {
@@ -88,7 +89,7 @@ class ActivityContainer extends React.Component {
       'email': this.props.hosting.mail
     }
 
-    const key = process.env.MY_USER_ID
+    
 
     emailjs.send('default_service', 'template_7GTJlsxc', params, 'user_wq89NyyrCjVtaFyHAKKin')
     .then(function(response) {
