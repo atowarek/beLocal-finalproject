@@ -11,6 +11,7 @@ import NewActivity from './components/form-new-activity'
 import Terms from './components/terms-and-conditions'
 import Contact from './components/contact-us'
 
+
 const App = () => {
   const [isLoggedIn, setLoggedIn] = useState(false)
 
@@ -26,8 +27,11 @@ const App = () => {
     localStorage.clear()
   }
 
+  
+
   return (
     <div className='App'>
+      
       <Router>
         <OurNavbar isLoggedIn={isLoggedIn} logout={handleLogout} />
         <Switch>
@@ -47,7 +51,9 @@ const App = () => {
           {/* <BottomNavbar /> */}
         </Switch>
       </Router>
+      
     </div>
+    
   )
 }
 
