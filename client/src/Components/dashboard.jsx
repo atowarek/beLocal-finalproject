@@ -22,7 +22,6 @@ import {
 } from 'reactstrap'
 import './dashboard.css'
 
-
 class Dashboard extends Component {
   state = {
     activities: [],
@@ -175,16 +174,15 @@ class Dashboard extends Component {
                         Scan this QR code for a 20% discount on your selected
                         activity!
                       </ModalHeader>
- <ModalBody>
-                            <QRCode 
-                               id='123456'
-                               value= {activities.activitie.name} //'https://i.redd.it/54ss55ix0vwy.jpg'
-                               size={400}
-                               level={'H'}
-                               includeMargin={true}
-                            />
-                          </ModalBody>
-    
+                      <ModalBody>
+                        <QRCode
+                          id='123456'
+                          value={activities.activitie.name} //'https://i.redd.it/54ss55ix0vwy.jpg'
+                          size={400}
+                          level={'H'}
+                          includeMargin={true}
+                        />
+                      </ModalBody>
                     </Modal>
                   </CardBody>
                 </Card>
@@ -220,7 +218,7 @@ class Dashboard extends Component {
           </Col>
         </Container>
         <footer className='page-footer'>
-          <BottomNavbar/>
+          <BottomNavbar />
         </footer>
       </div>
     )

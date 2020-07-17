@@ -88,7 +88,7 @@ class HomePage extends React.Component {
           <Row>
             <Search onSearch={this.fetchSearchResults} />
           </Row>
-          <Row xs='2'>
+          <Row xs='3'>
             {this.state.message ? (
               <div className='Message-add'>
                 <br />
