@@ -1,0 +1,44 @@
+.signup {
+  background-image: url('/img/cactus.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+.signup-container {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  background: white;
+  padding: 60px;
+  border-radius: 8px;
+  height: auto;
+  min-height: 60vh;
+  width: 50%;
+  font-weight: 600;
+  opacity: 90%;
+}
+
+.sign-alert {
+  text-align: center;
+  margin: auto;
+  padding: 60px;
+  width: 40%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.button-green {
+  background-color: #7bb062 !important;
+  color: black !important;
+  border: #7bb062 !important;
+  padding: 10px !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-size: 20px !important;
+}

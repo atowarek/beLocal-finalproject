@@ -1,0 +1,32 @@
+.new-activity {
+  background-image: url('/img/bike.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.new-activity-container {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid grey;
+  margin: auto;
+  background: white;
+  padding: 60px;
+  border-radius: 8px;
+  height: auto;
+  min-height: 60vh;
+  width: 60%;
+  font-weight: 600;
+}
+.button-green {
+  background-color: #7bb062 !important;
+  color: black !important;
+  border: #7bb062 !important;
+  padding: 10px !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-size: 20px !important;
+}

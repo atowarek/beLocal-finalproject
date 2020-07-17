@@ -1,45 +1,47 @@
 import React, { useEffect, useState } from 'react'
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
+import { Navbar, NavbarBrand, Nav, NavLink } from 'reactstrap'
+import './navbar.css'
+import { Link } from 'react-router-dom'
 
 const OurNavbar = props => {
-  //const [loggedIn, setLoggedIn] = useState(false)
-  // const [sessionToken, setSessionToken] = useState(null)
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token')
-  //   setSessionToken(token)
-  // }, [])
-
-  // const logout = () => {
-  //   setSessionToken(null)
-  //   localStorage.clear()
-  // }
-
-
   return (
     <div>
-      <Navbar color='light' light expand='md'>
-        <NavbarBrand href='/'>BeLocal</NavbarBrand>
-        <Nav className='mr-auto' navbar>
-          <NavItem>
-            <NavLink href='/about'> How it works</NavLink>
-          </NavItem>
-        </Nav>
+      <Navbar className='navbar' light expand='md'>
+        <NavbarBrand>
+          <NavLink tag={Link} exact to='/'>
+            <img src='/img/logo2.jpg' alt='image' style={{ width: 200 }} />
+          </NavLink>
+        </NavbarBrand>
+        <Nav className='mr-auto' navbar></Nav>
         <Nav>
-          {props.sessionToken ? (
+          {props.isLoggedIn ? (
             <Nav>
-              <NavLink href='/dashboard'>Profile</NavLink>
-              <NavLink href='/' onClick={props.logout()}>
+              <NavLink className='link-green' tag={Link} exact to='/dashboard'>
+                Profile
+              </NavLink>
+              <NavLink
+                className='link-green'
+                tag={Link}
+                exact
+                to='/'
+                onClick={props.logout()}>
                 Logout
-              </NavLink>            
+              </NavLink>
             </Nav>
           ) : (
             <Nav>
-              <NavLink href='/signup'>Signup</NavLink>
-              <NavLink href='/login'>Login</NavLink>
+              <NavLink className='link-green' tag={Link} exact to='/signup'>
+                Signup
+              </NavLink>
+              <NavLink className='link-green' tag={Link} exact to='/login'>
+                Login
+              </NavLink>
             </Nav>
           )}
         </Nav>
+        <NavLink className='link-green' tag={Link} to='/about'>
+          About
+        </NavLink>
       </Navbar>
     </div>
   )

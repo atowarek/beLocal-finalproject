@@ -1,11 +1,30 @@
 .body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'PT Sans';
   text-align: center;
 }
 
 .dashboard {
+  background-color: #7bb062;
+  text-align: center;
+  width: 100vw;
+  height: 300vh;
+  margin-bottom: 20px;
+}
+
+.super-cute-card {
+  margin-bottom: 20px;
+}
+
+.card-dash {
+  display: flex;
+  width: 800px !important;
+  text-align: center;
+  padding: 0px;
   margin: 20px;
-  align-items: center;
+}
+
+.dates {
+  text-align: center !important;
 }
 
 .h1,
@@ -13,19 +32,38 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Open Sans', cursive;
+  font-family: 'PT Sans';
 }
 
-.btn {
-  float: right;
-}
 
-.image {
-  max-width: 40px;
-  max-height: 40px;
-  object-fit: cover;
-}
 
 .column {
   margin: 20px;
+  
+}
+
+.button-white {
+  background-color: white !important;
+  color: black !important;
+  border: white !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-size: 15px !important;
+  width: 200px
+}
+
+.button-green2 {
+  background-color: #7bb062 !important;
+  color: black !important;
+  border: #7bb062 !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-size: 15px !important;
+  margin-right: 5px;
+  width: 150px !important;
+}
+
+.image {
+  height: 250px;
+  object-fit: cover;
 }

@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import './login.css'
+import BottomNavbar from './bottom-navbar'
 
 class Login extends React.Component {
   constructor(props) {
@@ -31,7 +33,7 @@ class Login extends React.Component {
       },
     })
       .then(response => {
-        localStorage.setItem('token', response.data.token)
+        this.props.onLogin(response.data.token)
         this.setState({ loggedIn: true })
         this.dashboardRedirect()
         console.log(response.data)
@@ -54,7 +56,9 @@ class Login extends React.Component {
   render() {
     const { name, password, error, loggedIn } = this.state
     return (
-      <div>
+      <div className='login'>
+        <br />
+        <br />
         {error && (
           <Alert color='primary'>
             Sorry, name or password are incorrect! Try again, or sign up!
@@ -68,11 +72,8 @@ class Login extends React.Component {
             </h2>
           </div>
         ) : (
-          <Form onSubmit={this.login}>
-            <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
-              <Label for='name' className='mr-sm-2'>
-                Name
-              </Label>
+          <Form className='login-container' onSubmit={this.login}>
+            <FormGroup>
               <Input
                 value={name}
                 onChange={this.handleChange}
@@ -83,10 +84,8 @@ class Login extends React.Component {
                 required='required'
               />
             </FormGroup>
+            <br></br>
             <FormGroup>
-              <Label for='password' className='mr-sm-2'>
-                Password
-              </Label>
               <Input
                 value={password}
                 onChange={this.handleChange}
@@ -97,13 +96,18 @@ class Login extends React.Component {
                 required='required'
               />
             </FormGroup>
-            <Button className='button' disabled={!name || !password}>
+            <Button className='button-green' disabled={!name || !password}>
               Log in
             </Button>
-            <p>Forgot Password?</p>
-            <Link to='/signup'>Don't have an account? Sign up.</Link>
+            <hr />
+            <Link className='link-green' to='/signup'>
+              Don't have an account? Sign up.
+            </Link>
           </Form>
         )}
+        <footer className='page-footer fixed-bottom'>
+          <BottomNavbar />
+        </footer>
       </div>
     )
   }

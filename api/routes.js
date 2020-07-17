@@ -6,19 +6,19 @@ const jwt = require('jsonwebtoken')
 const userShouldBeLoggedIn = require('../guards/userShouldBeLoggedIn')
 const supersecret = process.env.SUPER_SECRET
 const bcrypt = require('bcryptjs')
-const dayjs = require('dayjs')
 const multer = require('multer')
 
 const storage = multer.diskStorage({
-  destination:'./client/public/img',
+  destination: './client/public/img',
   filename: (req, file, cb) => {
     cb(null, file.originalname)
-  }
+  },
 })
 
 const upload = multer({
   storage: storage,
-  dest: './client/public/img'})
+  dest: './client/public/img',
+})
 
 // GET all users
 routes.get('/users', (req, res, next) => {
@@ -76,8 +76,13 @@ routes.delete('/users/:id', (req, res, next) => {
 // GET all activities
 routes.get('/activities', (req, res, next) => {
   models.activitie
-    .findAll()
-    .then(activity => res.send(activity))
+    .findAll({
+      include: {
+        model: models.user,
+        as: 'hosting'
+      } 
+    })
+    .then(activity => {console.log(activity); res.send(activity)})
     .catch(err => res.status(500).send(err))
 })
 
@@ -128,34 +133,6 @@ routes.get('/search', (req, res, next) => {
   }
 })
 
-//IMAGE POST
-/*routes.post('/activities/img', (req, res) => {
-  const { imagefile } = req.files
-  console.log(imagefile)
-
-  let extension = mime.extension(imagefile.mimetype)
-  let filename = uuidv4() + '.' + extension
-
-  let tmp_path = imagefile.tempFilePath
-  let target_path = path.join(__dirname, '../client/public/img/') + filename
-
-  fs.rename(tmp_path, target_path, function (err) {
-    if (err) throw err
-    fs.unlink(tmp_path, function (err) {
-      if (err) throw err
-
-      models.activitie
-        .create({
-          picture: filename
-        })
-        .then((results) => {
-          getImages(req, res)
-        })
-        .catch((err) => res.status(500).send(err))
-    })
-  })
-})*/
-
 // create an activity
 routes.post('/activities', upload.single('picture'), (req, res) => {
   const {
@@ -177,7 +154,6 @@ routes.post('/activities', upload.single('picture'), (req, res) => {
   //const {picture} =req.file
   console.log(req.file)
 
-
   models.activitie
     .create({
       name,
@@ -196,8 +172,7 @@ routes.post('/activities', upload.single('picture'), (req, res) => {
       city,
     })
     .then(activity => res.send(activity))
-    .catch(err => res.status(500).send(err))  
- 
+    .catch(err => res.status(500).send(err))
 })
 
 // DELETE activity by id
