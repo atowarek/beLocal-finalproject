@@ -11,13 +11,20 @@
   margin-bottom: 20px;
 }
 
-.dashboard-container {
-  text-align: center;
-  margin-top: 0;
+.super-cute-card {
+  margin-bottom: 20px;
 }
 
 .card-dash {
   display: flex;
+  width: 800px !important;
+  text-align: center;
+  padding: 0px;
+  margin: 20px;
+}
+
+.dates {
+  text-align: center !important;
 }
 
 .h1,
@@ -28,26 +35,35 @@ h5 {
   font-family: 'PT Sans';
 }
 
+
+
 .column {
   margin: 20px;
+  
 }
 
 .button-white {
   background-color: white !important;
   color: black !important;
   border: white !important;
-  padding: 10px !important;
   text-decoration: none !important;
   display: inline-block !important;
-  font-size: 20px !important;
+  font-size: 15px !important;
+  width: 200px
 }
 
-.button-green {
+.button-green2 {
   background-color: #7bb062 !important;
   color: black !important;
   border: #7bb062 !important;
-  padding: 10px !important;
   text-decoration: none !important;
   display: inline-block !important;
-  font-size: 20px !important;
+  font-size: 15px !important;
+  margin-right: 5px;
+  width: 150px !important;
+}
+
+.image {
+  height: 250px;
+  object-fit: cover;
 }

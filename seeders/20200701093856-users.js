@@ -11,13 +11,13 @@ module.exports = {
         password: bcrypt.hashSync('atowarek', 10),
       },
       {
-        name: 'eurzanqui',
+        name: 'Esther',
         mail: 'estherurzanqui81@gmail.com',
         phone: '654321987',
         password: bcrypt.hashSync('eurzanqui', 10),
       },
       {
-        name: 'mclara',
+        name: 'Mariona',
         mail: 'mariona.clto@gmail.com',
         phone: '654321986',
         password: bcrypt.hashSync('mclara', 10),

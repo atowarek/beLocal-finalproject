@@ -15,4 +15,10 @@
 .btn {
   line-height: 2.5 !important;
   width: 200px;
+  background-color: white !important;
+  color: black !important;
+  border: white !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-size: 16px !important;
 }

@@ -159,7 +159,7 @@ class ActivityContainer extends React.Component {
     const newPrice = Math.floor(price * 0.7)
     return (
       <CardDeck className='container'>
-        <Card>
+        <Card className='card-text'>
           <CardImg className='image' src={picture} alt='Activity image cap' />
           <CardBody>
             <CardTitle>
@@ -168,6 +168,7 @@ class ActivityContainer extends React.Component {
             <CardSubtitle>
               <i>Category</i>: {category}
             </CardSubtitle>
+            <br/>
             <CardText>
               <i>When:</i> {startDate} <i>at</i> {startHour}
             </CardText>
