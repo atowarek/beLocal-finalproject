@@ -189,7 +189,7 @@ class Dashboard extends Component {
                           <ModalBody>
                             <QRCode 
                                id='123456'
-                               value= {activities.activitie.name} //'https://i.redd.it/54ss55ix0vwy.jpg'
+                               value= {`${process.env.REACT_APP_URL}/activities/${id}`}
                                size={400}
                                level={'H'}
                                includeMargin={true}
