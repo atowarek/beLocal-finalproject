@@ -25,7 +25,7 @@ class Login extends React.Component {
   login = event => {
     event.preventDefault()
     const { name, password } = this.state
-    axios('http://localhost:5000/login', {
+    axios('/api/login', {
       method: 'POST',
       data: {
         name,

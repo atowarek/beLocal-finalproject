@@ -77,22 +77,21 @@ class NewActivity extends React.Component {
     formData.append('longitude', this.state.longitude)
     formData.append('latitude', this.state.latitude)
 
-    //const {name, startDate, endDate, startHour, endHour, address, city, description, category, price} = this.state
-    axios
-      .post('http://localhost:5000/activities', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then(response => {
-        console.log(response.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-
-    this.goToDashboard()
-  }
+        axios
+        .post('/api/activities', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        .then(response => {
+            console.log(response.data)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        
+        this.goToDashboard()
+    }
 
   goToDashboard = () => {
     this.props.history.push('/dashboard')

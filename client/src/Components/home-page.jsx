@@ -27,8 +27,7 @@ class HomePage extends React.Component {
       this.getActivities()
       return
     }
-
-    fetch(`http://localhost:5000/search?city=${query}&category=${category}`)
+    fetch(`/api/search?city=${query}&category=${category}`)
       .then(response => {
         return response.json()
       })
@@ -46,7 +45,7 @@ class HomePage extends React.Component {
   }
 
   getActivities = () => {
-    fetch('http://localhost:5000/activities')
+    fetch('/api/activities')
       .then(response => {
         return response.json()
       })

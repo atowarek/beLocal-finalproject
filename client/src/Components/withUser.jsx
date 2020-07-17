@@ -9,7 +9,7 @@ const withUser = (Component, options = { renderNull: true }) => props => {
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (!token) return
-    axios('http://localhost:5000/profile', {
+    axios('/api/profile', {
       headers: {
         'x-access-token': token,
       },
@@ -25,7 +25,7 @@ const withUser = (Component, options = { renderNull: true }) => props => {
   }, [])
 
   useEffect(() => {
-    axios(`http://localhost:5000/users/${userId}`).then(response => {
+    axios(`/api/users/${userId}`).then(response => {
       //console.log(response.data)
       setUserData(response.data)
     })

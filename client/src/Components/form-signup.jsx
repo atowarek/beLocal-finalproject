@@ -20,13 +20,14 @@ class Signup extends React.Component {
     })
   }
 
+
   handleSubmit = event => {
     event.preventDefault()
     const { name, mail, phone, password, confirmEmail } = this.state
     if (mail !== confirmEmail) {
       alert(`Email don't match, please enter again your email address`)
     } else {
-      axios('http://localhost:5000/users', {
+      axios('/api/users', {
         method: 'POST',
         data: {
           name,
@@ -36,6 +37,7 @@ class Signup extends React.Component {
           loggedIn: false,
         },
       })
+
         .then(response => {
           console.log(response.data)
           this.setState(state => ({

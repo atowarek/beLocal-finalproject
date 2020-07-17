@@ -16,7 +16,6 @@ const mapStyles = {
 };
 
 class ActivityMaps extends React.Component {
-
  
   render() {
     return (
