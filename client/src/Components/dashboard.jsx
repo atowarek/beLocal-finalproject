@@ -168,7 +168,7 @@ class Dashboard extends Component {
                       Delete activity
                     </Button>
                     <Button className='button-green2' onClick={this.toggle}>
-                      Generate QR code!
+                      Generate QR
                     </Button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle}>
                       <ModalHeader toggle={this.toggle}>
