@@ -23,6 +23,11 @@ class HomePage extends React.Component {
   }
 
   fetchSearchResults = (query = ' ', category = ' ') => {
+    if(!query && category === ''){
+      this.getActivities()
+      return
+    }
+
     fetch(`http://localhost:5000/search?city=${query}&category=${category}`)
       .then(response => {
         return response.json()
