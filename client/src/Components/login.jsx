@@ -96,11 +96,13 @@ class Login extends React.Component {
                 required='required'
               />
             </FormGroup>
-            <Button color='secondary' size='lg' disabled={!name || !password}>
+            <Button className='button-green' disabled={!name || !password}>
               Log in
             </Button>
             <hr />
-            <Link to='/signup'>Don't have an account? Sign up.</Link>
+            <Link className='link-green' to='/signup'>
+              Don't have an account? Sign up.
+            </Link>
           </Form>
         )}
         <footer className='page-footer fixed-bottom'>

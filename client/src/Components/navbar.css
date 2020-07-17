@@ -1,12 +1,13 @@
-.navbar {
-  font-size: 18px;
-  font-weight: 600;
-}
-
 .navbar-brand {
   display: flex;
   align-items: center;
 }
 .navbar-brand > img {
   padding: 7px 14px;
+}
+
+.link-green {
+  color: #7bb062 !important;
+  font-size: 20px !important;
+  font-weight: 500;
 }

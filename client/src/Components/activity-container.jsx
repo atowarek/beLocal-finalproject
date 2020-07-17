@@ -182,7 +182,7 @@ class ActivityContainer extends React.Component {
                 <i>Our price:</i> {newPrice}
               </span>
             </CardText>
-            <Button color='primary' onClick={this.toggle}>
+            <Button className='button-green' onClick={this.toggle}>
               Find out more!
             </Button>
           </CardBody>
@@ -205,7 +205,7 @@ class ActivityContainer extends React.Component {
           </ModalBody>
           <ModalFooter>
             <Button
-              color='success'
+              className='button-green'
               title='Please log in before adding an activity'
               onClick={this.handleClick(id)}>
               Join the activity!
