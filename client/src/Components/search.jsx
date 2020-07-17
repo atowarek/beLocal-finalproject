@@ -33,7 +33,7 @@ class Search extends React.Component {
     return (
       <div className='search'>
         <Form inline onSubmit={this.handleSubmit}>
-          <FormGroup className='mb-2 mr-sm-2 mb-sm-0 search'>
+          <FormGroup className='input-search'>
             <Input
               type='text'
               name='query'
@@ -41,10 +41,12 @@ class Search extends React.Component {
               id='search-input'
               placeholder='Where do you want your new adventure?'
               onChange={this.handleChange}
+              className= 'input-search'
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className='input-category'>
             <Input
+              className='input-category'
               type='select'
               name='category'
               id='category'
@@ -60,7 +62,7 @@ class Search extends React.Component {
               <option>Dancing</option>
             </Input>
           </FormGroup>
-          <Button>Search</Button>
+          <Button className='search-button'>  Search <span role='image' aria-label='search'>🔍</span></Button>
         </Form>
       </div>
     )

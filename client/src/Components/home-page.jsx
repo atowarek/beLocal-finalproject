@@ -90,7 +90,7 @@ class HomePage extends React.Component {
       <div className='home'>
         <br />
         <Container className='home-container'>
-          <Row>
+          <Row className= 'search-container'>
             <Search onSearch={this.fetchSearchResults} />
           </Row>
           <Row xs='3'>
