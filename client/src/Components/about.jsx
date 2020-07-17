@@ -7,7 +7,6 @@ const About = props => {
     <div className='about'>
       <br />
       <div className='title'>
-        What is beLocal? <br />
         beLocal is a web-based marketplace that promotes local tourism and
         communities. <br /> Here you can find and book eco-friendly activities
         offered by amazing local experts. <br />
@@ -60,11 +59,12 @@ const About = props => {
           <div className='polaroid'>
             <img src='https://image.ibb.co/fvekrc/action_adult_art_673649.jpg' />
             <div className='caption'>
-              Have fun, <b>respect</b> others, self and the environment!
+              Have fun, <b>respect</b> others, self and the environment! <br />
             </div>
           </div>
         </div>
       </div>
+      <br />
       <footer className='page-footer fixed-bottom'>
         <BottomNavbar />
       </footer>
