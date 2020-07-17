@@ -94,7 +94,7 @@ class Terms extends React.Component {
           Listing(s) and Host Service(s) on
           {brandName}, you should always seek legal guidance.
         </p>
-        <h5>Table of Contents</h5>
+        <h4>Table of Contents</h4>
         <ol>
           <li>Scope of {brandName} Services</li>
           <li>
@@ -123,7 +123,7 @@ class Terms extends React.Component {
           <li>Applicable Law and Jurisdiction</li>
           <li>General Provisions</li>
         </ol>
-        <h5>1. Scope of {brandName} Services</h5>
+        <h4>1. Scope of {brandName} Services</h4>
         <p>
           1.1 The {brandName} Platform is an online marketplace that enables
           registered users (“Members”) and certain third parties who offer
@@ -228,9 +228,9 @@ class Terms extends React.Component {
           without having a material effect on the parties’ contractual
           obligations.
         </p>
-        <h5>
+        <h4>
           2. Eligibility, Using the {brandName} Platform, Member Verification
-        </h5>
+        </h4>
         <p>
           2.1 In order to access and use the {brandName} Platform or register an{' '}
           {brandName} Account you must be an individual at least 18 years old or
@@ -290,7 +290,7 @@ class Terms extends React.Component {
           Google Maps/Earth is subject to the Google Maps/Google Earth
           Additional Terms of Service.
         </p>
-        <h5>3. Modification of these Terms</h5>
+        <h4>3. Modification of these Terms</h4>
         <p>
           {brandName} reserves the right to modify these Terms at any time in
           accordance with this provision. If we make changes to these Terms, we
@@ -305,7 +305,7 @@ class Terms extends React.Component {
           use of the {brandName} Platform will constitute acceptance of the
           revised Terms.
         </p>
-        <h5>4. Account Registration</h5>
+        <h4>4. Account Registration</h4>
         <p>
           4.1 You must register an account ("{brandName} Account") to access and
           use certain features of the {brandName} Platform, such as publishing
@@ -357,7 +357,7 @@ class Terms extends React.Component {
           {brandName} to ask for your credentials, and you shall not request the
           credentials of another Member.
         </p>
-        <h5>5. Content</h5>
+        <h4>5. Content</h4>
         <p>
           5.1 {brandName} may enable Members to (i) create, upload, post, send,
           receive and store content, such as text, photos, audio, video, or
@@ -493,7 +493,7 @@ class Terms extends React.Component {
           infringes copyrights you own, please notify us in accordance with our
           Copyright Policy.
         </p>
-        <h5>6. Service Fees</h5>
+        <h4>6. Service Fees</h4>
         <p>
           6.1 {brandName} may charge fees to Hosts ("Host Fees") and/or Guests
           ("Guest Fees") (collectively, "Service Fees") in consideration for the
@@ -518,7 +518,7 @@ class Terms extends React.Component {
           collected by {brandName} Payments. Except as otherwise provided on the{' '}
           {brandName} Platform, Service Fees are non-refundable.
         </p>
-        <h5>7. Terms specific for Hosts</h5>
+        <h4>7. Terms specific for Hosts</h4>
         <h6>7.1 Terms applicable to all Listings</h6>
         <p>
           7.1.1 When creating a Listing through the {brandName} Platform you
@@ -669,7 +669,7 @@ class Terms extends React.Component {
           that Reviews and Ratings from Guests for their Listing(s) may be
           impacted by a Co-Host’s conduct and performance.
         </p>
-        <h5>8. Terms specific for Guests</h5>
+        <h4>8. Terms specific for Guests</h4>
         <h6>8.1 Terms applicable to all bookings</h6>
         <p>
           8.1.1 Subject to meeting any requirements (such as completing any
@@ -763,9 +763,9 @@ class Terms extends React.Component {
           Travel Credits after the {brandName} Travel Credits are reflected in
           your {brandName} Account.
         </p>
-        <h5>
+        <h4>
           9. Booking Modifications, Cancellations and Refunds, Resolution Center
-        </h5>
+        </h4>
         <p>
           9.1 Hosts and Guests are responsible for any modifications to a
           booking that they make via the {brandName} Platform or direct{' '}
@@ -845,7 +845,7 @@ class Terms extends React.Component {
           connection with your {brandName} Account, and {brandName} Payments
           will handle all such payments.
         </p>
-        <h5>10. Ratings and Reviews</h5>
+        <h4>10. Ratings and Reviews</h4>
         <p>
           10.1 Within a certain timeframe after completing a booking, Guests and
           Hosts can leave a public review (“Review”) and submit a star rating
@@ -872,7 +872,7 @@ class Terms extends React.Component {
           of bookings, number of cancellations, average response time and other
           information.
         </p>
-        <h5>11. Damage to Accommodations, Disputes between Members</h5>
+        <h4>11. Damage to Accommodations, Disputes between Members</h4>
         <p>
           11.1 As a Guest, you are responsible for leaving the Accommodation
           (including any personal or other property located at the
@@ -924,7 +924,7 @@ class Terms extends React.Component {
           the mediation or similar resolution process at any time. A Member’s
           right to take legal action before a court of law remains unaffected.
         </p>
-        <h5>12. Rounding off</h5>
+        <h4>12. Rounding off</h4>
         <p>
           {brandName} generally supports payment amounts that are payable from
           or to Guests or Hosts to the smallest unit supported by a given
@@ -938,7 +938,7 @@ class Terms extends React.Component {
           currency); for example, {brandName} may round up an amount of $101.50
           to $102.00, and round down an amount of $101.49 to $101.00.
         </p>
-        <h5>13. Taxes</h5>
+        <h4>13. Taxes</h4>
         <p>
           13.1 As a Host you are solely responsible for determining your
           obligations to report, collect, remit or include in your Listing Fees
@@ -1010,7 +1010,7 @@ class Terms extends React.Component {
           liable for the collection and/or remittance of any and all Occupancy
           Taxes that may apply to Accommodations in that jurisdiction.
         </p>
-        <h5>14. Prohibited Activities</h5>
+        <h4>14. Prohibited Activities</h4>
         <p>
           14.1 You are solely responsible for compliance with any and all laws,
           rules, regulations, and Tax obligations that may apply to your use of
@@ -1159,7 +1159,7 @@ class Terms extends React.Component {
           number (if available). You agree that any report you make will not
           obligate us to take any action (beyond that required by law, if any).
         </p>
-        <h5>15. Term and Termination, Suspension and other Measures</h5>
+        <h4>15. Term and Termination, Suspension and other Measures</h4>
         <p>
           15.1 This Agreement shall be effective until such time when you or{' '}
           {brandName} terminate the Agreement in accordance with this provision.
@@ -1250,9 +1250,9 @@ class Terms extends React.Component {
           Section 15 you may appeal such a decision by contacting our customer
           service.
         </p>
-        <h5>16. Disclaimers</h5>
+        <h4>16. Disclaimers</h4>
         <p>Intentionally left blank</p>
-        <h5>17. Liability</h5>
+        <h4>17. Liability</h4>
         <p>
           {brandName} is liable under statutory provisions for intent and gross
           negligence by us, our legal representatives, directors, or other
@@ -1266,7 +1266,7 @@ class Terms extends React.Component {
           you regularly trust and must trust for the proper execution of the
           contract. Any additional liability of {brandName} is excluded.
         </p>
-        <h5>18. Indemnification</h5>
+        <h4>18. Indemnification</h4>
         <p>
           To the maximum extent permitted by applicable law, you agree to
           release, defend (at {brandName}’s option), indemnify, and hold{' '}
@@ -1289,7 +1289,7 @@ class Terms extends React.Component {
           the claims, liabilities, damages, losses, and expenses have been
           adequately caused by your culpable breach of a contractual obligation.
         </p>
-        <h5>19. Dispute Resolution and Arbitration Agreement</h5>
+        <h4>19. Dispute Resolution and Arbitration Agreement</h4>
         <p>
           19.1 This Dispute Resolution and Arbitration Agreement shall apply if
           you bring any claim against {brandName} in the United States (to the
@@ -1463,7 +1463,7 @@ class Terms extends React.Component {
           even if you stop using the {brandName} Platform or terminate your{' '}
           {brandName} Account.
         </p>
-        <h5>20. Feedback</h5>
+        <h4>20. Feedback</h4>
         <p>
           We welcome and encourage you to provide feedback, comments and
           suggestions for improvements to the {brandName} Platform (“Feedback“).
@@ -1472,7 +1472,7 @@ class Terms extends React.Component {
           Feedback you submit to us may be used by us for any business purpose
           and will be considered non-confidential and non-proprietary to you.
         </p>
-        <h5>21. Applicable Law and Jurisdiction</h5>
+        <h4>21. Applicable Law and Jurisdiction</h4>
         <p>
           These Terms are governed by and construed in accordance with Irish
           law. If you are acting as a consumer and if mandatory statutory
@@ -1487,7 +1487,7 @@ class Terms extends React.Component {
           are acting as a business, you agree to submit to the exclusive
           jurisdiction of the Irish courts.
         </p>
-        <h5>22. General Provisions</h5>
+        <h4>22. General Provisions</h4>
         <p>
           22.1 Except as they may be supplemented by additional terms and
           conditions, policies, guidelines or standards, these Terms constitute
