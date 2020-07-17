@@ -3,7 +3,7 @@
 }
 
 .body {
-  font-family: 'Open Sans', cursive;
+  font-family: 'PT Sans', cursive;
   font-size: 50px;
   text-align: center;
 }
@@ -22,9 +22,9 @@
 }
 
 .title {
-  font-size: 20px;
-  font-weight: 700;
-  font-family: 'Open Sans', cursive;
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-family: 'PT Sans', cursive;
 }
 
 .wrapper {
