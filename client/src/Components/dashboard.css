@@ -7,7 +7,8 @@
   background-color: #7bb062;
   text-align: center;
   width: 100vw;
-  height: 200vh;
+  height: 300vh;
+  margin-bottom: 20px;
 }
 
 .dashboard-container {
@@ -27,10 +28,26 @@ h5 {
   font-family: 'Arial';
 }
 
-.btn2 {
-  float: right;
-}
-
 .column {
   margin: 20px;
+}
+
+.button-white {
+  background-color: white !important;
+  color: black !important;
+  border: white !important;
+  padding: 10px !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-size: 20px !important;
+}
+
+.button-green {
+  background-color: #7bb062 !important;
+  color: black !important;
+  border: #7bb062 !important;
+  padding: 10px !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-size: 20px !important;
 }

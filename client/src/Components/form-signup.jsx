@@ -155,7 +155,7 @@ class Signup extends React.Component {
               type='password'
               required></Input>
           </FormGroup>
-          <Button color='secondary' size='lg'>
+          <Button className='button-green' size='lg'>
             Sign up
           </Button>
         </Form>

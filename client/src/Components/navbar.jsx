@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom'
 const OurNavbar = props => {
   return (
     <div>
-      <Navbar color='white' className='navbar' light expand='md'>
+      <Navbar className='navbar' light expand='md'>
         <NavbarBrand>
-          <NavLink tag={Link} exact activeClassName='active-page' to='/'>
+          <NavLink tag={Link} exact to='/'>
             <img src='/img/logo2.jpg' alt='image' style={{ width: 200 }} />
           </NavLink>
         </NavbarBrand>
@@ -16,17 +16,13 @@ const OurNavbar = props => {
         <Nav>
           {props.isLoggedIn ? (
             <Nav>
-              <NavLink
-                tag={Link}
-                exact
-                activeClassName='active-page'
-                to='/dashboard'>
+              <NavLink className='link-green' tag={Link} exact to='/dashboard'>
                 Profile
               </NavLink>
               <NavLink
+                className='link-green'
                 tag={Link}
                 exact
-                activeClassName='active-page'
                 to='/'
                 onClick={props.logout()}>
                 Logout
@@ -34,24 +30,16 @@ const OurNavbar = props => {
             </Nav>
           ) : (
             <Nav>
-              <NavLink
-                tag={Link}
-                exact
-                activeClassName='active-page'
-                to='/signup'>
+              <NavLink className='link-green' tag={Link} exact to='/signup'>
                 Signup
               </NavLink>
-              <NavLink
-                tag={Link}
-                exact
-                activeClassName='active-page'
-                to='/login'>
+              <NavLink className='link-green' tag={Link} exact to='/login'>
                 Login
               </NavLink>
             </Nav>
           )}
         </Nav>
-        <NavLink tag={Link} to='/about'>
+        <NavLink className='link-green' tag={Link} to='/about'>
           About
         </NavLink>
       </Navbar>

@@ -63,7 +63,8 @@ class Contact extends React.Component {
               onChange={this.handleChange}
               name='name'
               placeholder='Name'
-              type='text'></Input>
+              type='text'
+              required></Input>
           </FormGroup>
           <FormGroup>
             <Label for='mail'>What e-mail address can we reach you at?</Label>
@@ -72,7 +73,8 @@ class Contact extends React.Component {
               onChange={this.handleChange}
               name='mail'
               placeholder='Mail'
-              type='text'></Input>
+              type='text'
+              required></Input>
           </FormGroup>
           <FormGroup>
             <Label for='message'>How can we help you?</Label>
@@ -81,9 +83,12 @@ class Contact extends React.Component {
               onChange={this.handleChange}
               name='message'
               placeholder='Message'
-              type='textarea'></Input>
+              type='textarea'
+              required></Input>
           </FormGroup>
-          <Button className='button'>Contact us!</Button>
+          <Button className='button-green' size='lg'>
+            Contact us!
+          </Button>
         </Form>
         <footer className='page-footer fixed-bottom'>
           <BottomNavbar />

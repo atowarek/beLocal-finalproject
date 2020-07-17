@@ -117,7 +117,7 @@ class Dashboard extends Component {
           Here you can see the activities you organize or participate. <br />
           Or create a new one! <br />
           <br />
-          <Button color='secondary' onClick={this.addActivity}>
+          <Button className='button-white' size='lg' onClick={this.addActivity}>
             Create a new activity!
           </Button>
           <hr />
@@ -208,7 +208,9 @@ class Dashboard extends Component {
                       <CardText>
                         {activity.startHour}-{activity.endHour}
                       </CardText>
-                      <Button onClick={this.deleteActivity(activity.id)}>
+                      <Button
+                        className='button-green'
+                        onClick={this.deleteActivity(activity.id)}>
                         Delete activity
                       </Button>
                     </CardBody>
@@ -217,6 +219,7 @@ class Dashboard extends Component {
             )}
           </Col>
         </Container>
+        <br />
         <footer className='page-footer fixed-bottom'>
           <BottomNavbar />
         </footer>

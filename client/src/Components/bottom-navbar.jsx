@@ -8,7 +8,7 @@ import {
   NavLink,
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
-
+import './bottom-navbar.css'
 class BottomNavbar extends React.Component {
   constructor(props) {
     super(props)
@@ -43,9 +43,10 @@ class BottomNavbar extends React.Component {
           <Nav className='mr-auto' navbar>
             <NavItem>
               <NavLink
+                className='link-green'
                 tag={Link}
                 exact
-                activeClassName='active-page'
+                //activeClassName='active-page'
                 to='/terms'>
                 Terms and conditions
               </NavLink>
@@ -54,6 +55,7 @@ class BottomNavbar extends React.Component {
           <Nav className='mr-auto' navbar>
             <NavItem>
               <NavLink
+                className='link-green'
                 tag={Link}
                 exact
                 activeClassName='active-page'
