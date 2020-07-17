@@ -65,11 +65,11 @@ const About = props => {
           </div>
         </div>
       </div>
-       <footer className='page-footer fixed-bottom'>
-        <BottomNavbar/>
-    </footer>
+      <footer className='page-footer fixed-bottom'>
+        <BottomNavbar />
+      </footer>
     </div>
   )
-
+}
 
 export default About

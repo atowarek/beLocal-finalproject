@@ -120,20 +120,20 @@ class HomePage extends React.Component {
                     history={this.props.history}
                   />
 
-          //<ActivityMaps onSearch={activities} />
-                </Col>
-              )
-            })
-          )}
-        </Row>
-        <div style={{height:'400px', width:'400px', position:'relative'}}>
-          <ActivityMaps activities={activities} />
-        </div>  
-      </Container>
-      
-      <footer className='page-footer'>
-        <BottomNavbar/>
-      </footer>
+                  //<ActivityMaps onSearch={activities} />
+                )
+              })
+            )}
+          </Row>
+          <div
+            style={{ height: '400px', width: '400px', position: 'relative' }}>
+            <ActivityMaps activities={activities} />
+          </div>
+        </Container>
+
+        <footer className='page-footer'>
+          <BottomNavbar />
+        </footer>
       </div>
     )
   }
