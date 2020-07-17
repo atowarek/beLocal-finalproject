@@ -11,7 +11,6 @@
 }
 
 .login-container {
-  font-family: 'Raleway';
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -21,7 +20,7 @@
   padding: 60px;
   border-radius: 8px;
   height: auto;
-  min-height: 60vh;
+  min-height: 40vh;
   width: 30%;
   font-weight: 600;
   opacity: 85%;

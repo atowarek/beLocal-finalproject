@@ -1,0 +1,9 @@
+.terms-container {
+  justify-content: center;
+  /* background-color: #7bb062; */
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  padding: 0px 30px 0px 30px;
+}

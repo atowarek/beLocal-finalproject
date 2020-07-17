@@ -83,7 +83,7 @@ class Login extends React.Component {
                 className='form-name'
                 required='required'
               />
-            </FormGroup>{' '}
+            </FormGroup>
             <br></br>
             <FormGroup>
               <Input
@@ -100,13 +100,12 @@ class Login extends React.Component {
               Log in
             </Button>
             <hr />
-            <p>Forgot Password?</p>
             <Link to='/signup'>Don't have an account? Sign up.</Link>
           </Form>
         )}
         <footer className='page-footer fixed-bottom'>
-        <BottomNavbar/>
-      </footer>
+          <BottomNavbar />
+        </footer>
       </div>
     )
   }

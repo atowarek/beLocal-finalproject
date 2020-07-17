@@ -171,7 +171,7 @@ class Dashboard extends Component {
                     </Button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle}>
                       <ModalHeader toggle={this.toggle}>
-                        Scan this QR code for a 20% discount on your selected
+                        Scan this QR code for a 30% discount on your selected
                         activity!
                       </ModalHeader>
                       <ModalBody>
@@ -217,7 +217,7 @@ class Dashboard extends Component {
             )}
           </Col>
         </Container>
-        <footer className='page-footer'>
+        <footer className='page-footer fixed-bottom'>
           <BottomNavbar />
         </footer>
       </div>

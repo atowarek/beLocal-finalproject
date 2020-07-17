@@ -40,45 +40,28 @@ class BottomNavbar extends React.Component {
           color='light'
           light
           expand='md'>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className='mr-auto' navbar>
-              <NavItem>
-                <NavLink
-                  tag={Link}
-                  exact
-                  activeClassName='active-page'
-                  to='/about'>
-                  {' '}
-                  About us
-                </NavLink>
-              </NavItem>
-            </Nav>
-            <Nav className='mr-auto' navbar>
-              <NavItem>
-                <NavLink
-                  tag={Link}
-                  exact
-                  activeClassName='active-page'
-                  to='/terms'>
-                  {' '}
-                  Terms and conditions
-                </NavLink>
-              </NavItem>
-            </Nav>
-            <Nav className='mr-auto' navbar>
-              <NavItem>
-                <NavLink
-                  tag={Link}
-                  exact
-                  activeClassName='active-page'
-                  to='/contact'>
-                  {' '}
-                  Contact
-                </NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
+          <Nav className='mr-auto' navbar>
+            <NavItem>
+              <NavLink
+                tag={Link}
+                exact
+                activeClassName='active-page'
+                to='/terms'>
+                Terms and conditions
+              </NavLink>
+            </NavItem>
+          </Nav>
+          <Nav className='mr-auto' navbar>
+            <NavItem>
+              <NavLink
+                tag={Link}
+                exact
+                activeClassName='active-page'
+                to='/contact'>
+                Contact
+              </NavLink>
+            </NavItem>
+          </Nav>
         </Navbar>
       </div>
     )
