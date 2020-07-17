@@ -125,7 +125,7 @@ class Dashboard extends Component {
         <h3> MY ACTIVITIES: </h3>
         <Container className='card-dash' fluid='sm'>
           <Col xs='6' className='column'>
-            <h4> participating: </h4>
+            <h4> Participating: </h4>
             {userActivities.map((activities, index) => {
               const {
                 picture,
@@ -138,7 +138,7 @@ class Dashboard extends Component {
                 endHour,
               } = activities
               return (
-                <Card key={index}>
+                <Card className='super-cute-card' key={index}>
                   <CardImg
                     className='image'
                     src={activities.activitie.picture}
@@ -149,24 +149,25 @@ class Dashboard extends Component {
                       {activities.activitie.address} (
                       {activities.activitie.city})
                     </CardSubtitle>
-                    <CardText>
+                    <CardText className='dates'>
                       {dayjs(activities.activitie.startDate).format(
                         'DD/MM/YYYY'
                       )}
                       -
                       {dayjs(activities.activitie.endDate).format('DD/MM/YYYY')}
                     </CardText>
-                    <CardText>
+                    <CardText className='dates'>
                       {activities.activitie.startHour}-
                       {activities.activitie.endHour}
                     </CardText>
                     <Button
+                      className='button-green2'
                       onClick={this.deleteUserActivity(
                         activities.activitie.id
                       )}>
                       Delete activity
                     </Button>
-                    <Button color='primary' onClick={this.toggle}>
+                    <Button className='button-green2' onClick={this.toggle}>
                       Generate QR code!
                     </Button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle}>
@@ -190,26 +191,26 @@ class Dashboard extends Component {
             })}
           </Col>
           <Col xs='6' className='column'>
-            <h4> organizing: </h4>
+            <h4> Organizing: </h4>
             {activities.map(
               activity =>
                 activity.hostingId === user.id && (
-                  <Card key={activity.id}>
+                  <Card className='super-cute-card' key={activity.id}>
                     <CardImg className='image' src={activity.picture} />
                     <CardBody>
                       <CardTitle>{activity.name}</CardTitle>
                       <CardSubtitle>
                         {activity.address} ({activity.city})
                       </CardSubtitle>
-                      <CardText>
+                      <CardText className='dates'>
                         {dayjs(activity.startDate).format('DD/MM/YYYY')}-
                         {dayjs(activity.endDate).format('DD/MM/YYYY')}
                       </CardText>
-                      <CardText>
+                      <CardText className='dates'>
                         {activity.startHour}-{activity.endHour}
                       </CardText>
                       <Button
-                        className='button-green'
+                        className='button-green2'
                         onClick={this.deleteActivity(activity.id)}>
                         Delete activity
                       </Button>

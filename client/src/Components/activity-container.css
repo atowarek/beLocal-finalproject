@@ -4,8 +4,8 @@
 }
 
 .image {
-  width: 400px;
-  height: 400px;
+  width: 250px;
+  height: 280px;
   object-fit: cover;
 }
 
@@ -26,4 +26,8 @@
   text-decoration: none !important;
   display: inline-block !important;
   font-size: 20px !important;
+}
+
+.card-text {
+  text-align: center !important;
 }
