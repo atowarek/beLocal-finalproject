@@ -175,8 +175,12 @@ class ActivityContainer extends React.Component {
               <i>Meeting point:</i> {address} ({city})
             </CardText>
             <CardText>
-              <i>Price:</i> {price} <br />
-              <i>Our price:</i> {newPrice}
+              <span className='old-price'>
+                <i>Price:</i> {price} <br />
+              </span>
+              <span className='price'>
+                <i>Our price:</i> {newPrice}
+              </span>
             </CardText>
             <Button color='primary' onClick={this.toggle}>
               Find out more!

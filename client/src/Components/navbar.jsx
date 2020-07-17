@@ -12,11 +12,7 @@ const OurNavbar = props => {
             <img src='/img/logo2.jpg' alt='image' style={{ width: 200 }} />
           </NavLink>
         </NavbarBrand>
-        <Nav className='mr-auto' navbar>
-          <NavLink tag={Link} exact activeClassName='active-page' to='/about'>
-            About this project
-          </NavLink>
-        </Nav>
+        <Nav className='mr-auto' navbar></Nav>
         <Nav>
           {props.isLoggedIn ? (
             <Nav>
@@ -55,6 +51,9 @@ const OurNavbar = props => {
             </Nav>
           )}
         </Nav>
+        <NavLink tag={Link} to='/about'>
+          About
+        </NavLink>
       </Navbar>
     </div>
   )
