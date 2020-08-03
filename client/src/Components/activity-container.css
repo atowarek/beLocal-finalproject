@@ -3,8 +3,8 @@
   text-align: center;
 }
 
-.image {
-  width: 250px;
+.card-image {
+  width: 100%;
   height: 280px;
   object-fit: cover;
 }
@@ -30,4 +30,8 @@
 
 .card-text {
   text-align: center !important;
+}
+
+.card-deck {
+  margin-bottom: 30px;
 }

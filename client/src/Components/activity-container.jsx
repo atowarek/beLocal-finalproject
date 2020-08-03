@@ -158,9 +158,9 @@ class ActivityContainer extends React.Component {
     } = this.props
     const newPrice = Math.floor(price * 0.7)
     return (
-      <CardDeck className='container'>
+      <CardDeck>
         <Card className='card-text'>
-          <CardImg className='image' src={picture} alt='Activity image cap' />
+          <CardImg className='card-image' src={picture} alt='Activity image cap' />
           <CardBody>
             <CardTitle>
               <b>{name}</b>
