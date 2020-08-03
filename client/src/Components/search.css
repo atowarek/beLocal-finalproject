@@ -2,6 +2,10 @@
   margin: auto;
 }
 
+.search-form {
+  justify-content: center;
+}
+
 .input-search {
    width: 500px !important;
    margin-right: 0px;

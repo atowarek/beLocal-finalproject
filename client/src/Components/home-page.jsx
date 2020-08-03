@@ -90,8 +90,10 @@ class HomePage extends React.Component {
       <div className='home'>
         <br />
         <Container className='home-container'>
-          <Row className= 'search-container'>
-            <Search onSearch={this.fetchSearchResults} />
+          <Row className='search-container'>
+            <Col size={12}>
+              <Search onSearch={this.fetchSearchResults} />
+            </Col>
           </Row>
           <Row xs='3'>
             {this.state.message ? (
@@ -105,27 +107,27 @@ class HomePage extends React.Component {
             ) : (
               this.state.activities.map(activity => {
                 return (
-                  <ActivityContainer
-                    key={activity.id}
-                    id={activity.id}
-                    name={activity.name}
-                    startDate={activity.startDate}
-                    endDate={activity.endDate}
-                    startHour={activity.startHour}
-                    endHour={activity.endHour}
-                    hosting={activity.hosting}
-                    longitude={activity.longitude}
-                    latitude={activity.latitude}
-                    address={activity.address}
-                    description={activity.description}
-                    category={activity.category}
-                    picture={activity.picture}
-                    city={activity.city}
-                    price={activity.price}
-                    history={this.props.history}
-                  />
-
-                  //<ActivityMaps onSearch={activities} />
+                  <Col size={4}>
+                    <ActivityContainer
+                      key={activity.id}
+                      id={activity.id}
+                      name={activity.name}
+                      startDate={activity.startDate}
+                      endDate={activity.endDate}
+                      startHour={activity.startHour}
+                      endHour={activity.endHour}
+                      hosting={activity.hosting}
+                      longitude={activity.longitude}
+                      latitude={activity.latitude}
+                      address={activity.address}
+                      description={activity.description}
+                      category={activity.category}
+                      picture={activity.picture}
+                      city={activity.city}
+                      price={activity.price}
+                      history={this.props.history}
+                    />
+                  </Col> 
                 )
               })
             )}
