@@ -3,6 +3,8 @@
 beLocal is a web-based marketplace that promotes local tourism and communities. You can find and book eco-friendly activities offered by amazing local experts. You can participate in one of our amazing activities or create you own!
 ![homepage](/client/public/img/homepage.jpg)
 
+Check out the deployed app on Heroku: [beLocal](https://belocalcatalonia.herokuapp.com)
+
 ## Technologies
 
 This project has been built using the following:
@@ -49,12 +51,12 @@ Run `yarn` on root folder to install dependencies related to Express.
 - Create another `.env` file on the client folder (to access the google maps api):
 
 ```
-REACT_APP_GOOGLE_API_KEY=GOOGLE_MAPS_API_KEY
+REACT_APP_GOOGLE_API_KEY=GOOGLE_API_KEY
 ```
 
-(Replace GOOGLE_MAPS_API_KEY with your google maps api key. In order to have a google maps api key, you will have to sign up for the service through their website: [Google Cloud Platform](https://console.cloud.google.com/?pli=1)
+(Replace GOOGLE_API_KEY with your actual Google maps api key. You can get it by signing up for the service through the website: [Google Cloud Platform](https://console.cloud.google.com/?pli=1)
 
-- Run `yarn migrate` in the main folder of this repository, in a new terminal window. This will create the tables you need for this project in your database.
+- Run `yarn migrate` in the main folder of this repository, in your terminal. This will create the tables you need for this project in your database.
 
 ### Run Your Development Servers
 
