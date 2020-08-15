@@ -1,10 +1,17 @@
-# beLocal (fspt2-finalproject)
+# beLocal
+
+beLocal is a web-based marketplace that promotes local tourism and communities. You can find and book eco-friendly activities offered by amazing local experts. You can participate in one of our amazing activities or create you own!
+![homepage](/client/public/homepage.jpg)
+
+## Technologies
 
 This project has been built using the following:
 
-Front-end: ReactJs, JavaScript, HTML, CSS, Reactstrap & Bootstrap.
+- Front-end: ReactJs, JavaScript, HTML, CSS, Reactstrap & Bootstrap.
 
-Back-end: NodeJs, Express & Sequelize.
+- Back-end: NodeJs, Express & Sequelize.
+
+- Integrated Google Maps, used emailjs (e-mail confirmation), multer (files uploading), JsonWebToken (authentication), bcrypt (password-hashing), QR code.
 
 ## Documentation
 
@@ -28,14 +35,24 @@ Run `yarn` on root folder to install dependencies related to Express.
 
 - Create an `.env` file to the main project directory and add:
 
-```bash
+```
   DB_NAME=your_best_experience
   DB_HOST=localhost
   DB_PASSWORD=YOUR_PASSWORD
-  DB_USER=root API_PORT=5000
+  DB_USER=root
+  PORT=5000
   SUPER_SECRET=bestexperience
 ```
+
 (replace YOUR_PASSWORD with your actual password)
+
+- Create another `.env` file on the client folder (to access the google maps api):
+
+```
+REACT_APP_GOOGLE_API_KEY=GOOGLE_MAPS_API_KEY
+```
+
+(Replace GOOGLE_MAPS_API_KEY with your google maps api key. In order to have a google maps api key, you will have to sign up for the service through their website: [Google Cloud Platform](https://console.cloud.google.com/?pli=1)
 
 - Run `yarn migrate` in the main folder of this repository, in a new terminal window. This will create the tables you need for this project in your database.
 
