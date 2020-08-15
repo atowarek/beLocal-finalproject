@@ -13,6 +13,8 @@ This project has been built using the following:
 
 - Back-end: NodeJs, Express & Sequelize.
 
+- Deployment: Heroku.
+
 - Integrated Google Maps, used emailjs (e-mail confirmation), multer (files uploading), JsonWebToken (authentication), bcrypt (password-hashing), QR code.
 
 ## Documentation
