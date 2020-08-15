@@ -1,7 +1,7 @@
 # beLocal
 
 beLocal is a web-based marketplace that promotes local tourism and communities. You can find and book eco-friendly activities offered by amazing local experts. You can participate in one of our amazing activities or create you own!
-![homepage](/client/public/homepage.jpg)
+![homepage](/client/public/img/homepage.jpg)
 
 ## Technologies
 
@@ -21,7 +21,7 @@ This project has been built using the following:
 
 ## Database schema
 
-<img src="images/db%20schema%20activities.JPG">
+![dbschema](/client/public/img/db_schema.jpg)
 
 ## Setup
 
@@ -58,10 +58,10 @@ REACT_APP_GOOGLE_API_KEY=GOOGLE_MAPS_API_KEY
 
 ### Run Your Development Servers
 
-- Run yarn start in project directory to start both the Express server on port 5000 and client server in development mode with hot reloading in port 3000.
-- Client is configured so all API calls will be proxied to port 5000 for a smoother development experience. Yay!
-- You can test your client app in http://localhost:3000
-- You can test your API in http://localhost:5000/api
+- Run `yarn dev` in project directory to start both the Express server on port 5000 and client server in development mode with hot reloading in port 3000.
+- Client is configured so all API calls will be proxied to port 5000 for a smoother development experience.
+- You can test your client app in `http://localhost:3000`
+- You can test your API in `http://localhost:5000/api`
 
 ## Notes
 
