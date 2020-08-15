@@ -56,7 +56,8 @@ Run `yarn` on root folder to install dependencies related to Express.
 REACT_APP_GOOGLE_API_KEY=GOOGLE_API_KEY
 ```
 
-(Replace GOOGLE_API_KEY with your actual Google maps api key. You can get it by signing up for the service through the website: [Google Cloud Platform](https://console.cloud.google.com/?pli=1)
+(replace GOOGLE_API_KEY with your actual Google maps api key.
+You can get it by signing up for the service through the website: [Google Cloud Platform](https://console.cloud.google.com/?pli=1))
 
 - Run `yarn migrate` in the main folder of this repository, in your terminal. This will create the tables you need for this project in your database.
 
