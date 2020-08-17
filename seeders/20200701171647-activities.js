@@ -6,8 +6,8 @@ module.exports = {
     return queryInterface.bulkInsert('activities', [
       {
         name: 'Narrow-Gauge Railway Route',
-        startDate: '2020-07-29',
-        endDate: '2020-07-29',
+        startDate: '2020-08-29',
+        endDate: '2020-08-29',
         startHour: '16:00:00',
         endHour: '21:00:00',
         hostingId: '3',
@@ -19,12 +19,12 @@ module.exports = {
         category: 'cycling',
         picture: '/img/Ruta.jpg',
         city: 'Girona',
-        price: '5'
+        price: '5',
       },
       {
         name: 'Learn how to cook Paella',
-        startDate: '2020-07-21',
-        endDate: '2020-07-21',
+        startDate: '2020-09-21',
+        endDate: '2020-09-21',
         startHour: '11:30:00',
         endHour: '15:00:00',
         hostingId: '2',
@@ -36,12 +36,12 @@ module.exports = {
         category: 'food and drinks',
         picture: '/img/paella.jpg',
         city: 'Barcelona',
-        price: '8'
+        price: '8',
       },
       {
         name: 'Create your own ring',
-        startDate: '2020-07-23',
-        endDate: '2020-07-23',
+        startDate: '2020-09-10',
+        endDate: '2020-09-10',
         startHour: '16:00:00',
         endHour: '19:30:00',
         hostingId: '1',
@@ -53,12 +53,12 @@ module.exports = {
         category: 'crafts',
         picture: '/img/ring.jpeg',
         city: 'Palamós',
-        price: '8'
+        price: '8',
       },
       {
         name: 'Ride Medieval Landscapes',
-        startDate: '2020-07-25',
-        endDate: '2020-07-25',
+        startDate: '2020-09-25',
+        endDate: '2020-09-25',
         startHour: '10:00:00',
         endHour: '18:00:00',
         hostingId: '3',
@@ -70,12 +70,12 @@ module.exports = {
         category: 'animals',
         picture: '/img/horse-riding.jpg',
         city: "L'ametlla de Segarra",
-        price: '8'
+        price: '8',
       },
       {
         name: 'Tango lessons & drinks',
-        startDate: '2020-07-26',
-        endDate: '2020-07-26',
+        startDate: '2020-09-26',
+        endDate: '2020-09-26',
         startHour: '19:00:00',
         endHour: '20:00:00',
         hostingId: '1',
@@ -87,12 +87,12 @@ module.exports = {
         category: 'dancing',
         picture: '/img/tango.jpg',
         city: 'Tàrrega',
-        price: '5'
+        price: '5',
       },
       {
         name: 'Wine and alpacas at Can Marlès',
-        startDate: '2020-08-02',
-        endDate: '2020-08-02',
+        startDate: '2020-09-20',
+        endDate: '2020-09-20',
         startHour: '12:00:00',
         endHour: '14:30:00',
         hostingId: '2',
@@ -104,7 +104,7 @@ module.exports = {
         category: 'food and drinks',
         picture: '/img/alpaca.jpg',
         city: 'Can Ferrer de la Cogullada',
-        price: '10'
+        price: '10',
       },
     ])
   },

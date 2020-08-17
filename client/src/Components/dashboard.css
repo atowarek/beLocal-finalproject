@@ -20,7 +20,6 @@
   width: 800px !important;
   text-align: center;
   padding: 0px;
-  margin: 20px;
 }
 
 .dates {
@@ -35,11 +34,8 @@ h5 {
   font-family: 'PT Sans';
 }
 
-
-
 .column {
   margin: 20px;
-  
 }
 
 .button-white {
@@ -49,7 +45,7 @@ h5 {
   text-decoration: none !important;
   display: inline-block !important;
   font-size: 15px !important;
-  width: 200px
+  width: 200px;
 }
 
 .button-green2 {
