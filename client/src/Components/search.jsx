@@ -41,7 +41,7 @@ class Search extends React.Component {
               id='search-input'
               placeholder='Where do you want your new adventure?'
               onChange={this.handleChange}
-              className= 'input-search'
+              className='input-search'
             />
           </FormGroup>
           <FormGroup className='input-category'>
@@ -55,14 +55,22 @@ class Search extends React.Component {
               onChange={this.handleChange}>
               {/* change css for the first option to #999 */}
               <option value=' '>All categories</option>
-              <option>Food and Drinks</option>
-              <option>Cycling</option>
-              <option>Crafts</option>
               <option>Animals</option>
+              <option>Crafts</option>
+              <option>Cycling</option>
               <option>Dancing</option>
+              <option>Food and Drinks</option>
+              <option>Hiking</option>
+              <option>Running</option>
             </Input>
           </FormGroup>
-          <Button className='search-button'>  Search <span role='image' aria-label='search'>🔍</span></Button>
+          <Button className='search-button'>
+            {' '}
+            Search{' '}
+            <span role='image' aria-label='search'>
+              🔍
+            </span>
+          </Button>
         </Form>
       </div>
     )

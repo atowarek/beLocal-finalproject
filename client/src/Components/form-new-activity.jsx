@@ -77,21 +77,21 @@ class NewActivity extends React.Component {
     formData.append('longitude', this.state.longitude)
     formData.append('latitude', this.state.latitude)
 
-        axios
-        .post('/api/activities', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        })
-        .then(response => {
-            console.log(response.data)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-        
-        this.goToDashboard()
-    }
+    axios
+      .post('/api/activities', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+    this.goToDashboard()
+  }
 
   goToDashboard = () => {
     this.props.history.push('/dashboard')
@@ -222,13 +222,13 @@ class NewActivity extends React.Component {
               placeholder='Category'
               type='select'>
               <option value=' '>Choose category</option>
-              <option value='running'>Running</option>
-              <option value='cycling'>Cycling</option>
-              <option value='hiking'>Hiking</option>
-              <option value='food and drinks'>Food and drinks</option>
-              <option value='crafts'>Crafts</option>
               <option value='animals'>Animals</option>
+              <option value='crafts'>Crafts</option>
+              <option value='cycling'>Cycling</option>
               <option value='dancing'>Dancing</option>
+              <option value='food and drinks'>Food and drinks</option>
+              <option value='hiking'>Hiking</option>
+              <option value='running'>Running</option>
               required
             </Input>
           </FormGroup>
