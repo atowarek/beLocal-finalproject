@@ -22,11 +22,11 @@ class ActivityMaps extends React.Component {
         styles={mapStyles}
         zoom={7}
         initialCenter={center}>
-        {this.props.activities.map((activity, index) => (
+        {this.props.activities.map(activity => (
           //console.log(activity),
           <Marker
             name={activity.name}
-            key={index}
+            key={activity.id}
             position={{ lat: activity.latitude, lng: activity.longitude }}
           />
         ))}
