@@ -15,9 +15,10 @@ const mapStyles = {
 }
 
 class ActivityMaps extends React.Component {
-  onMarkerClick = (props, marker, e) => {
-    console.log(props, marker, e)
+  constructor(props) {
+    super(props)
   }
+
   render() {
     return (
       <Map
@@ -25,13 +26,12 @@ class ActivityMaps extends React.Component {
         styles={mapStyles}
         zoom={7}
         initialCenter={center}>
-        {this.props.activities.map((activity, index) => (
+        {this.props.activities.map(activity => (
           //console.log(activity),
           <Marker
             name={activity.name}
-            key={index}
+            key={activity.id}
             position={{ lat: activity.latitude, lng: activity.longitude }}
-            onClick={this.onMarkerClick}
           />
         ))}
       </Map>
