@@ -88,21 +88,21 @@ class ActivityContainer extends React.Component {
       mail: this.props.hosting.mail,
     }
 
-    emailjs
-      .send(
-        'default_service',
-        'confirmation_email',
-        templateParams,
-        'user_2853rwzQwOgtGRHnfnFJO'
-      )
-      .then(
-        function (response) {
-          console.log('SUCCESS!', response.status, response.text)
-        },
-        function (error) {
-          console.log('FAILED...', error)
-        }
-      )
+    // emailjs
+    //   .send(
+    //     'default_service',
+    //     'confirmation_email',
+    //     templateParams,
+    //     'user_2853rwzQwOgtGRHnfnFJO'
+    //   )
+    //   .then(
+    //     function (response) {
+    //       console.log('SUCCESS!', response.status, response.text)
+    //     },
+    //     function (error) {
+    //       console.log('FAILED...', error)
+    //     }
+    //   )
 
     let params = {
       activity: this.props.name,
@@ -117,21 +117,21 @@ class ActivityContainer extends React.Component {
       email: this.props.hosting.mail,
     }
 
-    emailjs
-      .send(
-        'default_service',
-        'template_7GTJlsxc',
-        params,
-        'user_wq89NyyrCjVtaFyHAKKin'
-      )
-      .then(
-        function (response) {
-          console.log('SUCCESS!', response.status, response.text)
-        },
-        function (error) {
-          console.log('FAILED...', error)
-        }
-      )
+    // emailjs
+    //   .send(
+    //     'default_service',
+    //     'template_7GTJlsxc',
+    //     params,
+    //     'user_wq89NyyrCjVtaFyHAKKin'
+    //   )
+    //   .then(
+    //     function (response) {
+    //       console.log('SUCCESS!', response.status, response.text)
+    //     },
+    //     function (error) {
+    //       console.log('FAILED...', error)
+    //     }
+    //   )
   }
 
   goToDashboard = () => {
@@ -160,7 +160,11 @@ class ActivityContainer extends React.Component {
     return (
       <CardDeck>
         <Card className='card-text'>
-          <CardImg className='card-image' src={picture} alt='Activity image cap' />
+          <CardImg
+            className='card-image'
+            src={picture}
+            alt='Activity image cap'
+          />
           <CardBody>
             <CardTitle>
               <b>{name}</b>
@@ -168,7 +172,7 @@ class ActivityContainer extends React.Component {
             <CardSubtitle>
               <i>Category</i>: {category}
             </CardSubtitle>
-            <br/>
+            <br />
             <CardText>
               <i>When:</i> {startDate} <i>at</i> {startHour}
             </CardText>
