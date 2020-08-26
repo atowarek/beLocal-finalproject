@@ -1,9 +1,12 @@
 # beLocal
 
 beLocal is a web-based marketplace that promotes local tourism and communities. You can find and book eco-friendly activities offered by amazing local experts. You can participate in one of our amazing activities or create you own!
-![homepage](/client/public/img/homepage.jpg)
 
 Check out the deployed app on Heroku: [beLocal](https://belocalcatalonia.herokuapp.com)
+
+And a short video on [my LinkedIn profile](https://www.linkedin.com/posts/annatowarek_belocal-fullstackdevelopment-bootcamp-activity-6704356408076353536-TWAU)
+
+![homepage](/client/public/img/homepage.jpg)
 
 ## Technologies
 
