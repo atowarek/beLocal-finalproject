@@ -35,12 +35,6 @@ class ActivityContainer extends React.Component {
     }))
   }
 
-  /*toggleMessage = () => {
-    this.setState(state => ({
-      modalMessage: !state.modalMessage,
-    }))
-  }*/
-
   handleClick = id => () => {
     const { user } = this.props
     if (!user) {
@@ -88,21 +82,21 @@ class ActivityContainer extends React.Component {
       mail: this.props.hosting.mail,
     }
 
-    // emailjs
-    //   .send(
-    //     'default_service',
-    //     'confirmation_email',
-    //     templateParams,
-    //     'user_2853rwzQwOgtGRHnfnFJO'
-    //   )
-    //   .then(
-    //     function (response) {
-    //       console.log('SUCCESS!', response.status, response.text)
-    //     },
-    //     function (error) {
-    //       console.log('FAILED...', error)
-    //     }
-    //   )
+    emailjs
+      .send(
+        'default_service',
+        'confirmation_email',
+        templateParams,
+        'user_2853rwzQwOgtGRHnfnFJO'
+      )
+      .then(
+        function (response) {
+          console.log('SUCCESS!', response.status, response.text)
+        },
+        function (error) {
+          console.log('FAILED...', error)
+        }
+      )
 
     let params = {
       activity: this.props.name,
@@ -117,21 +111,21 @@ class ActivityContainer extends React.Component {
       email: this.props.hosting.mail,
     }
 
-    // emailjs
-    //   .send(
-    //     'default_service',
-    //     'template_7GTJlsxc',
-    //     params,
-    //     'user_wq89NyyrCjVtaFyHAKKin'
-    //   )
-    //   .then(
-    //     function (response) {
-    //       console.log('SUCCESS!', response.status, response.text)
-    //     },
-    //     function (error) {
-    //       console.log('FAILED...', error)
-    //     }
-    //   )
+    emailjs
+      .send(
+        'default_service',
+        'template_7GTJlsxc',
+        params,
+        'user_wq89NyyrCjVtaFyHAKKin'
+      )
+      .then(
+        function (response) {
+          console.log('SUCCESS!', response.status, response.text)
+        },
+        function (error) {
+          console.log('FAILED...', error)
+        }
+      )
   }
 
   goToDashboard = () => {
